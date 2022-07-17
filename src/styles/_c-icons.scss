@@ -1,0 +1,306 @@
+@font-face {
+  font-family: 'c-icons';
+  src: url('../__assets__/fonts/c-icons.ttf?a') format('truetype'),
+    url('../__assets__/fonts/c-icons.woff?a') format('woff'),
+    url('../__assets__/fonts/c-icons.svg?a#c-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'c-icons-fills';
+  src: url('../__assets__/fonts/c-icons-fills.ttf?a') format('truetype'),
+    url('../__assets__/fonts/c-icons-fills.woff?a') format('woff'),
+    url('../__assets__/fonts/c-icons-fills.svg?a#c-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^='c-icon-'],
+[class*=' c-icon-'] {
+  position: relative;
+  /* use !important to prevent issues with browser extensions that change fonts */
+  &:after {
+    display: none;
+  }
+  &:before {
+    font-family: 'c-icons' !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  speak: never;
+  font-size: 38px;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-position {
+  &--left {
+    left: -45px;
+  }
+}
+
+.c-icon-aircraft:before,
+.c-icon-aircraft:after {
+  content: '\e900';
+}
+.c-icon-alias:before,
+.c-icon-alias:after {
+  content: '\e901';
+}
+.c-icon-apartments:before,
+.c-icon-apartments:after {
+  content: '\e902';
+}
+.c-icon-bank-account:before,
+.c-icon-bank-account:after {
+  content: '\e903';
+}
+.c-icon-bus:before,
+.c-icon-bus:after {
+  content: '\e904';
+}
+.c-icon-car:after,
+.c-icon-car:before {
+  content: '\e905';
+}
+.c-icon-company:before,
+.c-icon-company:after {
+  content: '\e906';
+}
+.c-icon-computer-globe:before,
+.c-icon-computer-globe:after {
+  content: '\e907';
+}
+.c-icon-computer-location:before,
+.c-icon-computer-location:after {
+  content: '\e908';
+}
+.c-icon-computer-mail:before,
+.c-icon-computer-mail:after {
+  content: '\e909';
+}
+.c-icon-computer:before,
+.c-icon-computer:after {
+  content: '\e90a';
+}
+.c-icon-consignment:before,
+.c-icon-consignment:after {
+  content: '\e90b';
+}
+.c-icon-consolidation:before,
+.c-icon-consolidation:after {
+  content: '\e90c';
+}
+.c-icon-container:before,
+.c-icon-container:after {
+  content: '\e90d';
+}
+.c-icon-credit-card:before,
+.c-icon-credit-card:after {
+  content: '\e90e';
+}
+.c-icon-cube:before,
+.c-icon-cube:after {
+  content: '\e90f';
+}
+.c-icon-document-list:before,
+.c-icon-document-list:after {
+  content: '\e910';
+}
+.c-icon-document-mixed:before,
+.c-icon-document-mixed:after {
+  content: '\e911';
+}
+.c-icon-document-text:before,
+.c-icon-document-text:after {
+  content: '\e912';
+}
+.c-icon-document:before,
+.c-icon-document:after {
+  content: '\e913';
+}
+.c-icon-drugs:before,
+.c-icon-drugs:after {
+  content: '\e914';
+}
+.c-icon-exclamation-circle-filled:before,
+.c-icon-exclamation-circle-filled:after {
+  content: '\e915';
+}
+.c-icon-exclamation-circle:before,
+.c-icon-exclamation-circle:after {
+  content: '\e916';
+}
+.c-icon-exclamation-triangle-filled:before,
+.c-icon-exclamation-triangle-filled:after {
+  content: '\e917';
+}
+.c-icon-exclamation-triangle:before,
+.c-icon-exclamation-triangle:after {
+  content: '\e918';
+}
+.c-icon-exclamation:before,
+.c-icon-exclamation:after {
+  content: '\e919';
+}
+.c-icon-eye:before,
+.c-icon-eye:after {
+  content: '\e91a';
+}
+.c-icon-firearms:before,
+.c-icon-firearms:after {
+  content: '\e91b';
+}
+.c-icon-flag-1:before {
+  content: '\e91c';
+}
+.c-icon-flag-2:before {
+  content: '\e91d';
+}
+.c-icon-flag-3:before {
+  content: '\e91e';
+}
+.c-icon-flag-4:before {
+  content: '\e91f';
+}
+.c-icon-flag-5:before {
+  content: '\e920';
+}
+.c-icon-flag-6:before {
+  content: '\e921';
+}
+.c-icon-globe:before,
+.c-icon-globe:after {
+  content: '\e922';
+}
+.c-icon-group:before,
+.c-icon-group:after {
+  content: '\e923';
+}
+.c-icon-hgv:after,
+.c-icon-hgv:before {
+  content: '\e924';
+}
+.c-icon-house:before,
+.c-icon-house:after {
+  content: '\e925';
+}
+.c-icon-kiosk:before,
+.c-icon-kiosk:after {
+  content: '\e926';
+}
+.c-icon-lightbulb:before,
+.c-icon-lightbulb:after {
+  content: '\e927';
+}
+.c-icon-location-apartments:before,
+.c-icon-location-apartments:after {
+  content: '\e928';
+}
+.c-icon-location-company:before,
+.c-icon-location-company:after {
+  content: '\e929';
+}
+.c-icon-location-house:before,
+.c-icon-location-house:after {
+  content: '\e92a';
+}
+.c-icon-location:before,
+.c-icon-location:after {
+  content: '\e92b';
+}
+.c-icon-mail:before,
+.c-icon-mail:after {
+  content: '\e92c';
+}
+.c-icon-mailbox:before,
+.c-icon-mailbox:after {
+  content: '\e92d';
+}
+.c-icon-mobile:before,
+.c-icon-mobile:after {
+  content: '\e92e';
+}
+.c-icon-motorcycle:before,
+.c-icon-motorcycle:after {
+  content: '\e92f';
+}
+.c-icon-movement:before,
+.c-icon-movement:after {
+  content: '\e930';
+}
+.c-icon-passport:before,
+.c-icon-passport:after {
+  content: '\e931';
+}
+.c-icon-person-child-female:before,
+.c-icon-person-child-female:after {
+  content: '\e932';
+}
+.c-icon-person-child-male:before,
+.c-icon-person-child-male:after {
+  content: '\e933';
+}
+.c-icon-person-child:before,
+.c-icon-person-child:after {
+  content: '\e934';
+}
+.c-icon-person-female:before,
+.c-icon-person-female:after {
+  content: '\e935';
+}
+.c-icon-person-male:before,
+.c-icon-person-male:after {
+  content: '\e936';
+}
+.c-icon-person:before,
+.c-icon-person:after {
+  content: '\e937';
+}
+.c-icon-phone:before,
+.c-icon-phone:after {
+  content: '\e938';
+}
+.c-icon-shield:before,
+.c-icon-shield:after {
+  content: '\e939';
+}
+.c-icon-after:after,
+.c-icon-ship:before {
+  content: '\e93a';
+}
+.c-icon-sim-card:before,
+.c-icon-sim-card:after {
+  content: '\e93b';
+}
+.c-icon-tickets:before,
+.c-icon-tickets:after {
+  content: '\e93c';
+}
+.c-icon-trailer:after,
+.c-icon-trailer:before {
+  content: '\e93d';
+}
+.c-icon-train:before,
+.c-icon-train:after {
+  content: '\e93e';
+}
+.c-icon-van:after,
+.c-icon-van:before {
+  content: '\e93f';
+}
+.c-icon-weapons:before,
+.c-icon-weapons:after {
+  content: '\e940';
+}

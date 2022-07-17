@@ -1,0 +1,68 @@
+import * as React from 'react';
+import { FC, useState, useEffect } from 'react';
+import Keycloak from 'keycloak-js';
+import AuthContext from './auth-context';
+import config from '../../config';
+
+class Props {
+  children: React.ReactNode | React.ReactNode[];
+}
+
+const AuthProvider: FC<Props> = ({ children }) => {
+  const [token, setToken] = useState(null);
+  const [tokenRefreshInterval, setTokenRefreshInterval] = useState(3500000);
+
+  const [keycloakClient, setKeycloakClient] = useState(
+    new Keycloak(config.keycloak.clientConfig),
+  );
+
+  const logout = (uri: string) => {
+    console.debug(`logging out using redirect uri ${uri}`);
+    keycloakClient.logout({ redirectUri: uri });
+  };
+
+  const getToken = () => {
+    return token;
+  };
+
+  const calculateInterval = (expirySeconds: number) => {
+    const expiry = new Date(expirySeconds * 1000);
+    const interval = expiry.getTime() - new Date().getTime() - 120000;
+    console.debug(`token refresh interval calculated as ${interval}`);
+    return interval;
+  };
+
+  setInterval(() => {
+    keycloakClient
+      .updateToken(30)
+      .then((updated) => {
+        console.info(`token updated ${updated}`);
+      })
+      .catch((error) => {
+        console.error(`token error ${error}`);
+      });
+  }, tokenRefreshInterval);
+
+  useEffect(() => {
+    keycloakClient.init(config.keycloak.initOptions).then((authenticated) => {
+      console.debug(`authenticated ${authenticated}`);
+      if (authenticated) {
+        setKeycloakClient(keycloakClient);
+        setToken(keycloakClient.token);
+        setTokenRefreshInterval(
+          calculateInterval(keycloakClient.tokenParsed.exp),
+        );
+      } else {
+        console.debug(`keycloak login result ${keycloakClient.login()}`);
+      }
+    });
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ logout: logout, getToken: getToken }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export { AuthProvider };

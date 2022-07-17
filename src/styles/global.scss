@@ -1,0 +1,31 @@
+@import 'base';
+@import '~govuk-frontend/govuk/all';
+@import 'utilities';
+@import 'c-icons';
+
+.govuk-width-container {
+  max-width: 90%;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 48.0625em) {
+  .govuk-header__content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+body {
+  font-family: $govuk-font-family;
+}
+
+[class*='govuk-'],
+[class*=' govuk-'],
+[class*='hods-'],
+[class*=' hods-'],
+a {
+  font-family: $govuk-font-family;
+}
