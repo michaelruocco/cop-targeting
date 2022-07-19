@@ -5,10 +5,10 @@ import { Link, useLocation } from 'react-router-dom';
 class Props {
   href: string;
   text: string;
-  visible: boolean;
+  visible?: boolean;
 }
 
-const NavigationItem: FC<Props> = ({ href, text, visible }) => {
+const NavigationItem: FC<Props> = ({ href, text, visible = true }) => {
   if (!visible) {
     return <></>;
   }

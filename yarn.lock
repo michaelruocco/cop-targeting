@@ -1380,7 +1380,7 @@
 
 "@ukhomeoffice/cop-react-components@^1.9.5":
   version "1.9.5"
-  resolved "https://registry.npmjs.org/@ukhomeoffice/cop-react-components/-/cop-react-components-1.9.5.tgz"
+  resolved "https://registry.yarnpkg.com/@ukhomeoffice/cop-react-components/-/cop-react-components-1.9.5.tgz#e71bc0c0eb7bd894a02f756971bb4d68f8412c12"
   integrity sha512-CH8M49J07s9+3R3FZjsPWmpePzxF40wiBj9Vg+ugXZkVP8OsGwjPHM502mCDxEoZlpfj3VLw8u0mxcVqn0xDeg==
   dependencies:
     accessible-autocomplete "2.0.3"

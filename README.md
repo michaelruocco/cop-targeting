@@ -18,3 +18,11 @@ KEYCLOAK_CLIENT_ID=<configure-me>
 KEYCLOAK_REALM=<configure-me>
 KEYCLOAK_AUTH_URL=<configure-me>
 ```
+
+## TODO
+
+- Add unit tests for nav links
+- Add unit tests for only showing UI when logged in
+- Add unit tests for hitting `/` redirecting to `/roro-tasks`
+- Add unit tests for home icon link redirecting to `/`
+- Add unit tests for logout button logging user out

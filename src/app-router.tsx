@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { FC } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { PnrAccessProvider } from './contexts/pnr/pnr-access-provider';
 import AirPaxTaskListPage from './pages/task/air-pax-task-list-page';
+import RequestPnrAccessPage from './pages/task/request-pnr-access-page';
 import RoRoTaskListPage from './pages/task/roro-task-list-page';
 
 const AppRouter: FC = () => {
@@ -10,11 +12,17 @@ const AppRouter: FC = () => {
     : 'js-enabled';
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navigate to="/roro-tasks" />} />
-        <Route path="/roro-tasks" element={<RoRoTaskListPage />} />
-        <Route path="/air-pax-tasks" element={<AirPaxTaskListPage />} />
-      </Routes>
+      <PnrAccessProvider>
+        <Routes>
+          <Route path="/" element={<Navigate to="/roro-tasks" />} />
+          <Route path="/roro-tasks" element={<RoRoTaskListPage />} />
+          <Route path="/air-pax-tasks" element={<AirPaxTaskListPage />} />
+          <Route
+            path="/pnr-access-request"
+            element={<RequestPnrAccessPage />}
+          />
+        </Routes>
+      </PnrAccessProvider>
     </BrowserRouter>
   );
 };
