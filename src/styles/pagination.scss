@@ -1,0 +1,43 @@
+$govuk-assets-path: '~govuk-frontend/govuk/assets/';
+
+@import '~govuk-frontend/govuk/vendor/_sass-mq';
+@import '~govuk-frontend/govuk/settings/all';
+@import '~govuk-frontend/govuk/helpers/all';
+@import '~govuk-frontend/govuk/tools/all';
+
+.pagination--list {
+  margin: govuk-spacing(4) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pagination--list-item {
+  display: inline-block;
+}
+
+.pagination--link {
+  text-decoration: none;
+  padding: govuk-spacing(1) govuk-spacing(2);
+}
+
+.pagination--link-active,
+.pagination--link-active:visited {
+  font-weight: bold;
+  color: $govuk-text-colour;
+}
+
+.pagination--ellipsis {
+  font-weight: bold;
+  @include govuk-font($size: 16);
+  display: inline-block;
+  padding: govuk-spacing(2);
+  background-color: transparent;
+  color: govuk-colour('dark-grey');
+}
+
+.pagination--summary {
+  @include govuk-font($size: 16);
+  @include mq($from: tablet) {
+    float: right;
+  }
+}
