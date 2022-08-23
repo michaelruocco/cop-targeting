@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import TaskHeading from './task-heading';
 import AirPaxTaskListItem from './air-pax-task-list-item';
 import { Task } from '../../adapters/task/task-client';
@@ -15,18 +15,20 @@ class AppliedFilters {
   searchText: string;
 }
 
+const defaultFilters: AppliedFilters = {
+  movementModes: ['AIR_PASSENGER'],
+  mode: 'AIR_PASSENGER',
+  selectors: 'ANY',
+  rules: [],
+  searchText: '',
+};
+
 class Props {
   tasks: Task[];
 }
 
 const AirPaxTaskList: FC<Props> = ({ tasks }) => {
-  const appliedFilters: AppliedFilters = {
-    movementModes: ['AIR_PASSENGER'],
-    mode: 'AIR_PASSENGER',
-    selectors: 'ANY',
-    rules: [],
-    searchText: '',
-  };
+  const [filters, setFilters] = useState(defaultFilters);
 
   const rulesOptions: string[] = [];
 
@@ -108,9 +110,16 @@ const AirPaxTaskList: FC<Props> = ({ tasks }) => {
     ],
   };
 
-  const onApplyFilter = async (_: any, payload: any, onSuccess: any) => {
-    console.log(`applying filter ${JSON.stringify(payload)}`);
+  const handleApplyFilters = async (_: any, payload: any, onSuccess: any) => {
     onSuccess(payload);
+    setFilters(payload);
+    console.log(`filters applied to ${JSON.stringify(payload)}`);
+  };
+
+  const handleResetFilters = (e: any) => {
+    e.preventDefault();
+    setFilters(defaultFilters);
+    console.log(`filters reset to ${JSON.stringify(defaultFilters)}`);
   };
 
   const onGetComponent = (component: any, wrap: any) => {
@@ -160,18 +169,11 @@ const AirPaxTaskList: FC<Props> = ({ tasks }) => {
     return null;
   };
 
-  const handleFilterReset = (e: any) => {
-    console.log('resetting filters');
-    //e.preventDefault();
-    //localStorage.removeItem(AIRPAX_FILTERS_KEY);
-    //getFiltersAndSelectorsCount(getTaskStatus(TASK_STATUS_KEY));
-    //setAppliedFilters(DEFAULT_APPLIED_AIRPAX_FILTER_STATE);
-    //getTaskCount(DEFAULT_APPLIED_AIRPAX_FILTER_STATE);
-  };
-
   const taskItems =
     tasks &&
     tasks.map((task) => <AirPaxTaskListItem task={task} key={task.id} />);
+
+  console.log(`rendering filters ${JSON.stringify(filters)}`);
   return (
     <>
       <TaskHeading text="Air Passenger Tasks" />
@@ -184,7 +186,7 @@ const AirPaxTaskList: FC<Props> = ({ tasks }) => {
                 className="govuk-link govuk-heading-s "
                 data-module="govuk-button"
                 type="button"
-                onClick={(e) => handleFilterReset(e)}
+                onClick={(e) => handleResetFilters(e)}
               >
                 Clear all filters
               </button>
@@ -194,9 +196,9 @@ const AirPaxTaskList: FC<Props> = ({ tasks }) => {
                 {...airpax}
                 hooks={{
                   onGetComponent,
-                  onSubmit: onApplyFilter,
+                  onSubmit: handleApplyFilters,
                 }}
-                data={appliedFilters}
+                data={filters}
               />
             </div>
           </div>
