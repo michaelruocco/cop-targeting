@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { Task } from '../../adapters/task/task-client';
+import { Task } from '../../adapters/task/targeting-api-client';
 import ClaimButton from './claim-button';
 
 class Props {
@@ -11,7 +11,7 @@ const AirPaxTaskListItem: FC<Props> = ({ task }) => {
   const even = parseInt(task.id[task.id.length - 1]) % 2 == 0;
   const threatValue = even ? 'Tier 1' : 'Category A';
   return (
-    <div className="govuk-task-list-card">
+    <div className="govuk-task-list-card" key={task.id}>
       <div className="card-container">
         <section>
           <div className="govuk-grid-row">

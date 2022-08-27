@@ -1,207 +1,56 @@
 import * as React from 'react';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import TaskHeading from './task-heading';
 import AirPaxTaskListItem from './air-pax-task-list-item';
-import { Task } from '../../adapters/task/task-client';
+import {
+  Task,
+  TaskCountsResponse,
+} from '../../adapters/task/targeting-api-client';
 import Pagination from '../../pages/task/pagination';
-import FormRenderer, { Utils } from '@ukhomeoffice/cop-react-form-renderer';
-import { MultiSelectAutocomplete } from '@ukhomeoffice/cop-react-components';
-
-class AppliedFilters {
-  movementModes: string[];
-  mode: string;
-  selectors: string;
-  rules: string[];
-  searchText: string;
-}
-
-const defaultFilters: AppliedFilters = {
-  movementModes: ['AIR_PASSENGER'],
-  mode: 'AIR_PASSENGER',
-  selectors: 'ANY',
-  rules: [],
-  searchText: '',
-};
+import { AirPaxFilters } from './air-pax-filters';
+import { FormFilters } from './form-filters';
+import { FilterRule } from '../../adapters/task/targeting-api-client';
 
 class Props {
+  taskCounts: TaskCountsResponse;
+  currentPage: number;
+  pageSize: number;
+  totalNumberOfTasks: number;
   tasks: Task[];
+  ruleOptions: FilterRule[];
+  defaultFilters: FormFilters;
+  onApplyFilters: (filters: FormFilters) => void;
+  onResetFilters: (filters: FormFilters) => void;
+  onPageChanged: (pageNumber: number) => void;
 }
 
-const AirPaxTaskList: FC<Props> = ({ tasks }) => {
-  const [filters, setFilters] = useState(defaultFilters);
-
-  const rulesOptions: string[] = [];
-
-  const airpax = {
-    id: 'filter',
-    version: '0.0.1',
-    name: 'filter',
-    type: 'form',
-    pages: [
-      {
-        id: 'filter',
-        name: 'filter',
-        components: [
-          {
-            id: 'search',
-            fieldId: 'searchText',
-            label: 'Search',
-            type: 'text',
-            required: false,
-            placeholder: 'Passenger Name or Task Id',
-          },
-          {
-            id: 'mode',
-            fieldId: 'mode',
-            label: 'Mode',
-            type: 'select',
-            required: true,
-            dynamicoptions: 'true',
-            data: {
-              options: [
-                {
-                  value: 'AIR_PASSENGER',
-                  label: 'Air passenger',
-                },
-              ],
-            },
-          },
-          {
-            id: 'selectors',
-            fieldId: 'selectors',
-            label: 'Selectors',
-            type: 'radios',
-            required: true,
-            dynamicoptions: 'true',
-            data: {
-              options: [
-                {
-                  value: 'NOT_PRESENT',
-                  label: 'Has no selector',
-                },
-                {
-                  value: 'PRESENT',
-                  label: 'Has selector',
-                },
-                {
-                  value: 'ANY',
-                  label: 'Both',
-                },
-              ],
-            },
-          },
-          {
-            id: 'rules',
-            fieldId: 'rules',
-            label: 'Rule matches',
-            type: 'multiautocomplete',
-            multi: true,
-            required: false,
-          },
-        ],
-        actions: [
-          {
-            type: 'submit',
-            validate: true,
-            label: 'Apply',
-          },
-        ],
-      },
-    ],
-  };
-
-  const handleApplyFilters = async (_: any, payload: any, onSuccess: any) => {
-    onSuccess(payload);
-    setFilters(payload);
-    console.log(`filters applied to ${JSON.stringify(payload)}`);
-  };
-
-  const handleResetFilters = (e: any) => {
-    e.preventDefault();
-    setFilters(defaultFilters);
-    console.log(`filters reset to ${JSON.stringify(defaultFilters)}`);
-  };
-
-  const onGetComponent = (component: any, wrap: any) => {
-    const attrs = Utils.Component.clean(component, [
-      'fieldId',
-      'dynamicoptions',
-      'multi',
-    ]);
-    if (component.type === 'select') {
-      const select = (
-        <select
-          className="govuk-select"
-          id={component.id}
-          name={component.fieldId}
-          onChange={component.onChange}
-          onBlur={component.onChange}
-          value={component.value}
-        >
-          {component.data.options.map((opt: any) => {
-            return (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
-              </option>
-            );
-          })}
-        </select>
-      );
-      if (wrap) {
-        return Utils.Component.wrap(attrs, select);
-      }
-      return select;
-    }
-    if (component.type === 'multiautocomplete') {
-      const multiSelect = (
-        <MultiSelectAutocomplete
-          className="hods-multi-select-autocomplete"
-          {...component}
-          item={{ value: 'id', label: 'name' }}
-          options={rulesOptions}
-        />
-      );
-      if (wrap) {
-        return Utils.Component.wrap(attrs, multiSelect);
-      }
-      return multiSelect;
-    }
-    return null;
-  };
-
+const AirPaxTaskList: FC<Props> = ({
+  taskCounts,
+  currentPage,
+  pageSize,
+  totalNumberOfTasks,
+  tasks,
+  ruleOptions,
+  defaultFilters,
+  onApplyFilters,
+  onResetFilters,
+  onPageChanged,
+}) => {
   const taskItems =
     tasks &&
     tasks.map((task) => <AirPaxTaskListItem task={task} key={task.id} />);
 
-  console.log(`rendering filters ${JSON.stringify(filters)}`);
   return (
     <>
       <TaskHeading text="Air Passenger Tasks" />
       <div className="govuk-grid-row">
         <section className="govuk-grid-column-one-quarter">
-          <div className="cop-filters-container">
-            <div className="cop-filters-header">
-              <h2 className="govuk-heading-s">Filters</h2>
-              <button
-                className="govuk-link govuk-heading-s "
-                data-module="govuk-button"
-                type="button"
-                onClick={(e) => handleResetFilters(e)}
-              >
-                Clear all filters
-              </button>
-            </div>
-            <div>
-              <FormRenderer
-                {...airpax}
-                hooks={{
-                  onGetComponent,
-                  onSubmit: handleApplyFilters,
-                }}
-                data={filters}
-              />
-            </div>
-          </div>
+          <AirPaxFilters
+            defaultFilters={defaultFilters}
+            ruleOptions={ruleOptions}
+            onApplyFilters={onApplyFilters}
+            onResetFilters={onResetFilters}
+          />
         </section>
         <section className="govuk-grid-column-three-quarters">
           <div id="tasks" className="govuk-tabs">
@@ -209,30 +58,40 @@ const AirPaxTaskList: FC<Props> = ({ tasks }) => {
               <ul className="govuk-tabs__list">
                 <li className="govuk-tabs__list-item govuk-tabs__list-item--selected">
                   <a className="govuk-tabs__tab" href="#new">
-                    New (123)
+                    New ({taskCounts.new})
                   </a>
                 </li>
                 <li className="govuk-tabs__list-item">
                   <a className="govuk-tabs__tab" href="#inProgress">
-                    In progress (55)
+                    In progress ({taskCounts.inProgress})
                   </a>
                 </li>
                 <li className="govuk-tabs__list-item">
                   <a className="govuk-tabs__tab" href="#issued">
-                    Issued (18)
+                    Issued ({taskCounts.issued})
                   </a>
                 </li>
                 <li className="govuk-tabs__list-item">
                   <a className="govuk-tabs__tab" href="#complete">
-                    Complete (13)
+                    Complete ({taskCounts.complete})
                   </a>
                 </li>
               </ul>
             </div>
             <div id="new" className="govuk-tabs__panel">
-              <Pagination />
+              <Pagination
+                currentPage={currentPage}
+                totalNumberOfItems={totalNumberOfTasks}
+                pageSize={pageSize}
+                onPageChanged={onPageChanged}
+              />
               <div>{taskItems}</div>
-              <Pagination />
+              <Pagination
+                currentPage={currentPage}
+                totalNumberOfItems={totalNumberOfTasks}
+                pageSize={pageSize}
+                onPageChanged={onPageChanged}
+              />
             </div>
           </div>
         </section>

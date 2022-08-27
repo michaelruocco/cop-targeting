@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FC, useState } from 'react';
 import PnrAccessContext, { PnrAccessRequest } from './pnr-access-context';
 
-const ITEM_KEY = 'session-pnr-access-request';
+const itemKey = 'session-pnr-access-request';
 
 class Props {
   children: React.ReactNode | React.ReactNode[];
@@ -10,7 +10,7 @@ class Props {
 
 const PnrAccessProvider: FC<Props> = ({ children }) => {
   const loadPnrAccessRequestFromStorage = (): PnrAccessRequest => {
-    const item = localStorage.getItem(ITEM_KEY);
+    const item = localStorage.getItem(itemKey);
     if (item == null) {
       return { sessionId: 'unknown', isRequested: false };
     }
@@ -19,7 +19,7 @@ const PnrAccessProvider: FC<Props> = ({ children }) => {
 
   const updatePnrAccessRequest = (request: PnrAccessRequest) => {
     setPnrAccessRequest(request);
-    localStorage.setItem(ITEM_KEY, JSON.stringify(request));
+    localStorage.setItem(itemKey, JSON.stringify(request));
   };
 
   const isPnrAccessRequested = (sessionId: string) => {
