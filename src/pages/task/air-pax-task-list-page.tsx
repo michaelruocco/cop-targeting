@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { FC, useContext, useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import {
   StubTargetingApiClient,
   Task,
@@ -10,7 +9,6 @@ import {
   TaskPageRequest,
   TaskStatus,
   TaskCountsResponse,
-  parseTaskStatus,
   TaskFilters,
   TaskSelectorStatusCounts,
 } from '../../adapters/task/targeting-api-client';
@@ -26,6 +24,7 @@ import '../../styles/task-list-page.scss';
 const AirPaxTaskListPage: FC = () => {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [status, setStatus] = useState<TaskStatus>(TaskStatus.New);
+  const [isLoading, setLoading] = useState<boolean>(true);
 
   const defaultFormFilters: FormFilters = {
     movementModes: [MovementMode.AirPassenger],
@@ -151,6 +150,7 @@ const AirPaxTaskListPage: FC = () => {
   };
 
   const fetchTasks = async () => {
+    setLoading(true);
     const taskFiltersRequest = buildTaskFiltersRequest();
     const countsResponse = await taskClient.getTaskCounts(taskFiltersRequest);
     setTaskCounts(countsResponse);
@@ -166,12 +166,14 @@ const AirPaxTaskListPage: FC = () => {
     const pageRequest = buildTaskPageRequest(pageOffset);
     const pageResponse = await taskClient.getTaskPage(pageRequest);
     setTasks(pageResponse.tasks);
+    setLoading(false);
   };
 
   const getComponentToShow = () => {
     if (isPnrAccessRequested(getSessionId())) {
       return (
         <AirPaxTaskList
+          isLoading={isLoading}
           taskCounts={taskCounts}
           taskSelectorStatusCounts={taskSelectorStatusCounts}
           pageSize={pageSize}

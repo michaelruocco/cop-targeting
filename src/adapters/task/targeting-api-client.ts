@@ -309,7 +309,7 @@ export class StubTargetingApiClient implements TargetingApiClient {
     return Promise.resolve(counts);
   };
 
-  getTaskPage = (request: TaskPageRequest): Promise<TaskPageResponse> => {
+  getTaskPage = async (request: TaskPageRequest): Promise<TaskPageResponse> => {
     console.log(`getTaskPage ${JSON.stringify(request)}`);
     const pagination = request.pagination;
     const filteredTasks = stubTasks.filter((task) =>

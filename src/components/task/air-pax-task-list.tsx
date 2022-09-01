@@ -14,8 +14,10 @@ import { AirPaxFilters } from './air-pax-filters';
 import { FormFilters } from './form-filters';
 import { FilterRule } from '../../adapters/task/targeting-api-client';
 import StatusTabs from '../tabs/status-tabs';
+import LoadingSpinner from '../spinner/loading-spinner';
 
 class Props {
+  isLoading: boolean;
   taskCounts: TaskCountsResponse;
   taskSelectorStatusCounts: TaskSelectorStatusCounts;
   currentPage: number;
@@ -34,6 +36,7 @@ class Props {
 }
 
 const AirPaxTaskList: FC<Props> = ({
+  isLoading = true,
   taskCounts,
   taskSelectorStatusCounts,
   currentPage,
@@ -68,6 +71,29 @@ const AirPaxTaskList: FC<Props> = ({
     ));
   };
 
+  const getTaskPanelContents = (): React.ReactNode => {
+    if (isLoading) {
+      return <LoadingSpinner />;
+    }
+    return (
+      <>
+        <Pagination
+          currentPage={currentPage}
+          totalNumberOfItems={totalNumberOfTasks}
+          pageSize={pageSize}
+          onPageChanged={onPageChanged}
+        />
+        <div>{toTaskItems(tasks)}</div>
+        <Pagination
+          currentPage={currentPage}
+          totalNumberOfItems={totalNumberOfTasks}
+          pageSize={pageSize}
+          onPageChanged={onPageChanged}
+        />
+      </>
+    );
+  };
+
   return (
     <>
       <TaskHeader text="Air Passenger Tasks" />
@@ -89,19 +115,7 @@ const AirPaxTaskList: FC<Props> = ({
               onStatusSelected={onStatusSelected}
             />
             <div id="taskPanel" className="govuk-tabs__panel">
-              <Pagination
-                currentPage={currentPage}
-                totalNumberOfItems={totalNumberOfTasks}
-                pageSize={pageSize}
-                onPageChanged={onPageChanged}
-              />
-              <div>{toTaskItems(tasks)}</div>
-              <Pagination
-                currentPage={currentPage}
-                totalNumberOfItems={totalNumberOfTasks}
-                pageSize={pageSize}
-                onPageChanged={onPageChanged}
-              />
+              {getTaskPanelContents()}
             </div>
           </div>
         </section>

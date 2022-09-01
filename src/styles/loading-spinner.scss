@@ -1,0 +1,145 @@
+.loading-spinner--inner .fade-exit-active .icon-loading {
+  opacity: 0;
+  -webkit-transition-duration: 200ms;
+  transition-duration: 200ms;
+}
+
+.loading-spinner--spin {
+  -webkit-animation: spinner 1s infinite linear;
+  animation: spinner 1s infinite linear;
+}
+
+.loading-spinner {
+  position: relative;
+  padding-bottom: 2px;
+  min-height: 100px;
+}
+
+.loading-spinner--inner {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+
+  .icon-loading {
+    z-index: 101;
+    opacity: 1;
+    display: block;
+    height: 100%;
+    max-height: calc(50vh + 100px);
+    -webkit-transition: opacity 800ms ease-in-out;
+    transition: opacity 800ms ease-in-out;
+    will-change: opacity;
+  }
+
+  .fade-enter .loading-spinner--overlay {
+    background-color: rgba(255, 255, 255, 0);
+    -webkit-transition-duration: 800ms;
+    transition-duration: 800ms;
+  }
+
+  .loading-spinner--overlay {
+    z-index: 100;
+    -webkit-transition: background-color 800ms ease-in-out;
+    transition: background-color 800ms ease-in-out;
+    will-change: background-color;
+    background-color: rgba(255, 255, 255, 0.85);
+  }
+
+  .fade-enter .icon-loading {
+    opacity: 0;
+    -webkit-transition-duration: 800ms;
+    transition-duration: 800ms;
+    -webkit-transition-delay: 400ms;
+    transition-delay: 400ms;
+  }
+
+  .fade-enter-active .loading-spinner--overlay {
+    background-color: rgba(255, 255, 255, 0.85);
+    -webkit-transition-duration: 800ms;
+    transition-duration: 800ms;
+  }
+
+  .fade-enter-active .icon-loading {
+    opacity: 1;
+    -webkit-transition-duration: 800ms;
+    transition-duration: 800ms;
+    -webkit-transition-delay: 400ms;
+    transition-delay: 400ms;
+  }
+
+  .fade-exit .loading-spinner--overlay {
+    background-color: rgba(255, 255, 255, 0.85);
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
+  }
+
+  .fade-exit .icon-loading {
+    opacity: 1;
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
+  }
+
+  .fade-exit-active .loading-spinner--overlay {
+    background-color: rgba(255, 255, 255, 0);
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
+  }
+
+  .fade-exit-active .icon-loading {
+    opacity: 0;
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
+  }
+}
+
+.loading-spinner--overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+@-webkit-keyframes spinner {
+  0% {
+    opacity: 0.250075;
+  }
+  0.01% {
+    opacity: 0.25;
+  }
+  0.03% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.250075;
+  }
+}
+
+@keyframes spinner {
+  0% {
+    opacity: 0.250075;
+  }
+  0.01% {
+    opacity: 0.25;
+  }
+  0.03% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.250075;
+  }
+}
