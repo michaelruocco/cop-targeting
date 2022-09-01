@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { FC } from 'react';
+import { Task } from '../../adapters/task/targeting-api-client';
 
 import '../../styles/link-button.scss';
 
 class Props {
-  taskId: string;
-  onTaskClaimed: (taskId: string) => void;
+  task: Task;
+  onTaskClaimed: (task: Task) => void;
 }
 
-const ClaimButton: FC<Props> = ({ taskId, onTaskClaimed }) => {
+const ClaimButton: FC<Props> = ({ task, onTaskClaimed }) => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.currentTarget.blur();
-    onTaskClaimed(taskId);
+    onTaskClaimed(task);
   };
 
   return (

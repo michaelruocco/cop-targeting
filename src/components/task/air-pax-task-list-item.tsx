@@ -3,18 +3,24 @@ import { FC } from 'react';
 import { Task } from '../../adapters/task/targeting-api-client';
 import TaskListItemTitleSection from './task-list-item-title-section';
 import TaskListItemVoyageSection from './task-list-item-voyage-section';
+import ViewTaskDetailsLink from './view-task-details-link';
 
 class Props {
   task: Task;
-  onTaskClaimed: (taskId: string) => void;
+  onTaskClaimed: (task: Task) => void;
+  onTaskViewed: (task: Task) => void;
 }
 
-const AirPaxTaskListItem: FC<Props> = ({ task, onTaskClaimed }) => {
+const AirPaxTaskListItem: FC<Props> = ({
+  task,
+  onTaskClaimed,
+  onTaskViewed,
+}) => {
   return (
     <div className="govuk-task-list-card" key={task.id}>
       <div className="card-container">
         <TaskListItemTitleSection
-          taskId={task.id}
+          task={task}
           risks={task.risks}
           onTaskClaimed={onTaskClaimed}
         />
@@ -137,12 +143,7 @@ const AirPaxTaskListItem: FC<Props> = ({ task, onTaskClaimed }) => {
             </div>
             <div className="govuk-grid-item task-link-container">
               <div>
-                <a
-                  className="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold"
-                  href="/airpax/tasks/DEV-20220816-644"
-                >
-                  View details
-                </a>
+                <ViewTaskDetailsLink task={task} onTaskViewed={onTaskViewed} />
               </div>
             </div>
           </div>

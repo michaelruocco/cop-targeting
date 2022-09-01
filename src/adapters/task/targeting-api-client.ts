@@ -23,7 +23,6 @@ export const parseTaskStatus = (input: string): TaskStatus => {
     return TaskStatus.New;
   }
   const sanitized = input.toUpperCase().replace('_', '');
-  console.log(`parsing status ${input} ${sanitized}`);
   switch (sanitized) {
     case 'NEW':
       return TaskStatus.New;
@@ -38,7 +37,22 @@ export const parseTaskStatus = (input: string): TaskStatus => {
   }
 };
 
-export class Filters {
+export const formatTaskStatus = (status: TaskStatus): string => {
+  switch (status) {
+    case TaskStatus.New:
+      return 'New';
+    case TaskStatus.InProgress:
+      return 'In Progress';
+    case TaskStatus.Issued:
+      return 'Issued';
+    case TaskStatus.Complete:
+      return 'Complete';
+    default:
+      return 'Unknown';
+  }
+};
+
+export class TaskFilters {
   movementModes: MovementMode[];
   statuses: TaskStatus[];
   selectors: HasSelectors;
@@ -51,13 +65,8 @@ export class FilterRule {
   name: string;
 }
 
-export type TaskCountsRequest = {
-  movementModes: MovementMode[];
-  statuses: TaskStatus[];
-};
-
 export type TaskCountsResponse = {
-  request: TaskCountsRequest;
+  filters: TaskFilters;
   new: number;
   inProgress: number;
   issued: number;
@@ -70,7 +79,7 @@ export type Pagination = {
 };
 
 export type TaskPageRequest = {
-  filters: Filters;
+  filters: TaskFilters;
   pagination: Pagination;
 };
 
@@ -222,8 +231,17 @@ export type Flight = {
   seatNumber: string;
 };
 
+export type TaskSelectorStatusCounts = {
+  hasSelector: number;
+  hasNoSelector: number;
+  both: number;
+};
+
 interface TargetingApiClient {
-  getTaskCounts(request: TaskCountsRequest): Promise<TaskCountsResponse>;
+  getTaskCounts(request: TaskFilters): Promise<TaskCountsResponse>;
+  getTaskSelectorStatusCounts(
+    request: TaskFilters,
+  ): Promise<TaskSelectorStatusCounts>;
   getTaskPage(request: TaskPageRequest): Promise<TaskPageResponse>;
 }
 
@@ -247,46 +265,90 @@ export class StubTargetingApiClient implements TargetingApiClient {
     ]);
   };
 
-  getTaskCounts = (request: TaskCountsRequest): Promise<TaskCountsResponse> => {
-    console.log(`getTaskCounts ${JSON.stringify(request)}`);
+  getTaskCounts = (filters: TaskFilters): Promise<TaskCountsResponse> => {
+    console.log(`getTaskCounts ${JSON.stringify(filters)}`);
 
-    return Promise.resolve({
-      request: request,
+    const counts = {
+      filters: filters,
       new: stubTasks.filter((task) =>
-        taskMatches(task, [TaskStatus.New], request.movementModes),
+        taskMatchesStatus(task, TaskStatus.New, filters),
       ).length,
       inProgress: stubTasks.filter((task) =>
-        taskMatches(task, [TaskStatus.InProgress], request.movementModes),
+        taskMatchesStatus(task, TaskStatus.InProgress, filters),
       ).length,
       issued: stubTasks.filter((task) =>
-        taskMatches(task, [TaskStatus.Issued], request.movementModes),
+        taskMatchesStatus(task, TaskStatus.Issued, filters),
       ).length,
       complete: stubTasks.filter((task) =>
-        taskMatches(task, [TaskStatus.Complete], request.movementModes),
+        taskMatchesStatus(task, TaskStatus.Complete, filters),
       ).length,
-    });
+    };
+
+    console.log(`returningTaskCounts ${JSON.stringify(counts)}`);
+    return Promise.resolve(counts);
+  };
+
+  getTaskSelectorStatusCounts = (
+    filters: TaskFilters,
+  ): Promise<TaskSelectorStatusCounts> => {
+    console.log(`getTaskSelectorStatusCounts ${JSON.stringify(filters)}`);
+
+    const counts: TaskSelectorStatusCounts = {
+      hasSelector: stubTasks.filter((task) =>
+        taskHasSelectorStatus(task, HasSelectors.Present, filters),
+      ).length,
+      hasNoSelector: stubTasks.filter((task) =>
+        taskHasSelectorStatus(task, HasSelectors.NotPresent, filters),
+      ).length,
+      both: stubTasks.filter((task) =>
+        taskHasSelectorStatus(task, HasSelectors.Any, filters),
+      ).length,
+    };
+
+    console.log(`returningTaskSelectorStatusCounts ${JSON.stringify(counts)}`);
+    return Promise.resolve(counts);
   };
 
   getTaskPage = (request: TaskPageRequest): Promise<TaskPageResponse> => {
     console.log(`getTaskPage ${JSON.stringify(request)}`);
     const pagination = request.pagination;
-
     const filteredTasks = stubTasks.filter((task) =>
-      taskMatchesFilters(task, request.filters),
+      taskMatches(task, request.filters),
     );
-
-    return Promise.resolve({
+    const taskPage = {
       request: request,
       totalNumberOfTasks: filteredTasks.length,
       tasks: filteredTasks.slice(
         pagination.offset,
         pagination.offset + pagination.limit,
       ),
-    });
+    };
+    console.debug(`returningTaskPage ${JSON.stringify(taskPage)}`);
+    return Promise.resolve(taskPage);
   };
 }
 
-const taskMatchesFilters = (task: Task, filters: Filters): boolean => {
+const taskMatchesStatus = (
+  task: Task,
+  status: TaskStatus,
+  filters: TaskFilters,
+): boolean => {
+  var statusFilters = Object.create(filters);
+  statusFilters.statuses = [status];
+  return taskMatches(task, statusFilters);
+};
+
+const taskHasSelectorStatus = (
+  task: Task,
+  status: HasSelectors,
+  filters: TaskFilters,
+): boolean => {
+  var statusFilters: TaskFilters = Object.create(filters);
+  statusFilters.selectors = status;
+  return taskMatches(task, statusFilters);
+};
+
+const taskMatches = (task: Task, filters: TaskFilters): boolean => {
   if (!filters.movementModes.includes(task.movement.mode)) {
     return false;
   }
@@ -295,7 +357,7 @@ const taskMatchesFilters = (task: Task, filters: Filters): boolean => {
   }
   if (
     filters.selectors === HasSelectors.NotPresent &&
-    task.risks.matchedSelectorGroups.totalNumberOfSelectors > 1
+    task.risks.matchedSelectorGroups.totalNumberOfSelectors > 0
   ) {
     return false;
   }
@@ -314,14 +376,6 @@ const taskMatchesFilters = (task: Task, filters: Filters): boolean => {
     return false;
   }
   return true;
-};
-
-const taskMatches = (
-  task: Task,
-  statuses: TaskStatus[],
-  modes: MovementMode[],
-): boolean => {
-  return statuses.includes(task.status) && modes.includes(task.movement.mode);
 };
 
 const stubTasks: Task[] = [

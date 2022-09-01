@@ -3,8 +3,6 @@ import { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { TaskStatus } from '../../adapters/task/targeting-api-client';
 
-import '../../styles/pagination.scss';
-
 class Props {
   label: string;
   status: TaskStatus;
@@ -35,7 +33,7 @@ const StatusTabLink: FC<Props> = ({
       <Link
         className="govuk-tabs__tab"
         onClick={handleClick}
-        to={`${location.pathname}?status=${status}`}
+        to={`${location.pathname}`}
       >
         {label}
       </Link>

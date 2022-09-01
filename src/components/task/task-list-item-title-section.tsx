@@ -5,13 +5,14 @@ import {
   ThreatType,
   SelectorGroup,
   Rule,
+  Task,
 } from '../../adapters/task/targeting-api-client';
 import ClaimButton from './claim-button';
 
 class Props {
-  taskId: string;
+  task: Task;
   risks: Risks;
-  onTaskClaimed: (taskId: string) => void;
+  onTaskClaimed: (task: Task) => void;
 }
 
 function toHighestThreatLevelValue(risks: Risks): string {
@@ -49,7 +50,7 @@ function formatThreatTypes(threatTypes: string[]): string {
 }
 
 const TaskListItemTitleSection: FC<Props> = ({
-  taskId,
+  task,
   risks,
   onTaskClaimed,
 }) => {
@@ -58,7 +59,7 @@ const TaskListItemTitleSection: FC<Props> = ({
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-two-thirds">
           <div className="task-title-container govuk-!-padding-top-2 govuk-!-padding-left-2">
-            <h4 className="govuk-heading-s task-heading">{taskId}</h4>
+            <h4 className="govuk-heading-s task-heading">{task.id}</h4>
           </div>
           <div className="govuk-grid-column govuk-!-padding-left-2">
             <h4 className="govuk-heading-s task-highest-risk govuk-!-margin-bottom-0">
@@ -73,7 +74,7 @@ const TaskListItemTitleSection: FC<Props> = ({
         </div>
         <div className="govuk-grid-column-one-third govuk-!-padding-top-2 govuk-!-padding-right-3">
           <div className="claim-button-container">
-            <ClaimButton taskId={taskId} onTaskClaimed={onTaskClaimed} />
+            <ClaimButton task={task} onTaskClaimed={onTaskClaimed} />
           </div>
         </div>
       </div>

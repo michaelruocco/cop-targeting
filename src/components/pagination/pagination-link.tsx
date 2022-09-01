@@ -2,8 +2,6 @@ import * as React from 'react';
 import { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import '../../styles/pagination.scss';
-
 class Props {
   pageNumber: number;
   child: React.ReactNode | React.ReactNode[];
@@ -22,7 +20,7 @@ const PaginationLink: FC<Props> = ({
   const location = useLocation();
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.currentTarget.blur();
-    console.log(`selected page ${pageNumber}`);
+    event.preventDefault();
     onPageChanged(pageNumber);
   };
 
@@ -33,7 +31,7 @@ const PaginationLink: FC<Props> = ({
       }
       data-test={dataTest}
       onClick={handleClick}
-      to={`${location.pathname}?page=${pageNumber}`}
+      to={`${location.pathname}`}
     >
       {child}
     </Link>

@@ -3,8 +3,10 @@ import { FC } from 'react';
 import TaskHeader from './task-header';
 import AirPaxTaskListItem from './air-pax-task-list-item';
 import {
+  formatTaskStatus,
   Task,
   TaskCountsResponse,
+  TaskSelectorStatusCounts,
   TaskStatus,
 } from '../../adapters/task/targeting-api-client';
 import Pagination from '../pagination/pagination';
@@ -15,6 +17,7 @@ import StatusTabs from '../tabs/status-tabs';
 
 class Props {
   taskCounts: TaskCountsResponse;
+  taskSelectorStatusCounts: TaskSelectorStatusCounts;
   currentPage: number;
   currentStatus: TaskStatus;
   pageSize: number;
@@ -25,12 +28,14 @@ class Props {
   onApplyFilters: (filters: FormFilters) => void;
   onResetFilters: (filters: FormFilters) => void;
   onPageChanged: (pageNumber: number) => void;
-  onTaskClaimed: (taskId: string) => void;
   onStatusSelected: (status: TaskStatus) => void;
+  onTaskClaimed: (task: Task) => void;
+  onTaskViewed: (task: Task) => void;
 }
 
 const AirPaxTaskList: FC<Props> = ({
   taskCounts,
+  taskSelectorStatusCounts,
   currentPage,
   currentStatus,
   pageSize,
@@ -41,18 +46,27 @@ const AirPaxTaskList: FC<Props> = ({
   onApplyFilters,
   onResetFilters,
   onPageChanged,
-  onTaskClaimed,
   onStatusSelected,
+  onTaskClaimed,
+  onTaskViewed,
 }) => {
-  const taskItems =
-    tasks &&
-    tasks.map((task) => (
+  const toTaskItems = (tasks: Task[]): React.ReactNode | React.ReactNode[] => {
+    if (!tasks || tasks.length < 1) {
+      return (
+        <p className="govuk-body-l">
+          There are no {formatTaskStatus(currentStatus).toLowerCase()} tasks
+        </p>
+      );
+    }
+    return tasks.map((task) => (
       <AirPaxTaskListItem
         task={task}
         key={task.id}
         onTaskClaimed={onTaskClaimed}
+        onTaskViewed={onTaskViewed}
       />
     ));
+  };
 
   return (
     <>
@@ -62,25 +76,26 @@ const AirPaxTaskList: FC<Props> = ({
           <AirPaxFilters
             defaultFilters={defaultFilters}
             ruleOptions={ruleOptions}
+            taskSelectorStatusCounts={taskSelectorStatusCounts}
             onApplyFilters={onApplyFilters}
             onResetFilters={onResetFilters}
           />
         </section>
         <section className="govuk-grid-column-three-quarters">
-          <div id="tasks" className="govuk-tabs">
+          <div id="tasksTabs" className="govuk-tabs">
             <StatusTabs
               taskCounts={taskCounts}
               currentStatus={currentStatus}
               onStatusSelected={onStatusSelected}
             />
-            <div id="new" className="govuk-tabs__panel">
+            <div id="taskPanel" className="govuk-tabs__panel">
               <Pagination
                 currentPage={currentPage}
                 totalNumberOfItems={totalNumberOfTasks}
                 pageSize={pageSize}
                 onPageChanged={onPageChanged}
               />
-              <div>{taskItems}</div>
+              <div>{toTaskItems(tasks)}</div>
               <Pagination
                 currentPage={currentPage}
                 totalNumberOfItems={totalNumberOfTasks}

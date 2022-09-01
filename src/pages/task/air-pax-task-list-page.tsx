@@ -9,9 +9,10 @@ import {
   FilterRule,
   TaskPageRequest,
   TaskStatus,
-  TaskCountsRequest,
   TaskCountsResponse,
   parseTaskStatus,
+  TaskFilters,
+  TaskSelectorStatusCounts,
 } from '../../adapters/task/targeting-api-client';
 import Layout from '../../components/layout/layout';
 import AirPaxTaskList from '../../components/task/air-pax-task-list';
@@ -23,26 +24,8 @@ import { FormFilters } from '../../components/task/form-filters';
 import '../../styles/task-list-page.scss';
 
 const AirPaxTaskListPage: FC = () => {
-  const [searchParams, _] = useSearchParams();
-
-  const parsePageNumber = (input: string): number => {
-    if (input) {
-      return parseInt(input);
-    }
-    return 1;
-  };
-
-  const paramPageNumber = parsePageNumber(searchParams.get('page'));
-  const [pageNumber, setPageNumber] = useState<number>(paramPageNumber);
-  if (paramPageNumber !== pageNumber) {
-    setPageNumber(paramPageNumber);
-  }
-
-  const paramStatus = parseTaskStatus(searchParams.get('status'));
-  const [status, setStatus] = useState<TaskStatus>(paramStatus);
-  if (paramStatus !== status) {
-    setStatus(paramStatus);
-  }
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  const [status, setStatus] = useState<TaskStatus>(TaskStatus.New);
 
   const defaultFormFilters: FormFilters = {
     movementModes: [MovementMode.AirPassenger],
@@ -50,60 +33,67 @@ const AirPaxTaskListPage: FC = () => {
     rules: [],
     searchText: '',
   };
-
-  const [formFilters, setFormFilters] = useState(defaultFormFilters);
+  const [formFilters, setFormFilters] =
+    useState<FormFilters>(defaultFormFilters);
 
   const defaultTaskCounts: TaskCountsResponse = {
-    request: {
+    filters: {
       movementModes: formFilters.movementModes,
       statuses: [status],
+      selectors: formFilters.selectors,
+      rules: formFilters.rules,
+      searchText: formFilters.searchText,
     },
     new: 0,
     inProgress: 0,
     issued: 0,
     complete: 0,
   };
-
   const [taskCounts, setTaskCounts] =
     useState<TaskCountsResponse>(defaultTaskCounts);
+
+  const defaultTaskSelectorStatusCounts: TaskSelectorStatusCounts = {
+    hasSelector: 0,
+    hasNoSelector: 0,
+    both: 0,
+  };
+  const [taskSelectorStatusCounts, setTaskSelectorStatusCounts] =
+    useState<TaskSelectorStatusCounts>(defaultTaskSelectorStatusCounts);
 
   const handleApplyFilters = async (formFilters: FormFilters) => {
     console.log(`form filters applied ${JSON.stringify(formFilters)}`);
     setFormFilters(formFilters);
+    setPageNumber(1);
   };
 
   const handleResetFilters = (formFilters: FormFilters) => {
     console.log(`form filters reset ${JSON.stringify(formFilters)}`);
     setFormFilters(formFilters);
+    setPageNumber(1);
   };
 
   const handleStatusSelected = (status: TaskStatus) => {
     console.log(`status selected ${status}`);
     setStatus(status);
+    setPageNumber(1);
   };
 
-  const handleTaskClaimed = (taskId: string) => {
-    console.log(`task claimed ${taskId}`);
+  const handleTaskClaimed = (task: Task) => {
+    console.log(`task claimed ${task.id}`);
+  };
+
+  const handleTaskViewed = (task: Task) => {
+    console.log(`task viewed ${task.id}`);
   };
 
   const { getSessionId } = useContext(AuthContext);
   const { isPnrAccessRequested } = useContext(PnrAccessContext);
   const { getToken } = useContext(AuthContext);
-
   const [tasks, setTasks] = useState<Task[]>();
-
   const [totalNumberOfTasks, setTotalNumberOfTasks] = useState<number>();
-
   const [filterRuleOptions, setFilterRuleOptions] = useState<FilterRule[]>();
 
   const taskClient = new StubTargetingApiClient(getToken);
-
-  const buildTaskCountsRequest = (): TaskCountsRequest => {
-    return {
-      movementModes: formFilters.movementModes,
-      statuses: [status],
-    };
-  };
 
   const toTotalNumberOfTasks = (taskCounts: TaskCountsResponse): number => {
     switch (status) {
@@ -132,17 +122,21 @@ const AirPaxTaskListPage: FC = () => {
 
   const buildTaskPageRequest = (pageOffset: number): TaskPageRequest => {
     return {
-      filters: {
-        movementModes: formFilters.movementModes,
-        statuses: [status],
-        selectors: formFilters.selectors,
-        rules: formFilters.rules,
-        searchText: formFilters.searchText,
-      },
+      filters: buildTaskFiltersRequest(),
       pagination: {
         offset: pageOffset,
         limit: pageSize,
       },
+    };
+  };
+
+  const buildTaskFiltersRequest = (): TaskFilters => {
+    return {
+      movementModes: formFilters.movementModes,
+      statuses: [status],
+      selectors: formFilters.selectors,
+      rules: formFilters.rules,
+      searchText: formFilters.searchText,
     };
   };
 
@@ -157,9 +151,13 @@ const AirPaxTaskListPage: FC = () => {
   };
 
   const fetchTasks = async () => {
-    const countsRequest = buildTaskCountsRequest();
-    const countsResponse = await taskClient.getTaskCounts(countsRequest);
+    const taskFiltersRequest = buildTaskFiltersRequest();
+    const countsResponse = await taskClient.getTaskCounts(taskFiltersRequest);
     setTaskCounts(countsResponse);
+
+    const selectorStatusCountsResponse =
+      await taskClient.getTaskSelectorStatusCounts(taskFiltersRequest);
+    setTaskSelectorStatusCounts(selectorStatusCountsResponse);
 
     const totalNumberOfTasks = toTotalNumberOfTasks(countsResponse);
     setTotalNumberOfTasks(totalNumberOfTasks);
@@ -175,6 +173,7 @@ const AirPaxTaskListPage: FC = () => {
       return (
         <AirPaxTaskList
           taskCounts={taskCounts}
+          taskSelectorStatusCounts={taskSelectorStatusCounts}
           pageSize={pageSize}
           currentPage={pageNumber}
           currentStatus={status}
@@ -185,8 +184,9 @@ const AirPaxTaskListPage: FC = () => {
           onApplyFilters={handleApplyFilters}
           onResetFilters={handleResetFilters}
           onPageChanged={handlePageChanged}
-          onTaskClaimed={handleTaskClaimed}
           onStatusSelected={handleStatusSelected}
+          onTaskClaimed={handleTaskClaimed}
+          onTaskViewed={handleTaskViewed}
         />
       );
     }
@@ -199,7 +199,7 @@ const AirPaxTaskListPage: FC = () => {
 
   useEffect(() => {
     fetchTasks().catch(console.error);
-  }, [pageNumber, status]);
+  }, [pageNumber, status, formFilters]);
 
   return <Layout>{getComponentToShow()}</Layout>;
 };
