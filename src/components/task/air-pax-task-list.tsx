@@ -3,16 +3,18 @@ import { FC } from 'react';
 import TaskHeader from './task-header';
 import AirPaxTaskListItem from './air-pax-task-list-item';
 import {
-  formatTaskStatus,
   Task,
   TaskCountsResponse,
   TaskSelectorStatusCounts,
+  FilterRule,
+} from '../../adapters/task/task-entities';
+import {
+  formatTaskStatus,
   TaskStatus,
-} from '../../adapters/task/targeting-api-client';
+} from '../../adapters/task/task-status-entity';
 import Pagination from '../pagination/pagination';
 import { AirPaxFilters } from './air-pax-filters';
 import { FormFilters } from './form-filters';
-import { FilterRule } from '../../adapters/task/targeting-api-client';
 import StatusTabs from '../tabs/status-tabs';
 import LoadingSpinner from '../spinner/loading-spinner';
 

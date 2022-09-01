@@ -2,7 +2,7 @@ import {
   FilterRule,
   MovementMode,
   HasSelectors,
-} from '../../adapters/task/targeting-api-client';
+} from '../../adapters/task/task-entities';
 
 export class FormFilters {
   movementModes: MovementMode[];

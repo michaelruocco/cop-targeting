@@ -1,7 +1,16 @@
 import * as React from 'react';
 import { FC } from 'react';
 import * as _ from 'lodash';
-import { Movement, PersonRole } from '../../adapters/task/targeting-api-client';
+import {
+  Juncture,
+  Movement,
+  PersonRole,
+} from '../../adapters/task/task-entities';
+import {
+  calcuateTimeFromNow,
+  isFuture,
+  toLongFormat,
+} from '../../adapters/date/date-util';
 import AirPaxDepartureStatus from './air-pax-departure-status';
 
 class Props {
@@ -19,6 +28,28 @@ const formatPersonRole = (role: PersonRole): string => {
   return _.startCase(_.toLower(role));
 };
 
+const formatFlightDetails = (movement: Movement): string => {
+  const flight = movement.flight;
+  const arrival = movement.journey?.arrival;
+  return `${flight.operator}, flight ${flight.number}, ${formatArrival(
+    arrival,
+  )}`;
+};
+
+const formatArrival = (arrival: Juncture): string => {
+  const time = arrival?.time;
+  const location = formatLocation(arrival);
+  if (!time) {
+    return 'arrival details unknown';
+  }
+  const prefix = isFuture(time) ? 'arriving' : 'arrived';
+  return `${prefix} at ${location} ${calcuateTimeFromNow(time)}`;
+};
+
+const formatLocation = (juncture: Juncture): string => {
+  return juncture?.location || 'unknown';
+};
+
 const TaskListItemVoyageSection: FC<Props> = ({ movement }) => {
   return (
     <section className="task-list--voyage-section">
@@ -33,7 +64,7 @@ const TaskListItemVoyageSection: FC<Props> = ({ movement }) => {
               <span className="govuk-font-weight-bold">
                 {formatPersonRole(movement.person.role)}{' '}
                 <AirPaxDepartureStatus
-                  status={movement.flight.departureStatus}
+                  status={movement.flight?.departureStatus}
                 />
               </span>
             </span>
@@ -41,15 +72,28 @@ const TaskListItemVoyageSection: FC<Props> = ({ movement }) => {
           <div className="govuk-grid-column-three-quarters govuk-!-padding-right-7 align-right">
             <i className="c-icon-aircraft"></i>
             <p className="content-line-one govuk-!-padding-right-2">
-              British Airways, flight BA0103, arrived 17 days ago
+              {formatFlightDetails(movement)}
             </p>
             <p className="govuk-body-s content-line-two govuk-!-padding-right-2">
-              <span className="govuk-!-font-weight-bold">BA0103</span>
-              <span className="dot"></span>10 Jul 2022 at 12:30
-              <span className="dot"></span>
-              <span className="govuk-!-font-weight-bold">LHR</span> →
-              <span className="govuk-!-font-weight-bold"> YYC</span>
-              <span className="dot"></span>10 Jul 2022 at 15:30
+              <>
+                <span className="govuk-!-font-weight-bold">
+                  {' '}
+                  {movement.flight?.number || 'Unknown'}
+                </span>
+                <span className="dot" />
+                {toLongFormat(movement.journey?.departure?.time)}
+                <span className="dot" />
+                <span className="govuk-!-font-weight-bold">
+                  {formatLocation(movement.journey?.departure)}
+                </span>{' '}
+                &#8594;
+                <span className="govuk-!-font-weight-bold">
+                  {' '}
+                  {formatLocation(movement.journey?.arrival)}
+                </span>
+                <span className="dot" />
+                {toLongFormat(movement.journey?.arrival?.time)}
+              </>
             </p>
           </div>
         </div>

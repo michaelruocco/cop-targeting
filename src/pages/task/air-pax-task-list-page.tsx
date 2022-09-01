@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { FC, useContext, useState, useEffect } from 'react';
 import {
-  StubTargetingApiClient,
   Task,
   HasSelectors,
   MovementMode,
   FilterRule,
   TaskPageRequest,
-  TaskStatus,
   TaskCountsResponse,
   TaskFilters,
   TaskSelectorStatusCounts,
-} from '../../adapters/task/targeting-api-client';
+} from '../../adapters/task/task-entities';
+import { StubTargetingApiClient } from '../../adapters/task/targeting-api-client';
+import { TaskStatus } from '../../adapters/task/task-status-entity';
 import Layout from '../../components/layout/layout';
 import AirPaxTaskList from '../../components/task/air-pax-task-list';
 import TriggerRequestPnrAccess from '../../components/task/trigger-request-pnr-access';

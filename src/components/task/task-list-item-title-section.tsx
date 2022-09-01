@@ -6,7 +6,7 @@ import {
   SelectorGroup,
   Rule,
   Task,
-} from '../../adapters/task/targeting-api-client';
+} from '../../adapters/task/task-entities';
 import ClaimButton from './claim-button';
 
 class Props {

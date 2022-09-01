@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { Task } from '../../adapters/task/targeting-api-client';
+import { Task } from '../../adapters/task/task-entities';
 import TaskListItemTitleSection from './task-list-item-title-section';
 import TaskListItemVoyageSection from './task-list-item-voyage-section';
 import ViewTaskDetailsLink from './view-task-details-link';

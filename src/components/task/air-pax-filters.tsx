@@ -5,7 +5,7 @@ import { MultiSelectAutocomplete } from '@ukhomeoffice/cop-react-components';
 import {
   FilterRule,
   TaskSelectorStatusCounts,
-} from '../../adapters/task/targeting-api-client';
+} from '../../adapters/task/task-entities';
 import { FormFilters } from './form-filters';
 
 class Props {

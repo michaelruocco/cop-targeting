@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { TaskStatus } from '../../adapters/task/targeting-api-client';
+import { TaskStatus } from '../../adapters/task/task-status-entity';
 
 class Props {
   label: string;
@@ -19,6 +19,7 @@ const StatusTabLink: FC<Props> = ({
   const location = useLocation();
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.currentTarget.blur();
+    event.preventDefault();
     onStatusSelected(status);
   };
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Task } from '../../adapters/task/targeting-api-client';
+import { Task } from '../../adapters/task/task-entities';
 
 class Props {
   task: Task;

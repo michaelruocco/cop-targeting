@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { DepartureStatus } from '../../adapters/task/targeting-api-client';
+import { DepartureStatus } from '../../adapters/task/task-entities';
 import { Tag } from '@ukhomeoffice/cop-react-components';
 
 class Props {

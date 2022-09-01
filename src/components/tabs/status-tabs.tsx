@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { FC } from 'react';
-import {
-  TaskCountsResponse,
-  TaskStatus,
-} from '../../adapters/task/targeting-api-client';
+import { TaskCountsResponse } from '../../adapters/task/task-entities';
+import { TaskStatus } from '../../adapters/task/task-status-entity';
 import StatusTabLink from './status-tab-link';
 
 class Props {
