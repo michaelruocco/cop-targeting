@@ -11,6 +11,7 @@ import {
   TaskStatus,
   TaskCountsRequest,
   TaskCountsResponse,
+  parseTaskStatus,
 } from '../../adapters/task/targeting-api-client';
 import Layout from '../../components/layout/layout';
 import AirPaxTaskList from '../../components/task/air-pax-task-list';
@@ -23,13 +24,24 @@ import '../../styles/task-list-page.scss';
 
 const AirPaxTaskListPage: FC = () => {
   const [searchParams, _] = useSearchParams();
-  const paramPageNumber = searchParams.get('page')
-    ? parseInt(searchParams.get('page'))
-    : 1;
+
+  const parsePageNumber = (input: string): number => {
+    if (input) {
+      return parseInt(input);
+    }
+    return 1;
+  };
+
+  const paramPageNumber = parsePageNumber(searchParams.get('page'));
   const [pageNumber, setPageNumber] = useState<number>(paramPageNumber);
-  //set page number if back link has been used
   if (paramPageNumber !== pageNumber) {
     setPageNumber(paramPageNumber);
+  }
+
+  const paramStatus = parseTaskStatus(searchParams.get('status'));
+  const [status, setStatus] = useState<TaskStatus>(paramStatus);
+  if (paramStatus !== status) {
+    setStatus(paramStatus);
   }
 
   const defaultFormFilters: FormFilters = {
@@ -40,7 +52,6 @@ const AirPaxTaskListPage: FC = () => {
   };
 
   const [formFilters, setFormFilters] = useState(defaultFormFilters);
-  const [status, setStatus] = useState(TaskStatus.New);
 
   const defaultTaskCounts: TaskCountsResponse = {
     request: {
@@ -66,9 +77,9 @@ const AirPaxTaskListPage: FC = () => {
     setFormFilters(formFilters);
   };
 
-  const handleTabSelected = () => {
-    // TODO status should be passed and used for update when status selected
-    setStatus(TaskStatus.InProgress);
+  const handleStatusSelected = (status: TaskStatus) => {
+    console.log(`status selected ${status}`);
+    setStatus(status);
   };
 
   const handleTaskClaimed = (taskId: string) => {
@@ -136,9 +147,8 @@ const AirPaxTaskListPage: FC = () => {
   };
 
   const handlePageChanged = (pageNumber: number) => {
+    window.scrollTo(0, 0);
     setPageNumber(pageNumber);
-    //console.log(`loading page ${pageNumber}`);
-    //loadTaskPage(buildTaskPageRequest());
   };
 
   const fetchFilterRuleOptions = async () => {
@@ -167,6 +177,7 @@ const AirPaxTaskListPage: FC = () => {
           taskCounts={taskCounts}
           pageSize={pageSize}
           currentPage={pageNumber}
+          currentStatus={status}
           totalNumberOfTasks={totalNumberOfTasks}
           tasks={tasks}
           ruleOptions={filterRuleOptions}
@@ -175,6 +186,7 @@ const AirPaxTaskListPage: FC = () => {
           onResetFilters={handleResetFilters}
           onPageChanged={handlePageChanged}
           onTaskClaimed={handleTaskClaimed}
+          onStatusSelected={handleStatusSelected}
         />
       );
     }
@@ -187,7 +199,7 @@ const AirPaxTaskListPage: FC = () => {
 
   useEffect(() => {
     fetchTasks().catch(console.error);
-  }, [pageNumber]);
+  }, [pageNumber, status]);
 
   return <Layout>{getComponentToShow()}</Layout>;
 };

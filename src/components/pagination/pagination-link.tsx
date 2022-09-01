@@ -22,7 +22,6 @@ const PaginationLink: FC<Props> = ({
   const location = useLocation();
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.currentTarget.blur();
-    window.scrollTo(0, 0);
     console.log(`selected page ${pageNumber}`);
     onPageChanged(pageNumber);
   };

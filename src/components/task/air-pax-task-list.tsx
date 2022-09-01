@@ -5,15 +5,18 @@ import AirPaxTaskListItem from './air-pax-task-list-item';
 import {
   Task,
   TaskCountsResponse,
+  TaskStatus,
 } from '../../adapters/task/targeting-api-client';
-import Pagination from '../../pages/task/pagination';
+import Pagination from '../pagination/pagination';
 import { AirPaxFilters } from './air-pax-filters';
 import { FormFilters } from './form-filters';
 import { FilterRule } from '../../adapters/task/targeting-api-client';
+import StatusTabs from '../tabs/status-tabs';
 
 class Props {
   taskCounts: TaskCountsResponse;
   currentPage: number;
+  currentStatus: TaskStatus;
   pageSize: number;
   totalNumberOfTasks: number;
   tasks: Task[];
@@ -23,11 +26,13 @@ class Props {
   onResetFilters: (filters: FormFilters) => void;
   onPageChanged: (pageNumber: number) => void;
   onTaskClaimed: (taskId: string) => void;
+  onStatusSelected: (status: TaskStatus) => void;
 }
 
 const AirPaxTaskList: FC<Props> = ({
   taskCounts,
   currentPage,
+  currentStatus,
   pageSize,
   totalNumberOfTasks,
   tasks,
@@ -37,6 +42,7 @@ const AirPaxTaskList: FC<Props> = ({
   onResetFilters,
   onPageChanged,
   onTaskClaimed,
+  onStatusSelected,
 }) => {
   const taskItems =
     tasks &&
@@ -62,30 +68,11 @@ const AirPaxTaskList: FC<Props> = ({
         </section>
         <section className="govuk-grid-column-three-quarters">
           <div id="tasks" className="govuk-tabs">
-            <div>
-              <ul className="govuk-tabs__list">
-                <li className="govuk-tabs__list-item govuk-tabs__list-item--selected">
-                  <a className="govuk-tabs__tab" href="#new">
-                    New ({taskCounts.new})
-                  </a>
-                </li>
-                <li className="govuk-tabs__list-item">
-                  <a className="govuk-tabs__tab" href="#inProgress">
-                    In progress ({taskCounts.inProgress})
-                  </a>
-                </li>
-                <li className="govuk-tabs__list-item">
-                  <a className="govuk-tabs__tab" href="#issued">
-                    Issued ({taskCounts.issued})
-                  </a>
-                </li>
-                <li className="govuk-tabs__list-item">
-                  <a className="govuk-tabs__tab" href="#complete">
-                    Complete ({taskCounts.complete})
-                  </a>
-                </li>
-              </ul>
-            </div>
+            <StatusTabs
+              taskCounts={taskCounts}
+              currentStatus={currentStatus}
+              onStatusSelected={onStatusSelected}
+            />
             <div id="new" className="govuk-tabs__panel">
               <Pagination
                 currentPage={currentPage}

@@ -80,6 +80,9 @@ const Pagination: FC<Props> = ({
   onPageChanged,
 }) => {
   const numberOfPages = calculateNumberOfPages(totalNumberOfItems, pageSize);
+  if (numberOfPages < 2) {
+    return <></>;
+  }
 
   const buildComponents = (
     currentPage: number,

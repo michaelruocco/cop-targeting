@@ -18,6 +18,26 @@ export enum TaskStatus {
   Complete = 'COMPLETE',
 }
 
+export const parseTaskStatus = (input: string): TaskStatus => {
+  if (!input) {
+    return TaskStatus.New;
+  }
+  const sanitized = input.toUpperCase().replace('_', '');
+  console.log(`parsing status ${input} ${sanitized}`);
+  switch (sanitized) {
+    case 'NEW':
+      return TaskStatus.New;
+    case 'INPROGRESS':
+      return TaskStatus.InProgress;
+    case 'ISSUED':
+      return TaskStatus.Issued;
+    case 'COMPLETE':
+      return TaskStatus.Complete;
+    default:
+      return TaskStatus.New;
+  }
+};
+
 export class Filters {
   movementModes: MovementMode[];
   statuses: TaskStatus[];
@@ -27,7 +47,7 @@ export class Filters {
 }
 
 export class FilterRule {
-  id: string;
+  id: number;
   name: string;
 }
 
@@ -101,6 +121,7 @@ export enum ThreatType {
 }
 
 export type Rule = {
+  id: number;
   abuseTypes: string[];
 };
 
@@ -216,40 +237,92 @@ export class StubTargetingApiClient implements TargetingApiClient {
   getFilterRules = (): Promise<FilterRule[]> => {
     return Promise.resolve([
       {
-        id: '1',
-        name: 'Rule 1',
+        id: 7808,
+        name: 'PNR-Arrival Airport',
       },
       {
-        id: '2',
-        name: 'Rule 2',
+        id: 7844,
+        name: 'Return Leg- Return',
       },
     ]);
   };
 
   getTaskCounts = (request: TaskCountsRequest): Promise<TaskCountsResponse> => {
     console.log(`getTaskCounts ${JSON.stringify(request)}`);
+
     return Promise.resolve({
       request: request,
-      new: stubTasks.length,
-      inProgress: 0,
-      issued: 0,
-      complete: 0,
+      new: stubTasks.filter((task) =>
+        taskMatches(task, [TaskStatus.New], request.movementModes),
+      ).length,
+      inProgress: stubTasks.filter((task) =>
+        taskMatches(task, [TaskStatus.InProgress], request.movementModes),
+      ).length,
+      issued: stubTasks.filter((task) =>
+        taskMatches(task, [TaskStatus.Issued], request.movementModes),
+      ).length,
+      complete: stubTasks.filter((task) =>
+        taskMatches(task, [TaskStatus.Complete], request.movementModes),
+      ).length,
     });
   };
 
   getTaskPage = (request: TaskPageRequest): Promise<TaskPageResponse> => {
     console.log(`getTaskPage ${JSON.stringify(request)}`);
     const pagination = request.pagination;
+
+    const filteredTasks = stubTasks.filter((task) =>
+      taskMatchesFilters(task, request.filters),
+    );
+
     return Promise.resolve({
       request: request,
-      totalNumberOfTasks: stubTasks.length,
-      tasks: stubTasks.slice(
+      totalNumberOfTasks: filteredTasks.length,
+      tasks: filteredTasks.slice(
         pagination.offset,
         pagination.offset + pagination.limit,
       ),
     });
   };
 }
+
+const taskMatchesFilters = (task: Task, filters: Filters): boolean => {
+  if (!filters.movementModes.includes(task.movement.mode)) {
+    return false;
+  }
+  if (!filters.statuses.includes(task.status)) {
+    return false;
+  }
+  if (
+    filters.selectors === HasSelectors.NotPresent &&
+    task.risks.matchedSelectorGroups.totalNumberOfSelectors > 1
+  ) {
+    return false;
+  }
+  if (
+    filters.selectors === HasSelectors.Present &&
+    task.risks.matchedSelectorGroups.totalNumberOfSelectors < 1
+  ) {
+    return false;
+  }
+  const filterRuleIds = filters.rules.map((rule) => rule.id);
+  const taskRuleIds = task.risks.matchedRules.map((rule) => rule.id);
+  if (
+    filterRuleIds.length > 0 &&
+    !filterRuleIds.some((id) => taskRuleIds.includes(id))
+  ) {
+    return false;
+  }
+  return true;
+};
+
+const taskMatches = (
+  task: Task,
+  statuses: TaskStatus[],
+  modes: MovementMode[],
+): boolean => {
+  return statuses.includes(task.status) && modes.includes(task.movement.mode);
+};
 
 const stubTasks: Task[] = [
   {
@@ -447,8 +520,8 @@ const stubTasks: Task[] = [
       /*targetingIndicators: { indicators: [], count: 0, score: 0 },*/
       matchedRules: [
         {
-          /*id: 7808,
-          name: 'PNR-Arrival Airport',
+          id: 7808,
+          /*name: 'PNR-Arrival Airport',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Test',
@@ -470,8 +543,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 7844,
-          name: 'Return Leg- Return',
+          id: 7844,
+          /*name: 'Return Leg- Return',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Test',
@@ -493,8 +566,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 7849,
-          name: 'PNR-Risk-Rule',
+          id: 7849,
+          /*name: 'PNR-Risk-Rule',
           type: 'Both',
           priority: 'Tier 1',
           description: 'test pne',
@@ -516,8 +589,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 7919,
-          name: 'Generic rule - For trailer',
+          id: 7919,
+          /*name: 'Generic rule - For trailer',
           type: 'Pre-load',
           priority: 'Tier 3',
           description: 'Eu velit commodo ill',
@@ -542,8 +615,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 7963,
-          name: 'Predict_Movement_Name_qwerty',
+          id: 7963,
+          /*name: 'Predict_Movement_Name_qwerty',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Test',
@@ -578,8 +651,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 8865,
-          name: 'Duration of Whole trip',
+          id: 8865,
+          /*name: 'Duration of Whole trip',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Duration of Whole trip',
@@ -602,8 +675,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 8867,
-          name: 'Duration of Stay -days',
+          id: 8867,
+          /*name: 'Duration of Stay -days',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Test',
@@ -884,8 +957,8 @@ const stubTasks: Task[] = [
       /*targetingIndicators: { indicators: [], count: 0, score: 0 },*/
       matchedRules: [
         {
-          /*id: 7808,
-          name: 'PNR-Arrival Airport',
+          id: 7808,
+          /*name: 'PNR-Arrival Airport',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Test',
@@ -907,8 +980,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 7844,
-          name: 'Return Leg- Return',
+          id: 7844,
+          /*name: 'Return Leg- Return',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Test',
@@ -930,8 +1003,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 7849,
-          name: 'PNR-Risk-Rule',
+          id: 7849,
+          /*name: 'PNR-Risk-Rule',
           type: 'Both',
           priority: 'Tier 1',
           description: 'test pne',
@@ -953,8 +1026,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 7919,
-          name: 'Generic rule - For trailer',
+          id: 7919,
+          /*name: 'Generic rule - For trailer',
           type: 'Pre-load',
           priority: 'Tier 3',
           description: 'Eu velit commodo ill',
@@ -979,8 +1052,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 7963,
-          name: 'Predict_Movement_Name_qwerty',
+          id: 7963,
+          /*name: 'Predict_Movement_Name_qwerty',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Test',
@@ -1015,8 +1088,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 8865,
-          name: 'Duration of Whole trip',
+          id: 8865,
+          /*name: 'Duration of Whole trip',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Duration of Whole trip',
@@ -1039,8 +1112,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 8867,
-          name: 'Duration of Stay -days',
+          id: 8867,
+          /*name: 'Duration of Stay -days',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Test',
@@ -1266,8 +1339,8 @@ const stubTasks: Task[] = [
       /*targetingIndicators: { indicators: [], count: 0, score: 0 },*/
       matchedRules: [
         {
-          /*id: 7808,
-          name: 'PNR-Arrival Airport',
+          id: 7808,
+          /*name: 'PNR-Arrival Airport',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Test',
@@ -1289,8 +1362,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 7844,
-          name: 'Return Leg- Return',
+          id: 7844,
+          /*name: 'Return Leg- Return',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Test',
@@ -1312,8 +1385,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 7849,
-          name: 'PNR-Risk-Rule',
+          id: 7849,
+          /*name: 'PNR-Risk-Rule',
           type: 'Both',
           priority: 'Tier 1',
           description: 'test pne',
@@ -1335,8 +1408,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 7919,
-          name: 'Generic rule - For trailer',
+          id: 7919,
+          /*name: 'Generic rule - For trailer',
           type: 'Pre-load',
           priority: 'Tier 3',
           description: 'Eu velit commodo ill',
@@ -1361,8 +1434,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 7963,
-          name: 'Predict_Movement_Name_qwerty',
+          id: 7963,
+          /*name: 'Predict_Movement_Name_qwerty',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Test',
@@ -1397,8 +1470,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 8865,
-          name: 'Duration of Whole trip',
+          id: 8865,
+          /*name: 'Duration of Whole trip',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Duration of Whole trip',
@@ -1421,8 +1494,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 8867,
-          name: 'Duration of Stay -days',
+          id: 8867,
+          /*name: 'Duration of Stay -days',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Test',
@@ -3322,8 +3395,8 @@ const stubTasks: Task[] = [
       },*/
       matchedRules: [
         {
-          /*id: 7808,
-          name: 'PNR-Arrival Airport',
+          id: 7808,
+          /*name: 'PNR-Arrival Airport',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Test',
@@ -3345,8 +3418,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 7844,
-          name: 'Return Leg- Return',
+          id: 7844,
+          /*name: 'Return Leg- Return',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Test',
@@ -3368,8 +3441,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 7849,
-          name: 'PNR-Risk-Rule',
+          id: 7849,
+          /*name: 'PNR-Risk-Rule',
           type: 'Both',
           priority: 'Tier 1',
           description: 'test pne',
@@ -3391,8 +3464,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 7919,
-          name: 'Generic rule - For trailer',
+          id: 7919,
+          /*name: 'Generic rule - For trailer',
           type: 'Pre-load',
           priority: 'Tier 3',
           description: 'Eu velit commodo ill',
@@ -3417,8 +3490,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 7963,
-          name: 'Predict_Movement_Name_qwerty',
+          id: 7963,
+          /*name: 'Predict_Movement_Name_qwerty',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Test',
@@ -3453,8 +3526,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 8865,
-          name: 'Duration of Whole trip',
+          id: 8865,
+          /*name: 'Duration of Whole trip',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Duration of Whole trip',
@@ -3477,8 +3550,8 @@ const stubTasks: Task[] = [
           ],*/
         },
         {
-          /*id: 8867,
-          name: 'Duration of Stay -days',
+          id: 8867,
+          /*name: 'Duration of Stay -days',
           type: 'Both',
           priority: 'Tier 1',
           description: 'Test',
