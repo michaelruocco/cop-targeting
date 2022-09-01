@@ -1,76 +1,24 @@
 import * as React from 'react';
 import { FC } from 'react';
 import { Task } from '../../adapters/task/targeting-api-client';
-import ClaimButton from './claim-button';
+import TaskListItemTitleSection from './task-list-item-title-section';
+import TaskListItemVoyageSection from './task-list-item-voyage-section';
 
 class Props {
   task: Task;
+  onTaskClaimed: (taskId: string) => void;
 }
 
-const AirPaxTaskListItem: FC<Props> = ({ task }) => {
-  const even = parseInt(task.id[task.id.length - 1]) % 2 == 0;
-  const threatValue = even ? 'Tier 1' : 'Category A';
+const AirPaxTaskListItem: FC<Props> = ({ task, onTaskClaimed }) => {
   return (
     <div className="govuk-task-list-card" key={task.id}>
       <div className="card-container">
-        <section>
-          <div className="govuk-grid-row">
-            <div className="govuk-grid-column-two-thirds">
-              <div className="task-title-container govuk-!-padding-top-2 govuk-!-padding-left-2">
-                <h4 className="govuk-heading-s task-heading">{task.id}</h4>
-              </div>
-              <div className="govuk-grid-column govuk-!-padding-left-2">
-                <h4 className="govuk-heading-s task-highest-risk govuk-!-margin-bottom-0">
-                  <span className="govuk-tag govuk-tag--riskTier">
-                    {threatValue}
-                  </span>
-                  <span className="govuk-body task-risk-statement">
-                    Class A drugs and 7 other rules
-                  </span>
-                </h4>
-              </div>
-            </div>
-            <div className="govuk-grid-column-one-third govuk-!-padding-top-2 govuk-!-padding-right-3">
-              <div className="claim-button-container">
-                <ClaimButton taskId={task.id} />
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className="task-list--voyage-section">
-          <div>
-            <div className="govuk-grid-row grid-background--greyed">
-              <div className="govuk-grid-column-one-quarter govuk-!-padding-left-9">
-                <i className="icon-position--left c-icon-person"></i>
-                <p className="govuk-body-s content-line-one govuk-!-margin-bottom-0 govuk-!-padding-left-1">
-                  In group of 2
-                </p>
-                <span className="govuk-body-s govuk-!-margin-bottom-0 govuk-!-font-weight-bold govuk-!-padding-left-1">
-                  <span className="govuk-font-weight-bold">
-                    Passenger{' '}
-                    <strong className="hods-tag  airpax-status airpax-status__green">
-                      DC
-                    </strong>
-                  </span>
-                </span>
-              </div>
-              <div className="govuk-grid-column-three-quarters govuk-!-padding-right-7 align-right">
-                <i className="c-icon-aircraft"></i>
-                <p className="content-line-one govuk-!-padding-right-2">
-                  British Airways, flight BA0103, arrived 17 days ago
-                </p>
-                <p className="govuk-body-s content-line-two govuk-!-padding-right-2">
-                  <span className="govuk-!-font-weight-bold">BA0103</span>
-                  <span className="dot"></span>10 Jul 2022 at 12:30
-                  <span className="dot"></span>
-                  <span className="govuk-!-font-weight-bold">LHR</span> →
-                  <span className="govuk-!-font-weight-bold"> YYC</span>
-                  <span className="dot"></span>10 Jul 2022 at 15:30
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <TaskListItemTitleSection
+          taskId={task.id}
+          risks={task.risks}
+          onTaskClaimed={onTaskClaimed}
+        />
+        <TaskListItemVoyageSection movement={task.movement} />
         <section className="task-list--movement-info-section">
           <div className="govuk-grid-row">
             <div className="govuk-grid-item">

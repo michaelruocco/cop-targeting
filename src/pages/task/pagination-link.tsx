@@ -20,8 +20,6 @@ const PaginationLink: FC<Props> = ({
   onPageChanged,
 }) => {
   const location = useLocation();
-  const getPageUrlCallback = (pageNumber: number) =>
-    `${location.pathname}?page=${pageNumber}`;
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.currentTarget.blur();
     window.scrollTo(0, 0);
@@ -36,7 +34,7 @@ const PaginationLink: FC<Props> = ({
       }
       data-test={dataTest}
       onClick={handleClick}
-      to={getPageUrlCallback(pageNumber)}
+      to={`${location.pathname}?page=${pageNumber}`}
     >
       {child}
     </Link>

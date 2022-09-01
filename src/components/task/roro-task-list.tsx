@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { FC } from 'react';
-import TaskHeading from './task-heading';
+import TaskHeader from './task-header';
 
 const RoRoTaskList: FC = () => {
   return (
     <>
-      <TaskHeading text="RoRo Tasks" />
+      <TaskHeader text="RoRo Tasks" />
       <p>RoRo task list will go here</p>
     </>
   );

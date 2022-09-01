@@ -21,17 +21,40 @@ import { FormFilters } from '../../components/task/form-filters';
 
 import '../../styles/task-list-page.scss';
 
-const pageSize = 5;
-
 const AirPaxTaskListPage: FC = () => {
+  const [searchParams, _] = useSearchParams();
+  const paramPageNumber = searchParams.get('page')
+    ? parseInt(searchParams.get('page'))
+    : 1;
+  const [pageNumber, setPageNumber] = useState<number>(paramPageNumber);
+  //set page number if back link has been used
+  if (paramPageNumber !== pageNumber) {
+    setPageNumber(paramPageNumber);
+  }
+
   const defaultFormFilters: FormFilters = {
     movementModes: [MovementMode.AirPassenger],
     selectors: HasSelectors.Any,
     rules: [],
     searchText: '',
   };
+
   const [formFilters, setFormFilters] = useState(defaultFormFilters);
   const [status, setStatus] = useState(TaskStatus.New);
+
+  const defaultTaskCounts: TaskCountsResponse = {
+    request: {
+      movementModes: formFilters.movementModes,
+      statuses: [status],
+    },
+    new: 0,
+    inProgress: 0,
+    issued: 0,
+    complete: 0,
+  };
+
+  const [taskCounts, setTaskCounts] =
+    useState<TaskCountsResponse>(defaultTaskCounts);
 
   const handleApplyFilters = async (formFilters: FormFilters) => {
     console.log(`form filters applied ${JSON.stringify(formFilters)}`);
@@ -48,25 +71,8 @@ const AirPaxTaskListPage: FC = () => {
     setStatus(TaskStatus.InProgress);
   };
 
-  const calculatePageOffset = (
-    pageNumber: number,
-    totalNumberOfItems: number,
-  ): number => {
-    if (pageNumber <= 1) {
-      return 0;
-    }
-    const offset = (pageNumber - 1) * pageSize;
-    console.log(`pageNumber ${pageNumber} offset ${offset}`);
-    return Math.min(offset, totalNumberOfItems);
-  };
-
-  const getPageNumber = (): number => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const page = searchParams.get('page');
-    if (page) {
-      return parseInt(page);
-    }
-    return 1;
+  const handleTaskClaimed = (taskId: string) => {
+    console.log(`task claimed ${taskId}`);
   };
 
   const { getSessionId } = useContext(AuthContext);
@@ -74,9 +80,9 @@ const AirPaxTaskListPage: FC = () => {
   const { getToken } = useContext(AuthContext);
 
   const [tasks, setTasks] = useState<Task[]>();
-  const [taskCounts, setTaskCounts] = useState<TaskCountsResponse>();
+
   const [totalNumberOfTasks, setTotalNumberOfTasks] = useState<number>();
-  const [pageNumber, setPageNumber] = useState<number>(getPageNumber());
+
   const [filterRuleOptions, setFilterRuleOptions] = useState<FilterRule[]>();
 
   const taskClient = new StubTargetingApiClient(getToken);
@@ -88,7 +94,32 @@ const AirPaxTaskListPage: FC = () => {
     };
   };
 
-  const buildTaskPageRequest = (pageNumber: number): TaskPageRequest => {
+  const toTotalNumberOfTasks = (taskCounts: TaskCountsResponse): number => {
+    switch (status) {
+      case TaskStatus.New:
+        return taskCounts.new;
+      case TaskStatus.InProgress:
+        return taskCounts.inProgress;
+      case TaskStatus.Issued:
+        return taskCounts.issued;
+      case TaskStatus.Complete:
+        return taskCounts.complete;
+      default:
+        return 0;
+    }
+  };
+
+  const pageSize = 2;
+
+  const calculatePageOffset = (totalNumberOfTasks: number): number => {
+    if (pageNumber <= 1) {
+      return 0;
+    }
+    const offset = (pageNumber - 1) * pageSize;
+    return Math.min(offset, totalNumberOfTasks);
+  };
+
+  const buildTaskPageRequest = (pageOffset: number): TaskPageRequest => {
     return {
       filters: {
         movementModes: formFilters.movementModes,
@@ -98,7 +129,7 @@ const AirPaxTaskListPage: FC = () => {
         searchText: formFilters.searchText,
       },
       pagination: {
-        offset: calculatePageOffset(pageNumber, totalNumberOfTasks),
+        offset: pageOffset,
         limit: pageSize,
       },
     };
@@ -106,24 +137,27 @@ const AirPaxTaskListPage: FC = () => {
 
   const handlePageChanged = (pageNumber: number) => {
     setPageNumber(pageNumber);
-    console.log(`loading page ${pageNumber}`);
-    loadTaskPage(buildTaskPageRequest(pageNumber));
+    //console.log(`loading page ${pageNumber}`);
+    //loadTaskPage(buildTaskPageRequest());
   };
 
-  const loadTaskCounts = async (request: TaskCountsRequest) => {
-    const response = await taskClient.getTaskCounts(request);
-    setTaskCounts(response);
-  };
-
-  const loadTaskPage = async (request: TaskPageRequest) => {
-    const response = await taskClient.getTaskPage(request);
-    setTasks(response.tasks);
-    setTotalNumberOfTasks(response.totalNumberOfTasks);
-  };
-
-  const loadFilterRules = async () => {
+  const fetchFilterRuleOptions = async () => {
     const rules = await taskClient.getFilterRules();
     setFilterRuleOptions(rules);
+  };
+
+  const fetchTasks = async () => {
+    const countsRequest = buildTaskCountsRequest();
+    const countsResponse = await taskClient.getTaskCounts(countsRequest);
+    setTaskCounts(countsResponse);
+
+    const totalNumberOfTasks = toTotalNumberOfTasks(countsResponse);
+    setTotalNumberOfTasks(totalNumberOfTasks);
+
+    const pageOffset = calculatePageOffset(totalNumberOfTasks);
+    const pageRequest = buildTaskPageRequest(pageOffset);
+    const pageResponse = await taskClient.getTaskPage(pageRequest);
+    setTasks(pageResponse.tasks);
   };
 
   const getComponentToShow = () => {
@@ -140,6 +174,7 @@ const AirPaxTaskListPage: FC = () => {
           onApplyFilters={handleApplyFilters}
           onResetFilters={handleResetFilters}
           onPageChanged={handlePageChanged}
+          onTaskClaimed={handleTaskClaimed}
         />
       );
     }
@@ -147,18 +182,12 @@ const AirPaxTaskListPage: FC = () => {
   };
 
   useEffect(() => {
-    loadFilterRules();
+    fetchFilterRuleOptions().catch(console.error);
   }, []);
 
-  const countsRequest = buildTaskCountsRequest();
   useEffect(() => {
-    loadTaskCounts(countsRequest);
-  }, []);
-
-  const pageRequest = buildTaskPageRequest(pageNumber);
-  useEffect(() => {
-    loadTaskPage(pageRequest);
-  }, []);
+    fetchTasks().catch(console.error);
+  }, [pageNumber]);
 
   return <Layout>{getComponentToShow()}</Layout>;
 };

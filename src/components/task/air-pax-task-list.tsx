@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FC } from 'react';
-import TaskHeading from './task-heading';
+import TaskHeader from './task-header';
 import AirPaxTaskListItem from './air-pax-task-list-item';
 import {
   Task,
@@ -22,6 +22,7 @@ class Props {
   onApplyFilters: (filters: FormFilters) => void;
   onResetFilters: (filters: FormFilters) => void;
   onPageChanged: (pageNumber: number) => void;
+  onTaskClaimed: (taskId: string) => void;
 }
 
 const AirPaxTaskList: FC<Props> = ({
@@ -35,14 +36,21 @@ const AirPaxTaskList: FC<Props> = ({
   onApplyFilters,
   onResetFilters,
   onPageChanged,
+  onTaskClaimed,
 }) => {
   const taskItems =
     tasks &&
-    tasks.map((task) => <AirPaxTaskListItem task={task} key={task.id} />);
+    tasks.map((task) => (
+      <AirPaxTaskListItem
+        task={task}
+        key={task.id}
+        onTaskClaimed={onTaskClaimed}
+      />
+    ));
 
   return (
     <>
-      <TaskHeading text="Air Passenger Tasks" />
+      <TaskHeader text="Air Passenger Tasks" />
       <div className="govuk-grid-row">
         <section className="govuk-grid-column-one-quarter">
           <AirPaxFilters
