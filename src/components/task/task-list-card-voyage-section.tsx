@@ -1,16 +1,13 @@
 import * as React from 'react';
 import { FC } from 'react';
 import * as _ from 'lodash';
-import {
-  Juncture,
-  Movement,
-  PersonRole,
-} from '../../adapters/task/task-entities';
+import { Juncture, Movement } from '../../adapters/task/task';
+import { formatPersonRole } from '../../adapters/task/person';
 import {
   calcuateTimeFromNow,
   isFuture,
-  toLongFormat,
-} from '../../adapters/date/date-util';
+  toLongDateTimeFormat,
+} from '../../adapters/date/date';
 import AirPaxDepartureStatus from './air-pax-departure-status';
 
 class Props {
@@ -22,10 +19,6 @@ const toGroupDescription = (groupSize: number): string => {
     return `In group of ${groupSize}`;
   }
   return 'Single passenger';
-};
-
-const formatPersonRole = (role: PersonRole): string => {
-  return _.startCase(_.toLower(role));
 };
 
 const formatFlightDetails = (movement: Movement): string => {
@@ -50,7 +43,7 @@ const formatLocation = (juncture: Juncture): string => {
   return juncture?.location || 'unknown';
 };
 
-const TaskListItemVoyageSection: FC<Props> = ({ movement }) => {
+const TaskListCardVoyageSection: FC<Props> = ({ movement }) => {
   return (
     <section className="task-list--voyage-section">
       <div>
@@ -62,7 +55,7 @@ const TaskListItemVoyageSection: FC<Props> = ({ movement }) => {
             </p>
             <span className="govuk-body-s govuk-!-margin-bottom-0 govuk-!-font-weight-bold govuk-!-padding-left-1">
               <span className="govuk-font-weight-bold">
-                {formatPersonRole(movement.person.role)}{' '}
+                {formatPersonRole(movement.person)}{' '}
                 <AirPaxDepartureStatus
                   status={movement.flight?.departureStatus}
                 />
@@ -81,7 +74,7 @@ const TaskListItemVoyageSection: FC<Props> = ({ movement }) => {
                   {movement.flight?.number || 'Unknown'}
                 </span>
                 <span className="dot" />
-                {toLongFormat(movement.journey?.departure?.time)}
+                {toLongDateTimeFormat(movement.journey?.departure?.time)}
                 <span className="dot" />
                 <span className="govuk-!-font-weight-bold">
                   {formatLocation(movement.journey?.departure)}
@@ -92,7 +85,7 @@ const TaskListItemVoyageSection: FC<Props> = ({ movement }) => {
                   {formatLocation(movement.journey?.arrival)}
                 </span>
                 <span className="dot" />
-                {toLongFormat(movement.journey?.arrival?.time)}
+                {toLongDateTimeFormat(movement.journey?.arrival?.time)}
               </>
             </p>
           </div>
@@ -102,4 +95,4 @@ const TaskListItemVoyageSection: FC<Props> = ({ movement }) => {
   );
 };
 
-export default TaskListItemVoyageSection;
+export default TaskListCardVoyageSection;

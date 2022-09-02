@@ -7,8 +7,8 @@ import {
   FilterRule,
   HasSelectors,
   Task,
-} from './task-entities';
-import { TaskStatus } from './task-status-entity';
+} from './task';
+import { TaskStatus } from './task-status';
 import { stubTasks } from './stub-tasks';
 
 interface TargetingApiClient {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { TaskStatus } from '../../adapters/task/task-status-entity';
+import { TaskStatus } from '../../adapters/task/task-status';
 
 class Props {
   label: string;

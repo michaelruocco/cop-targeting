@@ -1,17 +1,14 @@
 import * as React from 'react';
 import { FC } from 'react';
 import TaskHeader from './task-header';
-import AirPaxTaskListItem from './air-pax-task-list-item';
+import AirPaxTaskListCard from './air-pax-task-list-card';
 import {
   Task,
   TaskCountsResponse,
   TaskSelectorStatusCounts,
   FilterRule,
-} from '../../adapters/task/task-entities';
-import {
-  formatTaskStatus,
-  TaskStatus,
-} from '../../adapters/task/task-status-entity';
+} from '../../adapters/task/task';
+import { formatTaskStatus, TaskStatus } from '../../adapters/task/task-status';
 import Pagination from '../pagination/pagination';
 import { AirPaxFilters } from './air-pax-filters';
 import { FormFilters } from './form-filters';
@@ -64,7 +61,7 @@ const AirPaxTaskList: FC<Props> = ({
       );
     }
     return tasks.map((task) => (
-      <AirPaxTaskListItem
+      <AirPaxTaskListCard
         task={task}
         key={task.id}
         onTaskClaimed={onTaskClaimed}

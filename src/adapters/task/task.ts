@@ -1,4 +1,6 @@
-import { TaskStatus } from './task-status-entity';
+import { TaskStatus } from './task-status';
+import { Person } from './person';
+import { Booking } from './booking';
 
 export enum MovementMode {
   RoRoTourist = 'RORO_TOURIST',
@@ -107,6 +109,8 @@ export type Movement = {
   journey: Journey;
   person: Person;
   flight: Flight;
+  baggage: Baggage;
+  booking: Booking;
 };
 
 export enum MovementDirection {
@@ -137,47 +141,6 @@ export type Journey = {
   duration: Number;
 };
 
-export type PersonName = {
-  first: string;
-  last: string;
-  full: string;
-};
-
-export enum PersonRole {
-  Passenger = 'PASSENGER',
-  Crew = 'CREW',
-  Driver = 'DRIVER',
-  Unknown = 'UNKNOWN',
-}
-
-export type Document = {
-  entitySearchUrl: string;
-  type: string;
-  number: string;
-  validFrom: Date;
-  expiry: Date;
-  countryOfIssue: string;
-};
-
-export type MovementStats = {
-  movementCount: number;
-  examinationCount: number;
-  seizureCount: number;
-};
-
-export type Person = {
-  entitySearchUrl: string;
-  name: PersonName;
-  role: PersonRole;
-  dateOfBirth: Date;
-  gender: string;
-  nationality: string;
-  document: Document;
-  movementStats: MovementStats;
-  frequentFlyerNumber: string;
-  ssrCodes: string[];
-};
-
 export enum DepartureStatus {
   BookedPassenger = 'BOOKED_PASSENGER',
   CheckedIn = 'CHECKED_IN',
@@ -190,6 +153,12 @@ export type Flight = {
   number: string;
   operator: string;
   seatNumber: string;
+};
+
+export type Baggage = {
+  numberOfCheckedBags: number;
+  weight: string;
+  tags: string[];
 };
 
 export type TaskSelectorStatusCounts = {

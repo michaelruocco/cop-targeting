@@ -6,7 +6,7 @@ import {
   SelectorGroup,
   Rule,
   Task,
-} from '../../adapters/task/task-entities';
+} from '../../adapters/task/task';
 import ClaimButton from './claim-button';
 
 class Props {
@@ -49,7 +49,7 @@ function formatThreatTypes(threatTypes: string[]): string {
   return `${firstType} and ${threatTypes.length - 1} other rules`;
 }
 
-const TaskListItemTitleSection: FC<Props> = ({
+const TaskListCardTitleSection: FC<Props> = ({
   task,
   risks,
   onTaskClaimed,
@@ -82,4 +82,4 @@ const TaskListItemTitleSection: FC<Props> = ({
   );
 };
 
-export default TaskListItemTitleSection;
+export default TaskListCardTitleSection;

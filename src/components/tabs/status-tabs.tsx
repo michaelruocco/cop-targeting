@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { TaskCountsResponse } from '../../adapters/task/task-entities';
-import { TaskStatus } from '../../adapters/task/task-status-entity';
+import { TaskCountsResponse } from '../../adapters/task/task';
+import { TaskStatus } from '../../adapters/task/task-status';
 import StatusTabLink from './status-tab-link';
 
 class Props {

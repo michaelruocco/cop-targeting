@@ -2,7 +2,7 @@ import {
   FilterRule,
   MovementMode,
   HasSelectors,
-} from '../../adapters/task/task-entities';
+} from '../../adapters/task/task';
 
 export class FormFilters {
   movementModes: MovementMode[];

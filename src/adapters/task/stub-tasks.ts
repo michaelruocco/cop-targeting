@@ -2,11 +2,11 @@ import {
   MovementMode,
   MovementDirection,
   ThreatType,
-  PersonRole,
   DepartureStatus,
   Task,
-} from './task-entities';
-import { TaskStatus } from './task-status-entity';
+} from './task';
+import { TaskStatus } from './task-status';
+import { PersonRole } from './person';
 
 export const stubTasks: Task[] = [
   {
@@ -29,13 +29,13 @@ export const stubTasks: Task[] = [
       mode: MovementMode.AirPassenger,
       description: 'group',
       groupSize: 2,
-      /*booking: {
-          reference: 'LSV4UV',
-          type: null,
-          paymentMethod: null,
-          bookedAt: '2021-01-24T17:42:37.123Z',
-          checkInAt: null,
-          tickets: [
+      booking: {
+        reference: 'ABC123',
+        type: null,
+        paymentMethod: null,
+        bookedAt: new Date('2022-02-24T13:22:21.123Z'),
+        checkInAt: new Date('2022-11-20T16:32:33.123Z'),
+        /*tickets: [
             { number: '1741815210698', type: 'ONE-WAY', price: '441.0 CAD' },
             { number: '1741815210698', type: 'ONE-WAY', price: '1095.24 CAD' },
             { number: '1718705911248', type: 'ONE-WAY', price: '441.0 CAD' },
@@ -58,8 +58,8 @@ export const stubTasks: Task[] = [
               },
             },
           ],
-          agent: { iata: '96519614', location: 'YTZ, CA' },
-        },*/
+          agent: { iata: '96519614', location: 'YTZ, CA' },*/
+      },
       journey: {
         id: 'AC0850',
         direction: MovementDirection.Inbound,
@@ -123,12 +123,19 @@ export const stubTasks: Task[] = [
       //vessel: null,
       person: {
         entitySearchUrl: null,
-        name: { first: 'GEMMA', last: 'MESTA', full: 'GEMMA MESTA' },
-        role: PersonRole.Crew,
-        dateOfBirth: new Date('1878-01-19T00:00:00Z'),
-        gender: null,
-        nationality: null,
-        document: null,
+        name: { first: 'Michael', last: 'Ruocco', full: 'Michael Ruocco' },
+        role: PersonRole.Passenger,
+        dateOfBirth: new Date('1885-06-16T00:00:00Z'),
+        gender: 'M',
+        nationality: 'GB',
+        document: {
+          entitySearchUrl: null,
+          type: 'PASSPORT',
+          number: '14278943245',
+          validFrom: new Date('2018-05-25T00:00:00Z'),
+          expiry: new Date('2023-06-25T00:00:00Z'),
+          countryOfIssue: 'GB',
+        },
         movementStats: null,
         frequentFlyerNumber: '579419193A',
         ssrCodes: ['DOCS', 'AUTH'],
@@ -189,10 +196,10 @@ export const stubTasks: Task[] = [
         departureStatus: null,
         number: 'AC0850',
         operator: 'AC',
-        seatNumber: null,
+        seatNumber: '21C',
       },
-      /*baggage: { numberOfCheckedBags: null, weight: null, tags: [] },
-        vehicle: null,
+      baggage: { numberOfCheckedBags: 1, weight: '19', tags: ['1234AB'] },
+      /*vehicle: null,
         trailer: null,
         goods: null,
         haulier: null,
@@ -468,13 +475,13 @@ export const stubTasks: Task[] = [
       mode: MovementMode.AirPassenger,
       description: 'group',
       groupSize: 2,
-      /*booking: {
-          reference: 'LSV4UV',
-          type: null,
-          paymentMethod: null,
-          bookedAt: '2021-01-24T17:42:37.123Z',
-          checkInAt: null,
-          tickets: [
+      booking: {
+        reference: 'LSV4UV',
+        type: null,
+        paymentMethod: null,
+        bookedAt: new Date('2021-01-24T17:42:37.123Z'),
+        checkInAt: null,
+        /*tickets: [
             { number: '1718705911248', type: 'ONE-WAY', price: '441.0 CAD' },
             { number: '1718705911248', type: 'ONE-WAY', price: '1095.24 CAD' },
           ],
@@ -495,8 +502,8 @@ export const stubTasks: Task[] = [
               },
             },
           ],
-          agent: { iata: '96519614', location: 'YTZ, CA' },
-        },*/
+          agent: { iata: '96519614', location: 'YTZ, CA' },*/
+      },
       journey: {
         id: 'AC0850',
         direction: MovementDirection.Inbound,
@@ -561,7 +568,7 @@ export const stubTasks: Task[] = [
       person: {
         entitySearchUrl: null,
         name: { first: 'GEMMA', last: 'MESTA', full: 'GEMMA MESTA' },
-        role: PersonRole.Passenger,
+        role: PersonRole.Crew,
         dateOfBirth: new Date('1878-01-19T00:00:00Z'),
         gender: null,
         nationality: null,
@@ -628,8 +635,8 @@ export const stubTasks: Task[] = [
         operator: 'AC',
         seatNumber: null,
       },
-      /*baggage: { numberOfCheckedBags: null, weight: null, tags: [] },
-        vehicle: null,
+      baggage: { numberOfCheckedBags: null, weight: null, tags: [] },
+      /*vehicle: null,
         trailer: null,
         goods: null,
         haulier: null,
@@ -848,13 +855,13 @@ export const stubTasks: Task[] = [
       mode: MovementMode.AirPassenger,
       description: 'group',
       groupSize: 2,
-      /*booking: {
-          reference: 'LSV4UV',
-          type: null,
-          paymentMethod: null,
-          bookedAt: '2021-01-24T17:42:37.123Z',
-          checkInAt: null,
-          tickets: [
+      booking: {
+        reference: 'LSV4UV',
+        type: null,
+        paymentMethod: null,
+        bookedAt: new Date('2021-01-24T17:42:37.123Z'),
+        checkInAt: null,
+        /*tickets: [
             { number: '1741815210698', type: 'RETURN', price: '441.0 CAD' },
             { number: '1741815210698', type: 'RETURN', price: '1095.24 CAD' },
             { number: '1718705911248', type: 'RETURN', price: '441.0 CAD' },
@@ -877,8 +884,8 @@ export const stubTasks: Task[] = [
               },
             },
           ],
-          agent: { iata: '96519614', location: 'YTZ, CA' },
-        },*/
+          agent: { iata: '96519614', location: 'YTZ, CA' },*/
+      },
       journey: {
         id: 'AC0850',
         direction: MovementDirection.Inbound,
@@ -1010,8 +1017,8 @@ export const stubTasks: Task[] = [
         operator: 'AC',
         seatNumber: null,
       },
-      /*baggage: { numberOfCheckedBags: null, weight: null, tags: [] },
-        vehicle: null,
+      baggage: { numberOfCheckedBags: null, weight: null, tags: [] },
+      /*vehicle: null,
         trailer: null,
         goods: null,
         haulier: null,
@@ -1287,13 +1294,13 @@ export const stubTasks: Task[] = [
       mode: MovementMode.AirPassenger,
       description: 'group',
       groupSize: 4,
-      /*booking: {
-          reference: 'LSV4UV',
-          type: null,
-          paymentMethod: null,
-          bookedAt: null,
-          checkInAt: '2019-07-20T16:43:35Z',
-          tickets: [
+      booking: {
+        reference: 'LSV4UV',
+        type: null,
+        paymentMethod: null,
+        bookedAt: null,
+        checkInAt: new Date('2019-07-20T16:43:35Z'),
+        /*tickets: [
             { number: '1741815210698', type: 'RETURN', price: '441.0 CAD' },
             { number: '1741815210698', type: 'RETURN', price: '1095.24 CAD' },
             { number: '1741815210698', type: 'RETURN', price: '1095.24 CAD' },
@@ -1320,8 +1327,8 @@ export const stubTasks: Task[] = [
               },
             },
           ],
-          agent: { iata: '890534932', location: 'LHR, GB' },
-        },*/
+          agent: { iata: '890534932', location: 'LHR, GB' },*/
+      },
       journey: {
         id: 'BA0103',
         direction: null,
@@ -1475,12 +1482,12 @@ export const stubTasks: Task[] = [
         operator: 'BA',
         seatNumber: '34A',
       },
-      /*baggage: {
-          numberOfCheckedBags: 6,
-          weight: '100kg',
-          tags: ['739238', '739239', '739240', '739241', '739242', '739243'],
-        },
-        vehicle: null,
+      baggage: {
+        numberOfCheckedBags: 6,
+        weight: '100kg',
+        tags: ['739238', '739239', '739240', '739241', '739242', '739243'],
+      },
+      /*vehicle: null,
         trailer: null,
         goods: null,
         haulier: null,
@@ -1732,13 +1739,13 @@ export const stubTasks: Task[] = [
       mode: MovementMode.AirPassenger,
       description: 'group',
       groupSize: 4,
-      /*booking: {
-          reference: 'LSV4UV',
-          type: null,
-          paymentMethod: null,
-          bookedAt: null,
-          checkInAt: '2019-07-20T16:43:35Z',
-          tickets: [
+      booking: {
+        reference: 'LSV4UV',
+        type: null,
+        paymentMethod: null,
+        bookedAt: null,
+        checkInAt: new Date('2019-07-20T16:43:35Z'),
+        /*tickets: [
             { number: '1741815210698', type: 'RETURN', price: '441.0 CAD' },
             { number: '1741815210698', type: 'RETURN', price: '1095.24 CAD' },
             { number: '1718705911248', type: 'RETURN', price: '441.0 CAD' },
@@ -1761,8 +1768,8 @@ export const stubTasks: Task[] = [
               },
             },
           ],
-          agent: { iata: '890534932', location: 'LHR, GB' },
-        },*/
+          agent: { iata: '890534932', location: 'LHR, GB' },*/
+      },
       journey: {
         id: 'BA0103',
         direction: null,
@@ -1916,12 +1923,12 @@ export const stubTasks: Task[] = [
         operator: 'BA',
         seatNumber: '34A',
       },
-      /*baggage: {
-          numberOfCheckedBags: 6,
-          weight: '100kg',
-          tags: ['739238', '739239', '739240', '739241', '739242', '739243'],
-        },
-        vehicle: null,
+      baggage: {
+        numberOfCheckedBags: 6,
+        weight: '100kg',
+        tags: ['739238', '739239', '739240', '739241', '739242', '739243'],
+      },
+      /*vehicle: null,
         trailer: null,
         goods: null,
         haulier: null,
@@ -2021,13 +2028,13 @@ export const stubTasks: Task[] = [
       mode: MovementMode.AirPassenger,
       description: 'group',
       groupSize: 4,
-      /*booking: {
-          reference: 'LSV4UV',
-          type: null,
-          paymentMethod: null,
-          bookedAt: null,
-          checkInAt: '2019-07-20T16:43:35Z',
-          tickets: [
+      booking: {
+        reference: 'LSV4UV',
+        type: null,
+        paymentMethod: null,
+        bookedAt: null,
+        checkInAt: new Date('2019-07-20T16:43:35Z'),
+        /*tickets: [
             { number: '1741815210698', type: 'RETURN', price: '441.0 CAD' },
             { number: '1741815210698', type: 'RETURN', price: '1095.24 CAD' },
             { number: '1718705911248', type: 'RETURN', price: '441.0 CAD' },
@@ -2050,8 +2057,8 @@ export const stubTasks: Task[] = [
               },
             },
           ],
-          agent: { iata: '890534932', location: 'LHR, GB' },
-        },*/
+          agent: { iata: '890534932', location: 'LHR, GB' },*/
+      },
       journey: {
         id: 'BA0103',
         direction: null,
@@ -2205,12 +2212,12 @@ export const stubTasks: Task[] = [
         operator: 'BA',
         seatNumber: '34A',
       },
-      /*baggage: {
-          numberOfCheckedBags: 6,
-          weight: '100kg',
-          tags: ['739238', '739239', '739240', '739241', '739242', '739243'],
-        },
-        vehicle: null,
+      baggage: {
+        numberOfCheckedBags: 6,
+        weight: '100kg',
+        tags: ['739238', '739239', '739240', '739241', '739242', '739243'],
+      },
+      /*vehicle: null,
         trailer: null,
         goods: null,
         haulier: null,
@@ -2474,13 +2481,13 @@ export const stubTasks: Task[] = [
       mode: MovementMode.AirPassenger,
       description: 'group',
       groupSize: 4,
-      /*booking: {
-          reference: 'LSV4UV',
-          type: null,
-          paymentMethod: null,
-          bookedAt: null,
-          checkInAt: '2019-07-20T16:43:35Z',
-          tickets: [
+      booking: {
+        reference: 'LSV4UV',
+        type: null,
+        paymentMethod: null,
+        bookedAt: null,
+        checkInAt: new Date('2019-07-20T16:43:35Z'),
+        /*tickets: [
             { number: '1741815210698', type: 'RETURN', price: '441.0 CAD' },
             { number: '1741815210698', type: 'RETURN', price: '1095.24 CAD' },
             { number: '1718705911248', type: 'RETURN', price: '441.0 CAD' },
@@ -2503,8 +2510,8 @@ export const stubTasks: Task[] = [
               },
             },
           ],
-          agent: { iata: '890534932', location: 'LHR, GB' },
-        },*/
+          agent: { iata: '890534932', location: 'LHR, GB' },*/
+      },
       journey: {
         id: 'BA0103',
         direction: null,
@@ -2658,12 +2665,12 @@ export const stubTasks: Task[] = [
         operator: 'BA',
         seatNumber: '34A',
       },
-      /*baggage: {
-          numberOfCheckedBags: 6,
-          weight: '100kg',
-          tags: ['739238', '739239', '739240', '739241', '739242', '739243'],
-        },
-        vehicle: null,
+      baggage: {
+        numberOfCheckedBags: 6,
+        weight: '100kg',
+        tags: ['739238', '739239', '739240', '739241', '739242', '739243'],
+      },
+      /*vehicle: null,
         trailer: null,
         goods: null,
         haulier: null,
@@ -2933,13 +2940,13 @@ export const stubTasks: Task[] = [
       mode: MovementMode.AirPassenger,
       description: 'individual',
       groupSize: 1,
-      /*booking: {
-          reference: 'LSV4UV',
-          type: 'Online',
-          paymentMethod: 'CC',
-          bookedAt: '2022-06-09T10:00:00Z',
-          checkInAt: '2022-06-12T13:00:00Z',
-          tickets: [
+      booking: {
+        reference: 'LSV4UV',
+        type: 'Online',
+        paymentMethod: 'CC',
+        bookedAt: new Date('2022-06-09T10:00:00Z'),
+        checkInAt: new Date('2022-06-12T13:00:00Z'),
+        /*tickets: [
             { number: '1741815210698', type: 'RETURN', price: '441.0 CAD' },
             { number: '1741815210698', type: 'RETURN', price: '1095.24 CAD' },
             { number: '1718705911248', type: 'RETURN', price: '441.0 CAD' },
@@ -2962,8 +2969,8 @@ export const stubTasks: Task[] = [
               },
             },
           ],
-          agent: { iata: '890534932', location: 'LHR, GB' },
-        },*/
+          agent: { iata: '890534932', location: 'LHR, GB' },*/
+      },
       journey: {
         id: 'BA0103',
         direction: null,
@@ -3055,8 +3062,8 @@ export const stubTasks: Task[] = [
         operator: 'BA',
         seatNumber: '34A',
       },
-      /*baggage: { numberOfCheckedBags: 1, weight: '23kg', tags: ['739238'] },
-        vehicle: null,
+      baggage: { numberOfCheckedBags: 1, weight: '23kg', tags: ['739238'] },
+      /*vehicle: null,
         trailer: null,
         goods: null,
         haulier: null,

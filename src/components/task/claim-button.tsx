@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { Task } from '../../adapters/task/task-entities';
+import { Task } from '../../adapters/task/task';
 
 import '../../styles/link-button.scss';
 

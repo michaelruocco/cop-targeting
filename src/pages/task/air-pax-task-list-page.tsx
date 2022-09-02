@@ -9,9 +9,9 @@ import {
   TaskCountsResponse,
   TaskFilters,
   TaskSelectorStatusCounts,
-} from '../../adapters/task/task-entities';
+} from '../../adapters/task/task';
 import { StubTargetingApiClient } from '../../adapters/task/targeting-api-client';
-import { TaskStatus } from '../../adapters/task/task-status-entity';
+import { TaskStatus } from '../../adapters/task/task-status';
 import Layout from '../../components/layout/layout';
 import AirPaxTaskList from '../../components/task/air-pax-task-list';
 import TriggerRequestPnrAccess from '../../components/task/trigger-request-pnr-access';
