@@ -27,26 +27,6 @@ const AirPaxTaskListCard: FC<Props> = ({
         />
         <TaskListCardVoyageSection movement={task.movement} />
         <TaskListCardMovementInfoSection movement={task.movement} />
-        <section className="task-list--movement-info-section">
-          <div className="govuk-grid-row">
-            <div className="govuk-grid-item vertical-dotted-line">
-              <h3 className="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-font-size-16 govuk-!-font-weight-regular secondary-text">
-                Co-travellers
-              </h3>
-              <ul className="govuk-body-s govuk-list govuk-!-margin-bottom-0">
-                Laura Ruocco
-              </ul>
-              <h3 className="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-font-size-16 govuk-!-font-weight-regular secondary-text">
-                Route
-              </h3>
-              <ul className="govuk-body-s govuk-list govuk-!-margin-bottom-0">
-                <li className="govuk-!-font-weight-regular">
-                  CDG - YYZ - YYC - LHR
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
         <section className="task-list--target-indicator-section">
           <div className="govuk-grid-row">
             <div className="govuk-grid-item">

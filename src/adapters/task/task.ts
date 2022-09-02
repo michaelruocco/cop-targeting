@@ -108,6 +108,7 @@ export type Movement = {
   groupSize: number;
   journey: Journey;
   person: Person;
+  otherPersons: Person[];
   flight: Flight;
   baggage: Baggage;
   booking: Booking;
