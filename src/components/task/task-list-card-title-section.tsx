@@ -46,6 +46,9 @@ function formatThreatTypes(threatTypes: string[]): string {
   if (threatTypes.length === 1) {
     return firstType;
   }
+  if (threatTypes.length === 2) {
+    return `${firstType} and ${threatTypes.length - 1} other rule`;
+  }
   return `${firstType} and ${threatTypes.length - 1} other rules`;
 }
 
