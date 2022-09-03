@@ -212,13 +212,13 @@ ul.item-list--bulleted {
   button {
     margin-bottom: 0;
   }
+}
 
-  .task-list--assignee {
-    display: inline-block;
-    word-break: break-all;
-    padding-right: 0.5em;
-    margin-bottom: 0;
-  }
+.task-list--assignee {
+  display: inline-block;
+  word-break: break-all;
+  padding-right: 0.5em;
+  margin-bottom: 0;
 }
 
 .font--red {

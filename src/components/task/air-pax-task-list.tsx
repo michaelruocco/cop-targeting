@@ -31,6 +31,7 @@ class Props {
   onPageChanged: (pageNumber: number) => void;
   onStatusSelected: (status: TaskStatus) => void;
   onTaskClaimed: (task: Task) => void;
+  onTaskUnclaimed: (task: Task) => void;
   onTaskViewed: (task: Task) => void;
 }
 
@@ -50,6 +51,7 @@ const AirPaxTaskList: FC<Props> = ({
   onPageChanged,
   onStatusSelected,
   onTaskClaimed,
+  onTaskUnclaimed,
   onTaskViewed,
 }) => {
   const toTaskItems = (tasks: Task[]): React.ReactNode | React.ReactNode[] => {
@@ -65,6 +67,7 @@ const AirPaxTaskList: FC<Props> = ({
         task={task}
         key={task.id}
         onTaskClaimed={onTaskClaimed}
+        onTaskUnclaimed={onTaskUnclaimed}
         onTaskViewed={onTaskViewed}
       />
     ));

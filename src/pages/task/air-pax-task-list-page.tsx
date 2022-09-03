@@ -81,6 +81,10 @@ const AirPaxTaskListPage: FC = () => {
     console.log(`task claimed ${task.id}`);
   };
 
+  const handleTaskUnclaimed = (task: Task) => {
+    console.log(`task unclaimed ${task.id}`);
+  };
+
   const handleTaskViewed = (task: Task) => {
     console.log(`task viewed ${task.id}`);
   };
@@ -140,7 +144,6 @@ const AirPaxTaskListPage: FC = () => {
   };
 
   const handlePageChanged = (pageNumber: number) => {
-    window.scrollTo(0, 0);
     setPageNumber(pageNumber);
   };
 
@@ -188,6 +191,7 @@ const AirPaxTaskListPage: FC = () => {
           onPageChanged={handlePageChanged}
           onStatusSelected={handleStatusSelected}
           onTaskClaimed={handleTaskClaimed}
+          onTaskUnclaimed={handleTaskUnclaimed}
           onTaskViewed={handleTaskViewed}
         />
       );

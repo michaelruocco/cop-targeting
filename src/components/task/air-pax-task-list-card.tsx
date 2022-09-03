@@ -9,12 +9,14 @@ import ViewTaskDetailsLink from './view-task-details-link';
 class Props {
   task: Task;
   onTaskClaimed: (task: Task) => void;
+  onTaskUnclaimed: (task: Task) => void;
   onTaskViewed: (task: Task) => void;
 }
 
 const AirPaxTaskListCard: FC<Props> = ({
   task,
   onTaskClaimed,
+  onTaskUnclaimed,
   onTaskViewed,
 }) => {
   return (
@@ -24,6 +26,7 @@ const AirPaxTaskListCard: FC<Props> = ({
           task={task}
           risks={task.risks}
           onTaskClaimed={onTaskClaimed}
+          onTaskUnclaimed={onTaskUnclaimed}
         />
         <TaskListCardVoyageSection movement={task.movement} />
         <TaskListCardMovementInfoSection movement={task.movement} />

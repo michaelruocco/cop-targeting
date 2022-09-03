@@ -7,12 +7,16 @@ import {
   Rule,
   Task,
 } from '../../adapters/task/task';
+import { TaskStatus } from '../../adapters/task/task-status';
 import ClaimButton from './claim-button';
+import TaskAssignee from './task-assignee';
+import UnclaimButton from './unclaim-button';
 
 class Props {
   task: Task;
   risks: Risks;
   onTaskClaimed: (task: Task) => void;
+  onTaskUnclaimed: (task: Task) => void;
 }
 
 function toHighestThreatLevelValue(risks: Risks): string {
@@ -46,16 +50,34 @@ function formatThreatTypes(threatTypes: string[]): string {
   if (threatTypes.length === 1) {
     return firstType;
   }
-  if (threatTypes.length === 2) {
-    return `${firstType} and ${threatTypes.length - 1} other rule`;
-  }
-  return `${firstType} and ${threatTypes.length - 1} other rules`;
+  const isPlural = threatTypes.length > 1;
+  const suffix = isPlural ? 'rules' : 'rule';
+  return `${firstType} and ${threatTypes.length - 1} other ${suffix}`;
 }
+
+const shouldShowClaimButton = (task: Task): boolean => {
+  return task.status === TaskStatus.New;
+};
+
+const shouldShowAssignee = (task: Task): boolean => {
+  if (task.assignee) {
+    return true;
+  }
+  return false;
+};
+
+const shouldShowUnclaimButton = (task: Task): boolean => {
+  if (task.assignee) {
+    return task.status === TaskStatus.InProgress;
+  }
+  return false;
+};
 
 const TaskListCardTitleSection: FC<Props> = ({
   task,
   risks,
   onTaskClaimed,
+  onTaskUnclaimed,
 }) => {
   return (
     <section>
@@ -76,8 +98,16 @@ const TaskListCardTitleSection: FC<Props> = ({
           </div>
         </div>
         <div className="govuk-grid-column-one-third govuk-!-padding-top-2 govuk-!-padding-right-3">
+          {shouldShowClaimButton(task) && (
+            <div className="claim-button-container">
+              <ClaimButton task={task} onTaskClaimed={onTaskClaimed} />
+            </div>
+          )}
           <div className="claim-button-container">
-            <ClaimButton task={task} onTaskClaimed={onTaskClaimed} />
+            {shouldShowAssignee(task) && <TaskAssignee task={task} />}
+            {shouldShowUnclaimButton(task) && (
+              <UnclaimButton task={task} onTaskUnclaimed={onTaskUnclaimed} />
+            )}
           </div>
         </div>
       </div>
