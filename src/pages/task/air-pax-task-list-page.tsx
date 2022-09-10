@@ -1,213 +1,173 @@
 import * as React from 'react';
-import { FC, useContext, useState, useEffect } from 'react';
+import * as _ from 'lodash';
+import { FC } from 'react';
 import {
   Task,
   HasSelectors,
   MovementMode,
-  FilterRule,
-  TaskPageRequest,
-  TaskCountsResponse,
-  TaskFilters,
   TaskSelectorStatusCounts,
 } from '../../adapters/task/task';
-import { StubTargetingApiClient } from '../../adapters/task/targeting-api-client';
-import { TaskStatus } from '../../adapters/task/task-status';
-import Layout from '../../components/layout/layout';
-import AirPaxTaskList from '../../components/task/air-pax-task-list';
-import TriggerRequestPnrAccess from '../../components/task/trigger-request-pnr-access';
-import AuthContext from '../../contexts/auth/auth-context';
-import PnrAccessContext from '../../contexts/pnr/pnr-access-context';
 import { FormFilters } from '../../components/task/form-filters';
+import AirPaxTaskListCard from '../../components/task/air-pax-task-list-card';
 
 import '../../styles/task-list-page.scss';
+import TaskListPage from '../../components/task/task-list-page';
 
 const AirPaxTaskListPage: FC = () => {
-  const [pageNumber, setPageNumber] = useState<number>(1);
-  const [status, setStatus] = useState<TaskStatus>(TaskStatus.New);
-  const [isLoading, setLoading] = useState<boolean>(true);
-
   const defaultFormFilters: FormFilters = {
     movementModes: [MovementMode.AirPassenger],
     selectors: HasSelectors.Any,
     rules: [],
     searchText: '',
   };
-  const [formFilters, setFormFilters] =
-    useState<FormFilters>(defaultFormFilters);
 
-  const defaultTaskCounts: TaskCountsResponse = {
-    filters: {
-      movementModes: formFilters.movementModes,
-      statuses: [status],
-      selectors: formFilters.selectors,
-      rules: formFilters.rules,
-      searchText: formFilters.searchText,
-    },
-    new: 0,
-    inProgress: 0,
-    issued: 0,
-    complete: 0,
+  const taskFilterForm = {
+    id: 'filter',
+    version: '0.0.1',
+    name: 'filter',
+    type: 'form',
+    pages: [
+      {
+        id: 'filter',
+        name: 'filter',
+        components: [
+          {
+            id: 'search',
+            fieldId: 'searchText',
+            label: 'Search',
+            type: 'text',
+            required: false,
+            placeholder: 'Passenger Name or Task Id',
+          },
+          {
+            id: 'selectors',
+            fieldId: 'selectors',
+            label: 'Selectors',
+            type: 'radios',
+            required: true,
+            dynamicoptions: 'true',
+            data: {
+              options: [
+                {
+                  value: 'NOT_PRESENT',
+                  label: `Has no selector (%NO_SELECTOR_COUNT%)`,
+                },
+                {
+                  value: 'PRESENT',
+                  label: `Has selector (%HAS_SELECTOR_COUNT%)`,
+                },
+                {
+                  value: 'ANY',
+                  label: `Both (%ANY_SELECTOR_COUNT%)`,
+                },
+              ],
+            },
+          },
+          {
+            id: 'rules',
+            fieldId: 'rules',
+            label: 'Rule matches',
+            type: 'multiautocomplete',
+            multi: true,
+            required: false,
+          },
+        ],
+        actions: [
+          {
+            type: 'submit',
+            validate: true,
+            label: 'Apply',
+          },
+        ],
+      },
+    ],
   };
-  const [taskCounts, setTaskCounts] =
-    useState<TaskCountsResponse>(defaultTaskCounts);
 
-  const defaultTaskSelectorStatusCounts: TaskSelectorStatusCounts = {
-    hasSelector: 0,
-    hasNoSelector: 0,
-    both: 0,
-  };
-  const [taskSelectorStatusCounts, setTaskSelectorStatusCounts] =
-    useState<TaskSelectorStatusCounts>(defaultTaskSelectorStatusCounts);
-
-  const handleApplyFilters = async (formFilters: FormFilters) => {
-    console.log(`form filters applied ${JSON.stringify(formFilters)}`);
-    setFormFilters(formFilters);
-    setPageNumber(1);
+  const populateTaskStatusCounts = (
+    taskFilterForm: any,
+    taskSelectorStatusCounts: TaskSelectorStatusCounts,
+  ): any => {
+    const copy = _.cloneDeep(taskFilterForm);
+    const component = copy.pages[0].components.filter(
+      (component: any) => component.id === 'selectors',
+    )[0];
+    component.data.options.forEach((option: any) => {
+      replaceTaskSelectorStatusCount(option, taskSelectorStatusCounts);
+    });
+    return copy;
   };
 
-  const handleResetFilters = (formFilters: FormFilters) => {
-    console.log(`form filters reset ${JSON.stringify(formFilters)}`);
-    setFormFilters(formFilters);
-    setPageNumber(1);
+  const replaceTaskSelectorStatusCount = (
+    option: any,
+    taskSelectorStatusCounts: TaskSelectorStatusCounts,
+  ) => {
+    const replacement = toSelectorCountReplacement(
+      option,
+      taskSelectorStatusCounts,
+    );
+    option.label = option.label.replace(
+      replacement.placeholder,
+      replacement.value.toString(),
+    );
   };
 
-  const handleStatusSelected = (status: TaskStatus) => {
-    console.log(`status selected ${status}`);
-    setStatus(status);
-    setPageNumber(1);
+  const toSelectorCountReplacement = (
+    option: any,
+    taskSelectorStatusCounts: TaskSelectorStatusCounts,
+  ): any => {
+    switch (option.value) {
+      case 'NOT_PRESENT':
+        return {
+          placeholder: '%NO_SELECTOR_COUNT%',
+          value: taskSelectorStatusCounts.hasNoSelector,
+        };
+      case 'PRESENT':
+        return {
+          placeholder: '%HAS_SELECTOR_COUNT%',
+          value: taskSelectorStatusCounts.hasSelector,
+        };
+      default:
+        return {
+          placeholder: '%ANY_SELECTOR_COUNT%',
+          value: taskSelectorStatusCounts.both,
+        };
+    }
   };
 
   const handleTaskClaimed = (task: Task) => {
-    console.log(`task claimed ${task.id}`);
+    console.log(`air pax task claimed ${task.id}`);
   };
 
   const handleTaskUnclaimed = (task: Task) => {
-    console.log(`task unclaimed ${task.id}`);
+    console.log(`air pax task unclaimed ${task.id}`);
   };
 
   const handleTaskViewed = (task: Task) => {
-    console.log(`task viewed ${task.id}`);
+    console.log(`air pax task viewed ${task.id}`);
   };
 
-  const { getSessionId } = useContext(AuthContext);
-  const { isPnrAccessRequested } = useContext(PnrAccessContext);
-  const { getToken } = useContext(AuthContext);
-  const [tasks, setTasks] = useState<Task[]>();
-  const [totalNumberOfTasks, setTotalNumberOfTasks] = useState<number>();
-  const [filterRuleOptions, setFilterRuleOptions] = useState<FilterRule[]>();
-
-  const taskClient = new StubTargetingApiClient(getToken);
-
-  const toTotalNumberOfTasks = (taskCounts: TaskCountsResponse): number => {
-    switch (status) {
-      case TaskStatus.New:
-        return taskCounts.new;
-      case TaskStatus.InProgress:
-        return taskCounts.inProgress;
-      case TaskStatus.Issued:
-        return taskCounts.issued;
-      case TaskStatus.Complete:
-        return taskCounts.complete;
-      default:
-        return 0;
-    }
+  const toTaskCard = (task: Task): React.ReactNode => {
+    return (
+      <AirPaxTaskListCard
+        task={task}
+        key={task.id}
+        onTaskClaimed={handleTaskClaimed}
+        onTaskUnclaimed={handleTaskUnclaimed}
+        onTaskViewed={handleTaskViewed}
+      />
+    );
   };
 
-  const pageSize = 2;
-
-  const calculatePageOffset = (totalNumberOfTasks: number): number => {
-    if (pageNumber <= 1) {
-      return 0;
-    }
-    const offset = (pageNumber - 1) * pageSize;
-    return Math.min(offset, totalNumberOfTasks);
-  };
-
-  const buildTaskPageRequest = (pageOffset: number): TaskPageRequest => {
-    return {
-      filters: buildTaskFiltersRequest(),
-      pagination: {
-        offset: pageOffset,
-        limit: pageSize,
-      },
-    };
-  };
-
-  const buildTaskFiltersRequest = (): TaskFilters => {
-    return {
-      movementModes: formFilters.movementModes,
-      statuses: [status],
-      selectors: formFilters.selectors,
-      rules: formFilters.rules,
-      searchText: formFilters.searchText,
-    };
-  };
-
-  const handlePageChanged = (pageNumber: number) => {
-    setPageNumber(pageNumber);
-  };
-
-  const fetchFilterRuleOptions = async () => {
-    const rules = await taskClient.getFilterRules();
-    setFilterRuleOptions(rules);
-  };
-
-  const fetchTasks = async () => {
-    setLoading(true);
-    const taskFiltersRequest = buildTaskFiltersRequest();
-    const countsResponse = await taskClient.getTaskCounts(taskFiltersRequest);
-    setTaskCounts(countsResponse);
-
-    const selectorStatusCountsResponse =
-      await taskClient.getTaskSelectorStatusCounts(taskFiltersRequest);
-    setTaskSelectorStatusCounts(selectorStatusCountsResponse);
-
-    const totalNumberOfTasks = toTotalNumberOfTasks(countsResponse);
-    setTotalNumberOfTasks(totalNumberOfTasks);
-
-    const pageOffset = calculatePageOffset(totalNumberOfTasks);
-    const pageRequest = buildTaskPageRequest(pageOffset);
-    const pageResponse = await taskClient.getTaskPage(pageRequest);
-    setTasks(pageResponse.tasks);
-    setLoading(false);
-  };
-
-  const getComponentToShow = () => {
-    if (isPnrAccessRequested(getSessionId())) {
-      return (
-        <AirPaxTaskList
-          isLoading={isLoading}
-          taskCounts={taskCounts}
-          taskSelectorStatusCounts={taskSelectorStatusCounts}
-          pageSize={pageSize}
-          currentPage={pageNumber}
-          currentStatus={status}
-          totalNumberOfTasks={totalNumberOfTasks}
-          tasks={tasks}
-          ruleOptions={filterRuleOptions}
-          defaultFilters={defaultFormFilters}
-          onApplyFilters={handleApplyFilters}
-          onResetFilters={handleResetFilters}
-          onPageChanged={handlePageChanged}
-          onStatusSelected={handleStatusSelected}
-          onTaskClaimed={handleTaskClaimed}
-          onTaskUnclaimed={handleTaskUnclaimed}
-          onTaskViewed={handleTaskViewed}
-        />
-      );
-    }
-    return <TriggerRequestPnrAccess />;
-  };
-
-  useEffect(() => {
-    fetchFilterRuleOptions().catch(console.error);
-  }, []);
-
-  useEffect(() => {
-    fetchTasks().catch(console.error);
-  }, [pageNumber, status, formFilters]);
-
-  return <Layout>{getComponentToShow()}</Layout>;
+  return (
+    <TaskListPage
+      headerText="Air Passenger Tasks"
+      defaultFormFilters={defaultFormFilters}
+      taskFilterForm={taskFilterForm}
+      populateFormStatusCounts={populateTaskStatusCounts}
+      pnrAccessCheckEnabled={true}
+      toTaskCard={toTaskCard}
+    />
+  );
 };
 
 export default AirPaxTaskListPage;

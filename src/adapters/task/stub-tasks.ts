@@ -2385,7 +2385,7 @@ export const stubTasks: Task[] = [
   {
     id: 'DEV-20220702-007',
     status: TaskStatus.Issued,
-    assignee: `michael.ruocco@digital.homeoffice.gov.uk`,
+    assignee: null,
     relisted: false,
     latestVersionNumber: 1,
     notes: [
@@ -2776,7 +2776,7 @@ export const stubTasks: Task[] = [
   {
     id: 'DEV-20220702-008',
     status: TaskStatus.Complete,
-    assignee: `michael.ruocco@digital.homeoffice.gov.uk`,
+    assignee: null,
     relisted: false,
     latestVersionNumber: 1,
     notes: [

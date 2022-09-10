@@ -26,18 +26,22 @@ const toIndicatorItems = (
   const nodes = [];
   if (targetingIndicators.count > 0) {
     nodes.push(
-      <li className="govuk-!-font-weight-bold govuk-!-font-size-16">
+      <li
+        key="target-indicator-count"
+        className="govuk-!-font-weight-bold govuk-!-font-size-16"
+      >
         {formatCount(targetingIndicators.count)}
       </li>,
     );
   }
-  targetingIndicators.indicators.map((indicator) =>
+  targetingIndicators.indicators.map((indicator) => {
+    const key = `target-indicator-${indicator.id}`;
     nodes.push(
-      <li className="threat-indicator-bullet govuk-!-font-size-16">
+      <li key={key} className="threat-indicator-bullet govuk-!-font-size-16">
         {indicator.description}
       </li>,
-    ),
-  );
+    );
+  });
   return nodes;
 };
 
