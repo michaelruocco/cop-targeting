@@ -73,6 +73,7 @@ export type Note = {
 };
 
 export type Risks = {
+  targetingIndicators: TargetingIndicators;
   matchedSelectorGroups: SelectorGroups;
   matchedRules: Rule[];
   highestThreatLevel: ThreatLevel;
@@ -166,4 +167,17 @@ export type TaskSelectorStatusCounts = {
   hasSelector: number;
   hasNoSelector: number;
   both: number;
+};
+
+export type TargetingIndicator = {
+  id: number;
+  name: string;
+  description: string;
+  score: number;
+};
+
+export type TargetingIndicators = {
+  indicators: TargetingIndicator[];
+  count: number;
+  score: number;
 };

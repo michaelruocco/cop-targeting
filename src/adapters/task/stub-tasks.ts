@@ -246,7 +246,7 @@ export const stubTasks: Task[] = [
         occupants: null,*/
     },
     risks: {
-      /*targetingIndicators: { indicators: [], count: 0, score: 0 },*/
+      targetingIndicators: { indicators: [], count: 0, score: 0 },
       matchedRules: [
         {
           id: 7808,
@@ -702,7 +702,7 @@ export const stubTasks: Task[] = [
         occupants: null,*/
     },
     risks: {
-      /*targetingIndicators: { indicators: [], count: 0, score: 0 },*/
+      targetingIndicators: { indicators: [], count: 0, score: 0 },
       matchedRules: [
         {
           id: 7808,
@@ -1084,7 +1084,7 @@ export const stubTasks: Task[] = [
         occupants: null,*/
     },
     risks: {
-      /*targetingIndicators: { indicators: [], count: 0, score: 0 },*/
+      targetingIndicators: { indicators: [], count: 0, score: 0 },
       matchedRules: [
         {
           id: 7808,
@@ -1553,18 +1553,18 @@ export const stubTasks: Task[] = [
         occupants: null,*/
     },
     risks: {
-      /*targetingIndicators: {
-          indicators: [
-            {
-              id: 46,
-              name: 'PASSENGER-INFREQUENT-PORT-USE',
-              description: 'Infrequent trips made through port (person)',
-              score: 0,
-            },
-          ],
-          count: 1,
-          score: 0,
-        },*/
+      targetingIndicators: {
+        indicators: [
+          {
+            id: 46,
+            name: 'PASSENGER-INFREQUENT-PORT-USE',
+            description: 'Infrequent trips made through port (person)',
+            score: 5,
+          },
+        ],
+        count: 1,
+        score: 5,
+      },
       matchedRules: [],
       matchedSelectorGroups: {
         groups: [
@@ -1932,18 +1932,18 @@ export const stubTasks: Task[] = [
         occupants: null,*/
     },
     risks: {
-      /*targetingIndicators: {
-          indicators: [
-            {
-              id: 46,
-              name: 'PASSENGER-INFREQUENT-PORT-USE',
-              description: 'Infrequent trips made through port (person)',
-              score: 0,
-            },
-          ],
-          count: 1,
-          score: 0,
-        },*/
+      targetingIndicators: {
+        indicators: [
+          {
+            id: 46,
+            name: 'PASSENGER-INFREQUENT-PORT-USE',
+            description: 'Infrequent trips made through port (person)',
+            score: 5,
+          },
+        ],
+        count: 1,
+        score: 5,
+      },
       matchedRules: [],
       matchedSelectorGroups: {
         groups: [
@@ -2159,18 +2159,18 @@ export const stubTasks: Task[] = [
         occupants: null,*/
     },
     risks: {
-      /*targetingIndicators: {
-          indicators: [
-            {
-              id: 46,
-              name: 'PASSENGER-INFREQUENT-PORT-USE',
-              description: 'Infrequent trips made through port (person)',
-              score: 0,
-            },
-          ],
-          count: 1,
-          score: 0,
-        },*/
+      targetingIndicators: {
+        indicators: [
+          {
+            id: 46,
+            name: 'PASSENGER-INFREQUENT-PORT-USE',
+            description: 'Infrequent trips made through port (person)',
+            score: 5,
+          },
+        ],
+        count: 1,
+        score: 5,
+      },
       matchedRules: [],
       matchedSelectorGroups: {
         groups: [
@@ -2550,18 +2550,18 @@ export const stubTasks: Task[] = [
         occupants: null,*/
     },
     risks: {
-      /*targetingIndicators: {
-          indicators: [
-            {
-              id: 46,
-              name: 'PASSENGER-INFREQUENT-PORT-USE',
-              description: 'Infrequent trips made through port (person)',
-              score: 0,
-            },
-          ],
-          count: 1,
-          score: 0,
-        },*/
+      targetingIndicators: {
+        indicators: [
+          {
+            id: 46,
+            name: 'PASSENGER-INFREQUENT-PORT-USE',
+            description: 'Infrequent trips made through port (person)',
+            score: 5,
+          },
+        ],
+        count: 1,
+        score: 5,
+      },
       matchedRules: [],
       matchedSelectorGroups: {
         groups: [
@@ -2943,18 +2943,24 @@ export const stubTasks: Task[] = [
         occupants: null,*/
     },
     risks: {
-      /*targetingIndicators: {
-          indicators: [
-            {
-              id: 46,
-              name: 'PASSENGER-INFREQUENT-PORT-USE',
-              description: 'Infrequent trips made through port (person)',
-              score: 0,
-            },
-          ],
-          count: 1,
-          score: 0,
-        },*/
+      targetingIndicators: {
+        indicators: [
+          {
+            id: 46,
+            name: 'PASSENGER-INFREQUENT-PORT-USE',
+            description: 'Infrequent trips made through port (person)',
+            score: 5,
+          },
+          {
+            id: 47,
+            name: 'PAID-BY-CASH',
+            description: 'Paid by cash',
+            score: 10,
+          },
+        ],
+        count: 2,
+        score: 15,
+      },
       matchedRules: [
         {
           id: 7808,
