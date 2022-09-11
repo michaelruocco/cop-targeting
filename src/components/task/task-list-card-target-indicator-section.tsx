@@ -53,7 +53,7 @@ const TaskListTargetIndicatorSection: FC<Props> = ({ task, onTaskViewed }) => {
             <ul className="govuk-list task-labels govuk-!-margin-top-2">
               <li className="task-labels-item">
                 <strong className="govuk-!-font-weight-bold">
-                  Risk Score: {targetingIndicators.score}
+                  Risk Score {targetingIndicators.score}
                 </strong>
               </li>
             </ul>

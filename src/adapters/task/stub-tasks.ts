@@ -911,7 +911,7 @@ export const stubTasks: Task[] = [
         status: 'PRE_ARRIVAL',*/
       mode: MovementMode.AirPassenger,
       description: 'group',
-      groupSize: 2,
+      groupSize: 4,
       booking: {
         reference: 'LSV4UV',
         type: null,
@@ -2022,7 +2022,7 @@ export const stubTasks: Task[] = [
         status: 'PRE_ARRIVAL',*/
       mode: MovementMode.AirPassenger,
       description: 'group',
-      groupSize: 4,
+      groupSize: 1,
       booking: {
         reference: 'LSV4UV',
         type: null,
@@ -2412,8 +2412,8 @@ export const stubTasks: Task[] = [
       /*id: 'AIRPAX_140959:CMID=TEST',
         status: 'PRE_ARRIVAL',*/
       mode: MovementMode.AirPassenger,
-      description: 'group',
-      groupSize: 4,
+      description: 'individual',
+      groupSize: 1,
       booking: {
         reference: 'LSV4UV',
         type: null,

@@ -25,7 +25,7 @@ const formatCheckedBags = (baggage: Baggage): string => {
     case 1:
       return '1 checked bag';
     default:
-      `${baggage.numberOfCheckedBags} checked bags`;
+      return `${baggage.numberOfCheckedBags} checked bags`;
   }
 };
 
