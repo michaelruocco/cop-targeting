@@ -111,6 +111,9 @@ export type Movement = {
   person: Person;
   otherPersons: Person[];
   flight: Flight;
+  vessel: Vessel;
+  vehicle: Vehicle;
+  trailer: Trailer;
   baggage: Baggage;
   booking: Booking;
 };
@@ -155,6 +158,19 @@ export type Flight = {
   number: string;
   operator: string;
   seatNumber: string;
+};
+
+export type Vessel = {
+  operator: string;
+  name: string;
+};
+
+export type Vehicle = {
+  registrationNumber: string;
+};
+
+export type Trailer = {
+  registrationNumber: string;
 };
 
 export type Baggage = {

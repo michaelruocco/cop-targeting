@@ -58,16 +58,20 @@ const toConfig = (status: DepartureStatus): DepartureStatusConfig => {
   }
 };
 
-const AirPaxDepartureStatus: FC<Props> = ({ status }) => {
+const DepartureStatusTag: FC<Props> = ({ status }) => {
   const config = toConfig(status);
   if (config === unknownConfig) {
     return <></>;
   }
+  const forceBold: any = { fontWeight: 'bold' };
   return (
-    <Tag className={`airpax-status airpax-status__${config.classname}`}>
+    <Tag
+      className={`airpax-status airpax-status__${config.classname}`}
+      style={forceBold}
+    >
       {config.code}
     </Tag>
   );
 };
 
-export default AirPaxDepartureStatus;
+export default DepartureStatusTag;

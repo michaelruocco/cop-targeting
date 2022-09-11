@@ -13,12 +13,13 @@ class Props {
   onTaskViewed: (task: Task) => void;
 }
 
-const AirPaxTaskListCard: FC<Props> = ({
+const RoRoTaskListCard: FC<Props> = ({
   task,
   onTaskClaimed,
   onTaskUnclaimed,
   onTaskViewed,
 }) => {
+  //TODO Rename movement info section to air pax movement info section and replace with roro movement info section
   return (
     <div className="govuk-task-list-card" key={task.id}>
       <div className="card-container">
@@ -29,7 +30,6 @@ const AirPaxTaskListCard: FC<Props> = ({
           onTaskUnclaimed={onTaskUnclaimed}
         />
         <TaskListCardJourneySection movement={task.movement} />
-        <AirPaxTaskListCardMovementInfoSection movement={task.movement} />
         <TaskListTargetIndicatorSection
           task={task}
           onTaskViewed={onTaskViewed}
@@ -39,4 +39,4 @@ const AirPaxTaskListCard: FC<Props> = ({
   );
 };
 
-export default AirPaxTaskListCard;
+export default RoRoTaskListCard;

@@ -6,9 +6,9 @@ import {
   roroTaskFilterForm,
   populateTaskStatusCounts,
 } from './task-filter-form';
-
 import '../../styles/task-list-page.scss';
 import TaskListPage from '../../components/task/task-list-page';
+import RoRoTaskListCard from '../../components/task/roro-task-list-card';
 
 const RoRoTaskListPage: FC = () => {
   const defaultFormFilters: FormFilters = {
@@ -38,7 +38,14 @@ const RoRoTaskListPage: FC = () => {
 
   const toTaskCard = (task: Task): React.ReactNode => {
     //create RORO task list card and use here
-    return <div>{task.id}</div>;
+    return (
+      <RoRoTaskListCard
+        task={task}
+        onTaskClaimed={handleTaskClaimed}
+        onTaskUnclaimed={handleTaskUnclaimed}
+        onTaskViewed={handleTaskViewed}
+      />
+    );
   };
 
   return (

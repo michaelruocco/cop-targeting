@@ -11,7 +11,7 @@ class Props {
   movement: Movement;
 }
 
-const TaskListCardMovementInfoSection: FC<Props> = ({ movement }) => {
+const AirPaxTaskListCardMovementInfoSection: FC<Props> = ({ movement }) => {
   return (
     <section className="task-list--movement-info-section">
       <div className="govuk-grid-row">
@@ -31,4 +31,4 @@ const TaskListCardMovementInfoSection: FC<Props> = ({ movement }) => {
   );
 };
 
-export default TaskListCardMovementInfoSection;
+export default AirPaxTaskListCardMovementInfoSection;
