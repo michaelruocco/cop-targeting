@@ -166,6 +166,8 @@ export type Vessel = {
 };
 
 export type Vehicle = {
+  make: string;
+  model: string;
   registrationNumber: string;
 };
 

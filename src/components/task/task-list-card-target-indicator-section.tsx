@@ -24,16 +24,14 @@ const toIndicatorItems = (
   targetingIndicators: TargetingIndicators,
 ): React.ReactNode[] => {
   const nodes = [];
-  if (targetingIndicators.count > 0) {
-    nodes.push(
-      <li
-        key="target-indicator-count"
-        className="govuk-!-font-weight-bold govuk-!-font-size-16"
-      >
-        {formatCount(targetingIndicators.count)}
-      </li>,
-    );
-  }
+  nodes.push(
+    <li
+      key="target-indicator-count"
+      className="govuk-!-font-weight-bold govuk-!-font-size-16"
+    >
+      {formatCount(targetingIndicators.count)}
+    </li>,
+  );
   targetingIndicators.indicators.map((indicator) => {
     const key = `target-indicator-${indicator.id}`;
     nodes.push(
@@ -54,7 +52,7 @@ const TaskListTargetIndicatorSection: FC<Props> = ({ task, onTaskViewed }) => {
           <div className="govuk-grid-column">
             <ul className="govuk-list task-labels govuk-!-margin-top-2">
               <li className="task-labels-item">
-                <strong className="govuk-!-font-weight-bold govuk-!-font-size-16">
+                <strong className="govuk-!-font-weight-bold">
                   Risk Score: {targetingIndicators.score}
                 </strong>
               </li>

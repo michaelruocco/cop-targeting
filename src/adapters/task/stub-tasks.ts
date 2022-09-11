@@ -3510,6 +3510,8 @@ export const stubTasks: Task[] = [
       flight: null,
       baggage: null,
       vehicle: {
+        make: 'Scania',
+        model: 'S-Series',
         registrationNumber: 'KP07YXF',
       },
       trailer: {

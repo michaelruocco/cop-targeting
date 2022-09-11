@@ -50,7 +50,7 @@ function formatThreatTypes(threatTypes: string[]): string {
   if (threatTypes.length === 1) {
     return firstType;
   }
-  const isPlural = threatTypes.length > 1;
+  const isPlural = threatTypes.length > 2;
   const suffix = isPlural ? 'rules' : 'rule';
   return `${firstType} and ${threatTypes.length - 1} other ${suffix}`;
 }

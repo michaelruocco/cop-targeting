@@ -7,8 +7,12 @@ class Props {
   movement: Movement;
 }
 
-const toRoRoGroupDescription = (description: string): string => {
-  return _.startCase(_.toLower(description.replace('-', ' ')));
+const toRoRoGroupDescription = (movement: Movement): string => {
+  const vehicle = movement.vehicle;
+  if (vehicle.make && vehicle.model) {
+    return `${vehicle.make} ${vehicle.model}`;
+  }
+  return _.startCase(_.toLower(movement.description.replace('-', ' ')));
 };
 
 const toAirPaxGroupDescription = (groupSize: number): string => {
@@ -23,7 +27,7 @@ const toGroupDescription = (movement: Movement): string => {
     case MovementMode.RoRoAccompaniedFreight:
     case MovementMode.RoRoUnaccompaniedFreight:
     case MovementMode.RoRoTourist:
-      return toRoRoGroupDescription(movement.description);
+      return toRoRoGroupDescription(movement);
     case MovementMode.AirPassenger:
       return toAirPaxGroupDescription(movement.groupSize);
     default:
