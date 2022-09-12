@@ -2,33 +2,41 @@ import * as React from 'react';
 import { FC } from 'react';
 import TaskListCardPersonItem from './task-list-card-person-item';
 import { Movement } from '../../adapters/task/task';
-import TaskListCardDocumentItem from './task-list-card-document-item';
 import TaskListCardBookingItem from './task-list-card-booking-item';
 import TaskListCardCoTravellerItem from './task-list-card-co-traveller-item';
-import TaskListCardRouteItem from './task-list-card-route-item';
+import TaskListCardVehicleItem from './task-list-card-vehicle-item';
+import TaskListCardDocumentItem from './task-list-card-document-item';
 
 class Props {
   movement: Movement;
 }
 
-const AirPaxTaskListCardMovementInfoSection: FC<Props> = ({ movement }) => {
+const RoRoTaskListCardMovementInfoSection: FC<Props> = ({ movement }) => {
+  const toSecondItem = (movement: Movement): React.ReactNode => {
+    if (movement.vehicle) {
+      return <TaskListCardVehicleItem movement={movement} />;
+    }
+    return <TaskListCardDocumentItem movement={movement} />;
+  };
+
   return (
     <section className="task-list--movement-info-section">
       <div className="govuk-grid-row">
-        <TaskListCardPersonItem movement={movement} />
-        <div className="govuk-grid-item vertical-dotted-line">
-          <TaskListCardDocumentItem movement={movement} />
+        <div className="govuk-grid-item">
+          <TaskListCardPersonItem movement={movement} />
         </div>
         <div className="govuk-grid-item vertical-dotted-line">
-          <TaskListCardBookingItem movement={movement} />
+          {toSecondItem(movement)}
+        </div>
+        <div className="govuk-grid-item vertical-dotted-line">
+          {<TaskListCardBookingItem movement={movement} />}
         </div>
         <div className="govuk-grid-item vertical-dotted-line">
           <TaskListCardCoTravellerItem movement={movement} />
-          <TaskListCardRouteItem movement={movement} />
         </div>
       </div>
     </section>
   );
 };
 
-export default AirPaxTaskListCardMovementInfoSection;
+export default RoRoTaskListCardMovementInfoSection;

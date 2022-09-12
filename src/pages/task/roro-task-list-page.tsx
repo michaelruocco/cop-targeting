@@ -37,10 +37,10 @@ const RoRoTaskListPage: FC = () => {
   };
 
   const toTaskCard = (task: Task): React.ReactNode => {
-    //create RORO task list card and use here
     return (
       <RoRoTaskListCard
         task={task}
+        key={task.id}
         onTaskClaimed={handleTaskClaimed}
         onTaskUnclaimed={handleTaskUnclaimed}
         onTaskViewed={handleTaskViewed}

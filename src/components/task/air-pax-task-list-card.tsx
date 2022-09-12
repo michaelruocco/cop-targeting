@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FC } from 'react';
 import { Task } from '../../adapters/task/task';
-import AirPaxTaskListCardMovementInfoSection from './air-pax-task-list-card-movement-info-section';
+import TaskListCardAirPaxMovementInfoSection from './task-list-card-air-pax-movement-info-section';
 import TaskListCardTitleSection from './task-list-card-title-section';
 import TaskListCardJourneySection from './task-list-card-journey-section';
 import TaskListTargetIndicatorSection from './task-list-card-target-indicator-section';
@@ -29,7 +29,7 @@ const AirPaxTaskListCard: FC<Props> = ({
           onTaskUnclaimed={onTaskUnclaimed}
         />
         <TaskListCardJourneySection movement={task.movement} />
-        <AirPaxTaskListCardMovementInfoSection movement={task.movement} />
+        <TaskListCardAirPaxMovementInfoSection movement={task.movement} />
         <TaskListTargetIndicatorSection
           task={task}
           onTaskViewed={onTaskViewed}

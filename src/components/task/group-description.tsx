@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { FC } from 'react';
-import * as _ from 'lodash';
 import { Movement, MovementMode } from '../../adapters/task/task';
 
 class Props {
@@ -9,13 +8,13 @@ class Props {
 
 const toRoRoGroupDescription = (movement: Movement): string => {
   const vehicle = movement.vehicle;
-  if (vehicle.make && vehicle.model) {
+  if (vehicle && vehicle.make && vehicle.model) {
     return `${vehicle.make} ${vehicle.model}`;
   }
-  return _.startCase(_.toLower(movement.description.replace('-', ' ')));
+  return toDefaultGroupDescription(movement.groupSize);
 };
 
-const toAirPaxGroupDescription = (groupSize: number): string => {
+const toDefaultGroupDescription = (groupSize: number): string => {
   if (groupSize > 1) {
     return `In group of ${groupSize}`;
   }
@@ -23,13 +22,18 @@ const toAirPaxGroupDescription = (groupSize: number): string => {
 };
 
 const toGroupDescription = (movement: Movement): string => {
+  console.log(
+    `group description mode ${movement.mode} ${
+      movement.mode === MovementMode.RoRoTourist
+    }`,
+  );
   switch (movement.mode) {
     case MovementMode.RoRoAccompaniedFreight:
     case MovementMode.RoRoUnaccompaniedFreight:
     case MovementMode.RoRoTourist:
       return toRoRoGroupDescription(movement);
     case MovementMode.AirPassenger:
-      return toAirPaxGroupDescription(movement.groupSize);
+      return toDefaultGroupDescription(movement.groupSize);
     default:
       return 'unknown';
   }

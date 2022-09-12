@@ -16,7 +16,7 @@ const roroModeCheckboxesComponent = {
   label: 'Mode',
   type: 'checkboxes',
   required: true,
-  dynamicOptions: true,
+  dynamicoptions: 'true',
   data: {
     options: [
       {

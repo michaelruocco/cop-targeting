@@ -13,8 +13,18 @@ const toRoRoTitle = (movement: Movement): string => {
   return (
     movement.vehicle?.registrationNumber ||
     movement.trailer?.registrationNumber ||
-    'unknown'
+    toFootPassengerTitle(movement.groupSize)
   );
+};
+
+const toFootPassengerTitle = (groupSize: number): string => {
+  if (groupSize > 1) {
+    return `${groupSize} foot passengers`;
+  }
+  if (groupSize > 0) {
+    return `1 foot passenger`;
+  }
+  return 'Unknown';
 };
 
 const toAirPaxTitle = (movement: Movement): string => {

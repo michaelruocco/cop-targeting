@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { Task } from '../../adapters/task/task';
-import AirPaxTaskListCardMovementInfoSection from './air-pax-task-list-card-movement-info-section';
+import { Movement, MovementMode, Task } from '../../adapters/task/task';
+import RoRoTaskListCardMovementInfoSection from './task-list-card-roro-tourist-movement-info-section';
 import TaskListCardTitleSection from './task-list-card-title-section';
 import TaskListCardJourneySection from './task-list-card-journey-section';
 import TaskListTargetIndicatorSection from './task-list-card-target-indicator-section';
@@ -19,6 +19,15 @@ const RoRoTaskListCard: FC<Props> = ({
   onTaskUnclaimed,
   onTaskViewed,
 }) => {
+  const toMovementSection = (movement: Movement): React.ReactNode => {
+    switch (movement.mode) {
+      case MovementMode.RoRoTourist:
+        return <RoRoTaskListCardMovementInfoSection movement={movement} />;
+      default:
+        return <></>;
+    }
+  };
+
   //TODO Rename movement info section to air pax movement info section and replace with roro movement info section
   return (
     <div className="govuk-task-list-card" key={task.id}>
@@ -30,6 +39,7 @@ const RoRoTaskListCard: FC<Props> = ({
           onTaskUnclaimed={onTaskUnclaimed}
         />
         <TaskListCardJourneySection movement={task.movement} />
+        {toMovementSection(task.movement)}
         <TaskListTargetIndicatorSection
           task={task}
           onTaskViewed={onTaskViewed}
