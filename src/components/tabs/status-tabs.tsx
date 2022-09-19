@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { TaskCountsResponse } from '../../adapters/task/task';
+import { TaskCountsResponse, TaskStatusCounts } from '../../adapters/task/task';
 import { TaskStatus } from '../../adapters/task/task-status';
 import StatusTabLink from './status-tab-link';
 
@@ -15,16 +15,19 @@ const StatusTabs: FC<Props> = ({
   currentStatus,
   onStatusSelected,
 }) => {
-  const toLabel = (status: TaskStatus, counts: TaskCountsResponse): string => {
+  const toLabel = (
+    status: TaskStatus,
+    statusCounts: TaskStatusCounts,
+  ): string => {
     switch (status) {
       case TaskStatus.New:
-        return `New (${counts.new})`;
+        return `New (${statusCounts.new})`;
       case TaskStatus.InProgress:
-        return `In Progress (${counts.inProgress})`;
+        return `In Progress (${statusCounts.inProgress})`;
       case TaskStatus.Issued:
-        return `Issued (${counts.issued})`;
+        return `Issued (${statusCounts.issued})`;
       case TaskStatus.Complete:
-        return `Complete (${counts.complete})`;
+        return `Complete (${statusCounts.complete})`;
     }
   };
 
@@ -36,7 +39,7 @@ const StatusTabs: FC<Props> = ({
   ].map((status) => (
     <StatusTabLink
       key={status}
-      label={toLabel(status, taskCounts)}
+      label={toLabel(status, taskCounts.taskStatusCounts)}
       status={status}
       active={currentStatus === status}
       onStatusSelected={onStatusSelected}

@@ -2,6 +2,7 @@ import {
   FilterRule,
   MovementMode,
   HasSelectors,
+  MovementDirection,
 } from '../../adapters/task/task';
 
 export class FormFilters {
@@ -9,4 +10,5 @@ export class FormFilters {
   selectors: HasSelectors;
   rules: FilterRule[];
   searchText: string;
+  movementDirections: MovementDirection[];
 }

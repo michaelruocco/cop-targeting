@@ -15,7 +15,7 @@ class Props {
 const TaskListCardVehicleItem: FC<Props> = ({ movement }) => {
   const vehicle = movement.vehicle;
   return (
-    <div>
+    <>
       <h3 className="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-font-size-16 govuk-!-font-weight-regular secondary-text">
         Vehicle
       </h3>
@@ -29,7 +29,7 @@ const TaskListCardVehicleItem: FC<Props> = ({ movement }) => {
           {vehicle.make || 'Unknown'} {vehicle.model || 'Unknown'}
         </li>
       </ul>
-    </div>
+    </>
   );
 };
 

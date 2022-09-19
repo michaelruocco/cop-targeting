@@ -45,7 +45,7 @@ const TaskListCardCoTravellerItem: FC<Props> = ({ movement }) => {
   return (
     <>
       <h3 className="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-font-size-16 govuk-!-font-weight-regular secondary-text">
-        Co-travellers
+        Co-Travellers
       </h3>
       <ul className="govuk-body-s govuk-list govuk-!-margin-bottom-0">
         {buildNameComponents(movement.otherPersons)}

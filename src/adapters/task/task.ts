@@ -21,6 +21,7 @@ export class TaskFilters {
   selectors: HasSelectors;
   rules: FilterRule[];
   searchText: string;
+  movementDirections: MovementDirection[];
 }
 
 export class FilterRule {
@@ -30,10 +31,36 @@ export class FilterRule {
 
 export type TaskCountsResponse = {
   filters: TaskFilters;
+  movementModeCounts: MovementModeCounts;
+  taskStatusCounts: TaskStatusCounts;
+  taskSelectorCounts: TaskSelectorCounts;
+  movementDirectionCounts: MovementDirectionCounts;
+};
+
+export type MovementModeCounts = {
+  roRoAccompaniedFreight: number;
+  roRoUnaccompaniedFreight: number;
+  roRoTourist: number;
+  airPassenger: number;
+};
+
+export type TaskStatusCounts = {
   new: number;
   inProgress: number;
   issued: number;
   complete: number;
+};
+
+export type TaskSelectorCounts = {
+  hasSelector: number;
+  hasNoSelector: number;
+  both: number;
+};
+
+export type MovementDirectionCounts = {
+  inbound: number;
+  outbound: number;
+  unknown: number;
 };
 
 export type Pagination = {
@@ -115,12 +142,17 @@ export type Movement = {
   vehicle: Vehicle;
   trailer: Trailer;
   baggage: Baggage;
+  booker: Booker;
   booking: Booking;
+  haulier: Haulier;
+  account: Account;
+  goods: Goods;
 };
 
 export enum MovementDirection {
   Inbound = 'INBOUND',
   Outbound = 'OUTBOUND',
+  Unknown = 'UNKNOWN',
 }
 
 export type Juncture = {
@@ -181,10 +213,23 @@ export type Baggage = {
   tags: string[];
 };
 
-export type TaskSelectorStatusCounts = {
-  hasSelector: number;
-  hasNoSelector: number;
-  both: number;
+export type Haulier = {
+  name: string;
+};
+
+export type Booker = {
+  name: string;
+};
+
+export type Account = {
+  reference: string;
+  name: string;
+  shortName: string;
+};
+
+export type Goods = {
+  description: string;
+  hazardous: boolean;
 };
 
 export type TargetingIndicator = {

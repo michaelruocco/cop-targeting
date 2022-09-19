@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import * as React from 'react';
 import { FC } from 'react';
 import { Movement, MovementMode } from '../../adapters/task/task';
@@ -11,14 +12,19 @@ const toRoRoGroupDescription = (movement: Movement): string => {
   if (vehicle && vehicle.make && vehicle.model) {
     return `${vehicle.make} ${vehicle.model}`;
   }
-  return toDefaultGroupDescription(movement.groupSize);
+  return toDefaultGroupDescription(movement);
 };
 
-const toDefaultGroupDescription = (groupSize: number): string => {
-  if (groupSize > 1) {
-    return `In group of ${groupSize}`;
+const toDefaultGroupDescription = (movement: Movement): string => {
+  const description = movement.description;
+  switch (description) {
+    case 'individual':
+      return 'Single Passenger';
+    case 'group':
+      return `In group of ${movement.groupSize}`;
+    default:
+      return _.startCase(_.toLower(description));
   }
-  return 'Single passenger';
 };
 
 const toGroupDescription = (movement: Movement): string => {
@@ -33,7 +39,7 @@ const toGroupDescription = (movement: Movement): string => {
     case MovementMode.RoRoTourist:
       return toRoRoGroupDescription(movement);
     case MovementMode.AirPassenger:
-      return toDefaultGroupDescription(movement.groupSize);
+      return toDefaultGroupDescription(movement);
     default:
       return 'unknown';
   }

@@ -11,7 +11,9 @@ class Props {
   movement: Movement;
 }
 
-const RoRoTaskListCardMovementInfoSection: FC<Props> = ({ movement }) => {
+const TaskListCardRoRoTouristMovementInfoSection: FC<Props> = ({
+  movement,
+}) => {
   const toSecondItem = (movement: Movement): React.ReactNode => {
     if (movement.vehicle) {
       return <TaskListCardVehicleItem movement={movement} />;
@@ -29,7 +31,7 @@ const RoRoTaskListCardMovementInfoSection: FC<Props> = ({ movement }) => {
           {toSecondItem(movement)}
         </div>
         <div className="govuk-grid-item vertical-dotted-line">
-          {<TaskListCardBookingItem movement={movement} />}
+          <TaskListCardBookingItem movement={movement} />
         </div>
         <div className="govuk-grid-item vertical-dotted-line">
           <TaskListCardCoTravellerItem movement={movement} />
@@ -39,4 +41,4 @@ const RoRoTaskListCardMovementInfoSection: FC<Props> = ({ movement }) => {
   );
 };
 
-export default RoRoTaskListCardMovementInfoSection;
+export default TaskListCardRoRoTouristMovementInfoSection;

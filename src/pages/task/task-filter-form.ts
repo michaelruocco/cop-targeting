@@ -1,5 +1,8 @@
 import * as _ from 'lodash';
-import { TaskSelectorStatusCounts } from '../../adapters/task/task';
+import {
+  TaskCountsResponse,
+  TaskSelectorCounts,
+} from '../../adapters/task/task';
 
 const searchTextComponent = {
   id: 'search',
@@ -21,15 +24,15 @@ const roroModeCheckboxesComponent = {
     options: [
       {
         value: 'RORO_UNACCOMPANIED_FREIGHT',
-        label: 'RoRo unaccompanied freight',
+        label: 'Unaccompanied freight',
       },
       {
         value: 'RORO_ACCOMPANIED_FREIGHT',
-        label: 'RoRo accompanied freight',
+        label: 'Accompanied freight',
       },
       {
         value: 'RORO_TOURIST',
-        label: 'RoRo Tourist',
+        label: 'Tourist',
       },
     ],
   },
@@ -69,17 +72,44 @@ const ruleAutocompleteComponent = {
   required: false,
 };
 
+const directionCheckboxesComponent = {
+  id: 'movementDirections',
+  fieldId: 'movementDirections',
+  label: 'Movement Direction',
+  type: 'checkboxes',
+  required: true,
+  dynamicoptions: 'true',
+  data: {
+    options: [
+      {
+        value: 'INBOUND',
+        label: 'Inbound',
+      },
+      {
+        value: 'OUTBOUND',
+        label: 'Outbound',
+      },
+      {
+        value: 'UNKNOWN',
+        label: 'Unknown',
+      },
+    ],
+  },
+};
+
 const roroComponents = [
   searchTextComponent,
   roroModeCheckboxesComponent,
   selectorRadiosComponent,
   ruleAutocompleteComponent,
+  directionCheckboxesComponent,
 ];
 
 const airPaxComponents = [
   searchTextComponent,
   selectorRadiosComponent,
   ruleAutocompleteComponent,
+  directionCheckboxesComponent,
 ];
 
 const toTaskFilterForm = (components: any): any => {
@@ -113,23 +143,23 @@ export const airPaxTaskFilterForm = (): any => {
   return toTaskFilterForm(airPaxComponents);
 };
 
-export const populateTaskStatusCounts = (
+export const populateTaskCounts = (
   taskFilterForm: any,
-  taskSelectorStatusCounts: TaskSelectorStatusCounts,
+  taskCounts: TaskCountsResponse,
 ): any => {
   const copy = _.cloneDeep(taskFilterForm);
   const component = copy.pages[0].components.filter(
     (component: any) => component.id === 'selectors',
   )[0];
   component.data.options.forEach((option: any) => {
-    replaceTaskSelectorStatusCount(option, taskSelectorStatusCounts);
+    replaceTaskSelectorStatusCount(option, taskCounts.taskSelectorCounts);
   });
   return copy;
 };
 
 const replaceTaskSelectorStatusCount = (
   option: any,
-  taskSelectorStatusCounts: TaskSelectorStatusCounts,
+  taskSelectorStatusCounts: TaskSelectorCounts,
 ) => {
   const replacement = toSelectorCountReplacement(
     option,
@@ -143,7 +173,7 @@ const replaceTaskSelectorStatusCount = (
 
 const toSelectorCountReplacement = (
   option: any,
-  taskSelectorStatusCounts: TaskSelectorStatusCounts,
+  taskSelectorStatusCounts: TaskSelectorCounts,
 ): any => {
   switch (option.value) {
     case 'NOT_PRESENT':

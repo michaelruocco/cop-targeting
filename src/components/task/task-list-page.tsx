@@ -6,7 +6,8 @@ import {
   TaskPageRequest,
   TaskCountsResponse,
   TaskFilters,
-  TaskSelectorStatusCounts,
+  TaskSelectorCounts,
+  TaskStatusCounts,
 } from '../../adapters/task/task';
 import { StubTargetingApiClient } from '../../adapters/task/targeting-api-client';
 import { TaskStatus } from '../../adapters/task/task-status';
@@ -24,10 +25,7 @@ class Props {
   headerText: string;
   defaultFormFilters: FormFilters;
   taskFilterForm: any;
-  populateFormStatusCounts: (
-    form: any,
-    counts: TaskSelectorStatusCounts,
-  ) => any;
+  populateFormCounts: (form: any, counts: TaskCountsResponse) => any;
   pnrAccessCheckEnabled: boolean;
   toTaskCard: (task: Task) => React.ReactNode;
 }
@@ -36,7 +34,7 @@ const TaskListPage: FC<Props> = ({
   headerText,
   defaultFormFilters,
   taskFilterForm,
-  populateFormStatusCounts,
+  populateFormCounts,
   pnrAccessCheckEnabled,
   toTaskCard,
 }) => {
@@ -54,22 +52,33 @@ const TaskListPage: FC<Props> = ({
       selectors: formFilters.selectors,
       rules: formFilters.rules,
       searchText: formFilters.searchText,
+      movementDirections: formFilters.movementDirections,
     },
-    new: 0,
-    inProgress: 0,
-    issued: 0,
-    complete: 0,
+    movementModeCounts: {
+      roRoAccompaniedFreight: 0,
+      roRoUnaccompaniedFreight: 0,
+      roRoTourist: 0,
+      airPassenger: 0,
+    },
+    taskStatusCounts: {
+      new: 0,
+      inProgress: 0,
+      issued: 0,
+      complete: 0,
+    },
+    taskSelectorCounts: {
+      hasSelector: 0,
+      hasNoSelector: 0,
+      both: 0,
+    },
+    movementDirectionCounts: {
+      inbound: 0,
+      outbound: 0,
+      unknown: 0,
+    },
   };
   const [taskCounts, setTaskCounts] =
     useState<TaskCountsResponse>(defaultTaskCounts);
-
-  const defaultTaskSelectorStatusCounts: TaskSelectorStatusCounts = {
-    hasSelector: 0,
-    hasNoSelector: 0,
-    both: 0,
-  };
-  const [taskSelectorStatusCounts, setTaskSelectorStatusCounts] =
-    useState<TaskSelectorStatusCounts>(defaultTaskSelectorStatusCounts);
 
   const handleApplyFilters = async (formFilters: FormFilters) => {
     console.log(`form filters applied ${JSON.stringify(formFilters)}`);
@@ -98,16 +107,16 @@ const TaskListPage: FC<Props> = ({
 
   const taskClient = new StubTargetingApiClient(getToken);
 
-  const toTotalNumberOfTasks = (taskCounts: TaskCountsResponse): number => {
+  const toTotalNumberOfTasks = (statusCounts: TaskStatusCounts): number => {
     switch (status) {
       case TaskStatus.New:
-        return taskCounts.new;
+        return statusCounts.new;
       case TaskStatus.InProgress:
-        return taskCounts.inProgress;
+        return statusCounts.inProgress;
       case TaskStatus.Issued:
-        return taskCounts.issued;
+        return statusCounts.issued;
       case TaskStatus.Complete:
-        return taskCounts.complete;
+        return statusCounts.complete;
       default:
         return 0;
     }
@@ -140,6 +149,7 @@ const TaskListPage: FC<Props> = ({
       selectors: formFilters.selectors,
       rules: formFilters.rules,
       searchText: formFilters.searchText,
+      movementDirections: formFilters.movementDirections,
     };
   };
 
@@ -158,11 +168,9 @@ const TaskListPage: FC<Props> = ({
     const countsResponse = await taskClient.getTaskCounts(taskFiltersRequest);
     setTaskCounts(countsResponse);
 
-    const selectorStatusCountsResponse =
-      await taskClient.getTaskSelectorStatusCounts(taskFiltersRequest);
-    setTaskSelectorStatusCounts(selectorStatusCountsResponse);
-
-    const totalNumberOfTasks = toTotalNumberOfTasks(countsResponse);
+    const totalNumberOfTasks = toTotalNumberOfTasks(
+      countsResponse.taskStatusCounts,
+    );
     setTotalNumberOfTasks(totalNumberOfTasks);
 
     const pageOffset = calculatePageOffset(totalNumberOfTasks);
@@ -174,7 +182,7 @@ const TaskListPage: FC<Props> = ({
 
   const filterComponent = (
     <TaskFilterComponent
-      form={populateFormStatusCounts(taskFilterForm, taskSelectorStatusCounts)}
+      form={populateFormCounts(taskFilterForm, taskCounts)}
       defaultFilters={defaultFormFilters}
       ruleOptions={filterRuleOptions}
       onApplyFilters={handleApplyFilters}

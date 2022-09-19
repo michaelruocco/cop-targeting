@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { Task, HasSelectors, MovementMode } from '../../adapters/task/task';
-import { FormFilters } from '../../components/task/form-filters';
 import {
-  roroTaskFilterForm,
-  populateTaskStatusCounts,
-} from './task-filter-form';
+  Task,
+  HasSelectors,
+  MovementMode,
+  MovementDirection,
+} from '../../adapters/task/task';
+import { FormFilters } from '../../components/task/form-filters';
+import { roroTaskFilterForm, populateTaskCounts } from './task-filter-form';
 import '../../styles/task-list-page.scss';
 import TaskListPage from '../../components/task/task-list-page';
 import RoRoTaskListCard from '../../components/task/roro-task-list-card';
@@ -20,6 +22,11 @@ const RoRoTaskListPage: FC = () => {
     selectors: HasSelectors.Any,
     rules: [],
     searchText: '',
+    movementDirections: [
+      MovementDirection.Inbound,
+      MovementDirection.Outbound,
+      MovementDirection.Unknown,
+    ],
   };
 
   const taskFilterForm = roroTaskFilterForm();
@@ -53,7 +60,7 @@ const RoRoTaskListPage: FC = () => {
       headerText="RORO Tasks"
       defaultFormFilters={defaultFormFilters}
       taskFilterForm={taskFilterForm}
-      populateFormStatusCounts={populateTaskStatusCounts}
+      populateFormCounts={populateTaskCounts}
       pnrAccessCheckEnabled={false}
       toTaskCard={toTaskCard}
     />

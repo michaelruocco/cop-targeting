@@ -38,6 +38,7 @@ export const TaskFilterComponent: FC<Props> = ({
         return { id: selectedRule.id, name: selectedRule.name };
       }),
       searchText: payload.searchText,
+      movementDirections: payload.movementDirections,
     };
   };
 
