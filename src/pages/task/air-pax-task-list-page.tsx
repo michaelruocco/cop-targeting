@@ -9,7 +9,10 @@ import {
 } from '../../adapters/task/task';
 import { FormFilters } from '../../components/task/form-filters';
 import AirPaxTaskListCard from '../../components/task/air-pax-task-list-card';
-import { airPaxTaskFilterForm, populateTaskCounts } from './task-filter-form';
+import {
+  airPaxTaskFilterForm,
+  populateFormTaskCounts,
+} from './task-filter-form';
 
 import '../../styles/task-list-page.scss';
 import TaskListPage from '../../components/task/task-list-page';
@@ -58,7 +61,7 @@ const AirPaxTaskListPage: FC = () => {
       headerText="Air Passenger Tasks"
       defaultFormFilters={defaultFormFilters}
       taskFilterForm={taskFilterForm}
-      populateFormCounts={populateTaskCounts}
+      populateFormCounts={populateFormTaskCounts}
       pnrAccessCheckEnabled={true}
       toTaskCard={toTaskCard}
     />

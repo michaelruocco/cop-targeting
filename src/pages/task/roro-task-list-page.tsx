@@ -7,7 +7,7 @@ import {
   MovementDirection,
 } from '../../adapters/task/task';
 import { FormFilters } from '../../components/task/form-filters';
-import { roroTaskFilterForm, populateTaskCounts } from './task-filter-form';
+import { roroTaskFilterForm, populateFormTaskCounts } from './task-filter-form';
 import '../../styles/task-list-page.scss';
 import TaskListPage from '../../components/task/task-list-page';
 import RoRoTaskListCard from '../../components/task/roro-task-list-card';
@@ -60,7 +60,7 @@ const RoRoTaskListPage: FC = () => {
       headerText="RORO Tasks"
       defaultFormFilters={defaultFormFilters}
       taskFilterForm={taskFilterForm}
-      populateFormCounts={populateTaskCounts}
+      populateFormCounts={populateFormTaskCounts}
       pnrAccessCheckEnabled={false}
       toTaskCard={toTaskCard}
     />

@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import {
+  MovementDirectionCounts,
   TaskCountsResponse,
   TaskSelectorCounts,
 } from '../../adapters/task/task';
@@ -75,7 +76,7 @@ const ruleAutocompleteComponent = {
 const directionCheckboxesComponent = {
   id: 'movementDirections',
   fieldId: 'movementDirections',
-  label: 'Movement Direction',
+  label: 'Direction',
   type: 'checkboxes',
   required: true,
   dynamicoptions: 'true',
@@ -83,15 +84,15 @@ const directionCheckboxesComponent = {
     options: [
       {
         value: 'INBOUND',
-        label: 'Inbound',
+        label: 'Inbound (%INBOUND_COUNT%)',
       },
       {
         value: 'OUTBOUND',
-        label: 'Outbound',
+        label: 'Outbound (%OUTBOUND_COUNT%)',
       },
       {
         value: 'UNKNOWN',
-        label: 'Unknown',
+        label: 'Unknown (%UNKNOWN_MOVEMENT_DIRECTION_COUNT%)',
       },
     ],
   },
@@ -143,28 +144,36 @@ export const airPaxTaskFilterForm = (): any => {
   return toTaskFilterForm(airPaxComponents);
 };
 
-export const populateTaskCounts = (
+export const populateFormTaskCounts = (
   taskFilterForm: any,
   taskCounts: TaskCountsResponse,
 ): any => {
   const copy = _.cloneDeep(taskFilterForm);
-  const component = copy.pages[0].components.filter(
-    (component: any) => component.id === 'selectors',
-  )[0];
-  component.data.options.forEach((option: any) => {
-    replaceTaskSelectorStatusCount(option, taskCounts.taskSelectorCounts);
+
+  const selectorComponent = findComponentById(copy, 'selectors');
+  selectorComponent.data.options.forEach((option: any) => {
+    replaceTaskSelectorCount(option, taskCounts.taskSelectorCounts);
   });
+
+  const movementComponent = findComponentById(copy, 'movementDirections');
+  movementComponent.data.options.forEach((option: any) => {
+    replaceMovementDirectionCount(option, taskCounts.movementDirectionCounts);
+  });
+
   return copy;
 };
 
-const replaceTaskSelectorStatusCount = (
+export const findComponentById = (form: any, id: string): any => {
+  return form.pages[0].components.filter(
+    (component: any) => component.id === id,
+  )[0];
+};
+
+const replaceTaskSelectorCount = (
   option: any,
-  taskSelectorStatusCounts: TaskSelectorCounts,
+  taskSelectorCounts: TaskSelectorCounts,
 ) => {
-  const replacement = toSelectorCountReplacement(
-    option,
-    taskSelectorStatusCounts,
-  );
+  const replacement = toSelectorCountReplacement(option, taskSelectorCounts);
   option.label = option.label.replace(
     replacement.placeholder,
     replacement.value.toString(),
@@ -173,23 +182,60 @@ const replaceTaskSelectorStatusCount = (
 
 const toSelectorCountReplacement = (
   option: any,
-  taskSelectorStatusCounts: TaskSelectorCounts,
+  taskSelectorCounts: TaskSelectorCounts,
 ): any => {
   switch (option.value) {
     case 'NOT_PRESENT':
       return {
         placeholder: '%NO_SELECTOR_COUNT%',
-        value: taskSelectorStatusCounts.hasNoSelector,
+        value: taskSelectorCounts.hasNoSelector,
       };
     case 'PRESENT':
       return {
         placeholder: '%HAS_SELECTOR_COUNT%',
-        value: taskSelectorStatusCounts.hasSelector,
+        value: taskSelectorCounts.hasSelector,
       };
     default:
       return {
         placeholder: '%ANY_SELECTOR_COUNT%',
-        value: taskSelectorStatusCounts.both,
+        value: taskSelectorCounts.both,
+      };
+  }
+};
+
+const replaceMovementDirectionCount = (
+  option: any,
+  movementDirectionCounts: MovementDirectionCounts,
+) => {
+  const replacement = toMovementDirectionCountReplacement(
+    option,
+    movementDirectionCounts,
+  );
+  option.label = option.label.replace(
+    replacement.placeholder,
+    replacement.value.toString(),
+  );
+};
+
+const toMovementDirectionCountReplacement = (
+  option: any,
+  movementDirectionCounts: MovementDirectionCounts,
+): any => {
+  switch (option.value) {
+    case 'INBOUND':
+      return {
+        placeholder: '%INBOUND_COUNT%',
+        value: movementDirectionCounts.inbound,
+      };
+    case 'OUTBOUND':
+      return {
+        placeholder: '%OUTBOUND_COUNT%',
+        value: movementDirectionCounts.outbound,
+      };
+    default:
+      return {
+        placeholder: '%UNKNOWN_MOVEMENT_DIRECTION_COUNT%',
+        value: movementDirectionCounts.unknown,
       };
   }
 };
