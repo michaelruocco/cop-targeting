@@ -28,11 +28,6 @@ const toDefaultGroupDescription = (movement: Movement): string => {
 };
 
 const toGroupDescription = (movement: Movement): string => {
-  console.log(
-    `group description mode ${movement.mode} ${
-      movement.mode === MovementMode.RoRoTourist
-    }`,
-  );
   switch (movement.mode) {
     case MovementMode.RoRoAccompaniedFreight:
     case MovementMode.RoRoUnaccompaniedFreight:

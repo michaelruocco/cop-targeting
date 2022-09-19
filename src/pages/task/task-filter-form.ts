@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 import {
   MovementDirectionCounts,
+  MovementModeCounts,
   TaskCountsResponse,
   TaskSelectorCounts,
 } from '../../adapters/task/task';
@@ -25,15 +26,15 @@ const roroModeCheckboxesComponent = {
     options: [
       {
         value: 'RORO_UNACCOMPANIED_FREIGHT',
-        label: 'Unaccompanied freight',
+        label: 'Unaccompanied freight (%RORO_UNACCOMPANIED_FREIGHT_COUNT%)',
       },
       {
         value: 'RORO_ACCOMPANIED_FREIGHT',
-        label: 'Accompanied freight',
+        label: 'Accompanied freight (%RORO_ACCOMPANIED_FREIGHT_COUNT%)',
       },
       {
         value: 'RORO_TOURIST',
-        label: 'Tourist',
+        label: 'Tourist (%RORO_TOURIST_COUNT%)',
       },
     ],
   },
@@ -155,10 +156,17 @@ export const populateFormTaskCounts = (
     replaceTaskSelectorCount(option, taskCounts.taskSelectorCounts);
   });
 
-  const movementComponent = findComponentById(copy, 'movementDirections');
-  movementComponent.data.options.forEach((option: any) => {
+  const directionsComponent = findComponentById(copy, 'movementDirections');
+  directionsComponent.data.options.forEach((option: any) => {
     replaceMovementDirectionCount(option, taskCounts.movementDirectionCounts);
   });
+
+  const modesComponent = findComponentById(copy, 'mode');
+  if (modesComponent) {
+    modesComponent.data.options.forEach((option: any) => {
+      replaceMovementModeCount(option, taskCounts.movementModeCounts);
+    });
+  }
 
   return copy;
 };
@@ -237,5 +245,46 @@ const toMovementDirectionCountReplacement = (
         placeholder: '%UNKNOWN_MOVEMENT_DIRECTION_COUNT%',
         value: movementDirectionCounts.unknown,
       };
+  }
+};
+
+const replaceMovementModeCount = (
+  option: any,
+  movementModeCounts: MovementModeCounts,
+) => {
+  const replacement = toMovementModeCountReplacement(
+    option,
+    movementModeCounts,
+  );
+  if (replacement) {
+    option.label = option.label.replace(
+      replacement.placeholder,
+      replacement.value.toString(),
+    );
+  }
+};
+
+const toMovementModeCountReplacement = (
+  option: any,
+  movementModeCounts: MovementModeCounts,
+): any => {
+  switch (option.value) {
+    case 'RORO_UNACCOMPANIED_FREIGHT':
+      return {
+        placeholder: '%RORO_UNACCOMPANIED_FREIGHT_COUNT%',
+        value: movementModeCounts.roRoUnaccompaniedFreight,
+      };
+    case 'RORO_ACCOMPANIED_FREIGHT':
+      return {
+        placeholder: '%RORO_ACCOMPANIED_FREIGHT_COUNT%',
+        value: movementModeCounts.roRoAccompaniedFreight,
+      };
+    case 'RORO_TOURIST':
+      return {
+        placeholder: '%RORO_TOURIST_COUNT%',
+        value: movementModeCounts.roRoTourist,
+      };
+    default:
+      return null;
   }
 };

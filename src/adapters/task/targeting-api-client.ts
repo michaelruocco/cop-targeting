@@ -188,8 +188,6 @@ const taskMatches = (task: Task, filters: TaskFilters): boolean => {
   }
   const direction =
     task?.movement?.journey?.direction || MovementDirection.Unknown;
-  console.log(`filter directions ${filters.movementDirections}`);
-  console.log(`   task direction ${direction}`);
   if (!filters.movementDirections.includes(direction)) {
     return false;
   }
