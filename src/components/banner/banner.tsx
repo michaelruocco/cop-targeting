@@ -50,7 +50,7 @@ const Banner: FC = () => {
             to="/"
             className="govuk-header__link govuk-header__link--service-name"
           >
-            COP Targeting
+            Cerberus Targeting
             <span style={{ display: 'block', fontSize: '0.55em' }}>
               powered by the Central Operations Platform
             </span>

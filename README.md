@@ -19,10 +19,15 @@ KEYCLOAK_REALM=<configure-me>
 KEYCLOAK_AUTH_URL=<configure-me>
 ```
 
+Each url value variable requires just the hostname, no other part of the base url needs to be
+included e.g. `/camunda` or `/v2`
+
+Once the application is started you can view the application [here](http://localhost:3000)
+
 ## TODO
 
-- Add unit tests for nav links
-- Add unit tests for only showing UI when logged in
-- Add unit tests for hitting `/` redirecting to `/roro-tasks`
-- Add unit tests for home icon link redirecting to `/`
-- Add unit tests for logout button logging user out
+- Add unit tests
+- Implement claim task
+- Implement task details
+- Implement issuing target
+- Implement completing a task
