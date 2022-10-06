@@ -26,7 +26,10 @@ class Props {
   taskFilterForm: any;
   populateFormCounts: (form: any, counts: TaskCountsResponse) => any;
   pnrAccessCheckEnabled: boolean;
-  toTaskCard: (task: Task) => React.ReactNode;
+  toTaskCard: (
+    task: Task,
+    onTaskUnclaimed: (task: Task) => void,
+  ) => React.ReactNode;
 }
 
 const TaskListPage: FC<Props> = ({
@@ -40,6 +43,7 @@ const TaskListPage: FC<Props> = ({
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [status, setStatus] = useState<TaskStatus>(TaskStatus.New);
   const [isLoading, setLoading] = useState<boolean>(true);
+  const [unclaimed, setUnclaimed] = useState<number>(0);
 
   const [formFilters, setFormFilters] =
     useState<FormFilters>(defaultFormFilters);
@@ -179,6 +183,11 @@ const TaskListPage: FC<Props> = ({
     setLoading(false);
   };
 
+  const handleTaskUnclaimed = (task: Task) => {
+    taskClient.unclaimTask(task.id);
+    setUnclaimed(unclaimed + 1);
+  };
+
   const filterComponent = (
     <TaskFilterComponent
       form={populateFormCounts(taskFilterForm, taskCounts)}
@@ -205,6 +214,7 @@ const TaskListPage: FC<Props> = ({
           onPageChanged={handlePageChanged}
           onStatusSelected={handleStatusSelected}
           toTaskCard={toTaskCard}
+          handleTaskUnclaimed={handleTaskUnclaimed}
         />
       );
     }
@@ -217,7 +227,7 @@ const TaskListPage: FC<Props> = ({
 
   useEffect(() => {
     fetchTasks().catch(console.error);
-  }, [pageNumber, status, formFilters]);
+  }, [pageNumber, status, formFilters, unclaimed]);
 
   return <Layout>{getComponentToShow()}</Layout>;
 };

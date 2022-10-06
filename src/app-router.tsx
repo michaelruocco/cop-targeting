@@ -5,6 +5,7 @@ import { PnrAccessProvider } from './contexts/pnr/pnr-access-provider';
 import AirPaxTaskListPage from './pages/task/air-pax-task-list-page';
 import RequestPnrAccessPage from './pages/task/request-pnr-access-page';
 import RoRoTaskListPage from './pages/task/roro-task-list-page';
+import TaskDetailPage from './pages/task/task-detail-page';
 
 const AppRouter: FC = () => {
   document.body.className = document.body.className
@@ -21,6 +22,7 @@ const AppRouter: FC = () => {
             path="/pnr-access-request"
             element={<RequestPnrAccessPage />}
           />
+          <Route path="/task-detail/:taskId" element={<TaskDetailPage />} />
         </Routes>
       </PnrAccessProvider>
     </BrowserRouter>

@@ -10,17 +10,10 @@ import TaskListTargetIndicatorSection from './task-list-card-target-indicator-se
 
 class Props {
   task: Task;
-  onTaskClaimed: (task: Task) => void;
   onTaskUnclaimed: (task: Task) => void;
-  onTaskViewed: (task: Task) => void;
 }
 
-const RoRoTaskListCard: FC<Props> = ({
-  task,
-  onTaskClaimed,
-  onTaskUnclaimed,
-  onTaskViewed,
-}) => {
+const RoRoTaskListCard: FC<Props> = ({ task, onTaskUnclaimed }) => {
   const toMovementSection = (movement: Movement): React.ReactNode => {
     switch (movement.mode) {
       case MovementMode.RoRoTourist:
@@ -51,15 +44,11 @@ const RoRoTaskListCard: FC<Props> = ({
         <TaskListCardTitleSection
           task={task}
           risks={task.risks}
-          onTaskClaimed={onTaskClaimed}
           onTaskUnclaimed={onTaskUnclaimed}
         />
         <TaskListCardJourneySection movement={task.movement} />
         {toMovementSection(task.movement)}
-        <TaskListTargetIndicatorSection
-          task={task}
-          onTaskViewed={onTaskViewed}
-        />
+        <TaskListTargetIndicatorSection task={task} />
       </div>
     </div>
   );

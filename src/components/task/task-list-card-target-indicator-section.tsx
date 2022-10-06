@@ -1,16 +1,11 @@
 import * as React from 'react';
 import { FC } from 'react';
 import * as _ from 'lodash';
-import {
-  TargetingIndicator,
-  TargetingIndicators,
-  Task,
-} from '../../adapters/task/task';
-import ViewTaskDetailsLink from './view-task-details-link';
+import { TargetingIndicators, Task } from '../../adapters/task/task';
+import ViewTaskDetailLink from './view-task-detail-link';
 
 class Props {
   task: Task;
-  onTaskViewed: (task: Task) => void;
 }
 
 const formatCount = (count: number): string => {
@@ -43,7 +38,7 @@ const toIndicatorItems = (
   return nodes;
 };
 
-const TaskListTargetIndicatorSection: FC<Props> = ({ task, onTaskViewed }) => {
+const TaskListTargetIndicatorSection: FC<Props> = ({ task }) => {
   const targetingIndicators = task.risks.targetingIndicators;
   return (
     <section className="task-list--target-indicator-section">
@@ -70,7 +65,7 @@ const TaskListTargetIndicatorSection: FC<Props> = ({ task, onTaskViewed }) => {
         </div>
         <div className="govuk-grid-item task-link-container">
           <div>
-            <ViewTaskDetailsLink task={task} onTaskViewed={onTaskViewed} />
+            <ViewTaskDetailLink task={task} />
           </div>
         </div>
       </div>

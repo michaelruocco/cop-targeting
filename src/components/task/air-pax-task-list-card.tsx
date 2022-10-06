@@ -8,32 +8,21 @@ import TaskListTargetIndicatorSection from './task-list-card-target-indicator-se
 
 class Props {
   task: Task;
-  onTaskClaimed: (task: Task) => void;
   onTaskUnclaimed: (task: Task) => void;
-  onTaskViewed: (task: Task) => void;
 }
 
-const AirPaxTaskListCard: FC<Props> = ({
-  task,
-  onTaskClaimed,
-  onTaskUnclaimed,
-  onTaskViewed,
-}) => {
+const AirPaxTaskListCard: FC<Props> = ({ task, onTaskUnclaimed }) => {
   return (
     <div className="govuk-task-list-card" key={task.id}>
       <div className="card-container">
         <TaskListCardTitleSection
           task={task}
           risks={task.risks}
-          onTaskClaimed={onTaskClaimed}
           onTaskUnclaimed={onTaskUnclaimed}
         />
         <TaskListCardJourneySection movement={task.movement} />
         <TaskListCardAirPaxMovementInfoSection movement={task.movement} />
-        <TaskListTargetIndicatorSection
-          task={task}
-          onTaskViewed={onTaskViewed}
-        />
+        <TaskListTargetIndicatorSection task={task} />
       </div>
     </div>
   );

@@ -15,7 +15,6 @@ import UnclaimButton from './unclaim-button';
 class Props {
   task: Task;
   risks: Risks;
-  onTaskClaimed: (task: Task) => void;
   onTaskUnclaimed: (task: Task) => void;
 }
 
@@ -76,7 +75,6 @@ const shouldShowUnclaimButton = (task: Task): boolean => {
 const TaskListCardTitleSection: FC<Props> = ({
   task,
   risks,
-  onTaskClaimed,
   onTaskUnclaimed,
 }) => {
   return (
@@ -100,7 +98,7 @@ const TaskListCardTitleSection: FC<Props> = ({
         <div className="govuk-grid-column-one-third govuk-!-padding-top-2 govuk-!-padding-right-3">
           {shouldShowClaimButton(task) && (
             <div className="claim-button-container">
-              <ClaimButton task={task} onTaskClaimed={onTaskClaimed} />
+              <ClaimButton task={task} />
             </div>
           )}
           <div className="claim-button-container">

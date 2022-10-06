@@ -87,7 +87,10 @@ class StubTargetingApiClient implements TargetingApiClient {
   };
 
   getTask = (taskId: string): Promise<Task> => {
-    return Promise.resolve(stubTasks.find(({ id }) => id === taskId));
+    const task = stubTasks.find((stubTask) => {
+      return stubTask.id === taskId;
+    });
+    return Promise.resolve(task);
   };
 
   claimTask = async (taskId: string): Promise<Task> => {

@@ -20,7 +20,11 @@ class Props {
   filterComponent: React.ReactNode;
   onPageChanged: (pageNumber: number) => void;
   onStatusSelected: (status: TaskStatus) => void;
-  toTaskCard: (task: Task) => React.ReactNode;
+  toTaskCard: (
+    task: Task,
+    onTaskUnclaimed: (task: Task) => void,
+  ) => React.ReactNode;
+  handleTaskUnclaimed: (task: Task) => void;
 }
 
 const TaskList: FC<Props> = ({
@@ -36,6 +40,7 @@ const TaskList: FC<Props> = ({
   onPageChanged,
   onStatusSelected,
   toTaskCard,
+  handleTaskUnclaimed,
 }) => {
   const toTaskCardContent = (
     tasks: Task[],
@@ -47,7 +52,7 @@ const TaskList: FC<Props> = ({
         </p>
       );
     }
-    return tasks.map((task) => toTaskCard(task));
+    return tasks.map((task) => toTaskCard(task, handleTaskUnclaimed));
   };
 
   const getTaskPanelContent = (): React.ReactNode => {
