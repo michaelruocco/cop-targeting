@@ -122,6 +122,7 @@ export enum ThreatType {
 
 export type Rule = {
   id: number;
+  name: string;
   abuseTypes: string[];
 };
 

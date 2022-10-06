@@ -250,8 +250,8 @@ export const stubTasks: Task[] = [
       matchedRules: [
         {
           id: 7808,
-          /*name: 'PNR-Arrival Airport',
-            type: 'Both',
+          name: 'PNR-Arrival Airport',
+          /*type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -273,8 +273,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7844,
-          /*name: 'Return Leg- Return',
-            type: 'Both',
+          name: 'Return Leg- Return',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -296,8 +296,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7849,
-          /*name: 'PNR-Risk-Rule',
-            type: 'Both',
+          name: 'PNR-Risk-Rule',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'test pne',
             version: 1,*/
@@ -319,8 +319,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7919,
-          /*name: 'Generic rule - For trailer',
-            type: 'Pre-load',
+          name: 'Generic rule - For trailer',
+          /*  type: 'Pre-load',
             priority: 'Tier 3',
             description: 'Eu velit commodo ill',
             version: 1,*/
@@ -345,8 +345,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7963,
-          /*name: 'Predict_Movement_Name_qwerty',
-            type: 'Both',
+          name: 'Predict_Movement_Name_qwerty',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -381,8 +381,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8865,
-          /*name: 'Duration of Whole trip',
-            type: 'Both',
+          name: 'Duration of Whole trip',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Duration of Whole trip',
             version: 1,*/
@@ -405,8 +405,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8867,
-          /*name: 'Duration of Stay -days',
-            type: 'Both',
+          name: 'Duration of Stay -days',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -706,8 +706,8 @@ export const stubTasks: Task[] = [
       matchedRules: [
         {
           id: 7808,
-          /*name: 'PNR-Arrival Airport',
-            type: 'Both',
+          name: 'PNR-Arrival Airport',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -729,8 +729,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7844,
-          /*name: 'Return Leg- Return',
-            type: 'Both',
+          name: 'Return Leg- Return',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -752,8 +752,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7849,
-          /*name: 'PNR-Risk-Rule',
-            type: 'Both',
+          name: 'PNR-Risk-Rule',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'test pne',
             version: 1,*/
@@ -775,8 +775,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7919,
-          /*name: 'Generic rule - For trailer',
-            type: 'Pre-load',
+          name: 'Generic rule - For trailer',
+          /*  type: 'Pre-load',
             priority: 'Tier 3',
             description: 'Eu velit commodo ill',
             version: 1,*/
@@ -801,8 +801,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7963,
-          /*name: 'Predict_Movement_Name_qwerty',
-            type: 'Both',
+          name: 'Predict_Movement_Name_qwerty',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -837,8 +837,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8865,
-          /*name: 'Duration of Whole trip',
-            type: 'Both',
+          name: 'Duration of Whole trip',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Duration of Whole trip',
             version: 1,*/
@@ -861,8 +861,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8867,
-          /*name: 'Duration of Stay -days',
-            type: 'Both',
+          name: 'Duration of Stay -days',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -1088,8 +1088,8 @@ export const stubTasks: Task[] = [
       matchedRules: [
         {
           id: 7808,
-          /*name: 'PNR-Arrival Airport',
-            type: 'Both',
+          name: 'PNR-Arrival Airport',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -1111,8 +1111,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7844,
-          /*name: 'Return Leg- Return',
-            type: 'Both',
+          name: 'Return Leg- Return',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -1134,8 +1134,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7849,
-          /*name: 'PNR-Risk-Rule',
-            type: 'Both',
+          name: 'PNR-Risk-Rule',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'test pne',
             version: 1,*/
@@ -1157,8 +1157,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7919,
-          /*name: 'Generic rule - For trailer',
-            type: 'Pre-load',
+          name: 'Generic rule - For trailer',
+          /*  type: 'Pre-load',
             priority: 'Tier 3',
             description: 'Eu velit commodo ill',
             version: 1,*/
@@ -1183,8 +1183,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7963,
-          /*name: 'Predict_Movement_Name_qwerty',
-            type: 'Both',
+          name: 'Predict_Movement_Name_qwerty',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -1219,8 +1219,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8865,
-          /*name: 'Duration of Whole trip',
-            type: 'Both',
+          name: 'Duration of Whole trip',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Duration of Whole trip',
             version: 1,*/
@@ -1243,8 +1243,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8867,
-          /*name: 'Duration of Stay -days',
-            type: 'Both',
+          name: 'Duration of Stay -days',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -2964,8 +2964,8 @@ export const stubTasks: Task[] = [
       matchedRules: [
         {
           id: 7808,
-          /*name: 'PNR-Arrival Airport',
-            type: 'Both',
+          name: 'PNR-Arrival Airport',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -2987,8 +2987,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7844,
-          /*name: 'Return Leg- Return',
-            type: 'Both',
+          name: 'Return Leg- Return',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -3010,8 +3010,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7849,
-          /*name: 'PNR-Risk-Rule',
-            type: 'Both',
+          name: 'PNR-Risk-Rule',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'test pne',
             version: 1,*/
@@ -3033,8 +3033,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7919,
-          /*name: 'Generic rule - For trailer',
-            type: 'Pre-load',
+          name: 'Generic rule - For trailer',
+          /*  type: 'Pre-load',
             priority: 'Tier 3',
             description: 'Eu velit commodo ill',
             version: 1,*/
@@ -3059,8 +3059,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7963,
-          /*name: 'Predict_Movement_Name_qwerty',
-            type: 'Both',
+          name: 'Predict_Movement_Name_qwerty',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -3095,8 +3095,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8865,
-          /*name: 'Duration of Whole trip',
-            type: 'Both',
+          name: 'Duration of Whole trip',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Duration of Whole trip',
             version: 1,*/
@@ -3119,8 +3119,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8867,
-          /*name: 'Duration of Stay -days',
-            type: 'Both',
+          name: 'Duration of Stay -days',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -3534,8 +3534,8 @@ export const stubTasks: Task[] = [
       matchedRules: [
         {
           id: 7808,
-          /*name: 'PNR-Arrival Airport',
-            type: 'Both',
+          name: 'PNR-Arrival Airport',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -3557,8 +3557,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7844,
-          /*name: 'Return Leg- Return',
-            type: 'Both',
+          name: 'Return Leg- Return',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -3580,8 +3580,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7849,
-          /*name: 'PNR-Risk-Rule',
-            type: 'Both',
+          name: 'PNR-Risk-Rule',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'test pne',
             version: 1,*/
@@ -3603,8 +3603,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7919,
-          /*name: 'Generic rule - For trailer',
-            type: 'Pre-load',
+          name: 'Generic rule - For trailer',
+          /*  type: 'Pre-load',
             priority: 'Tier 3',
             description: 'Eu velit commodo ill',
             version: 1,*/
@@ -3629,8 +3629,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7963,
-          /*name: 'Predict_Movement_Name_qwerty',
-            type: 'Both',
+          name: 'Predict_Movement_Name_qwerty',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -3665,8 +3665,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8865,
-          /*name: 'Duration of Whole trip',
-            type: 'Both',
+          name: 'Duration of Whole trip',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Duration of Whole trip',
             version: 1,*/
@@ -3689,8 +3689,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8867,
-          /*name: 'Duration of Stay -days',
-            type: 'Both',
+          name: 'Duration of Stay -days',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -3951,8 +3951,8 @@ export const stubTasks: Task[] = [
       matchedRules: [
         {
           id: 7808,
-          /*name: 'PNR-Arrival Airport',
-            type: 'Both',
+          name: 'PNR-Arrival Airport',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -3974,8 +3974,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7844,
-          /*name: 'Return Leg- Return',
-            type: 'Both',
+          name: 'Return Leg- Return',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -3997,8 +3997,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7849,
-          /*name: 'PNR-Risk-Rule',
-            type: 'Both',
+          name: 'PNR-Risk-Rule',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'test pne',
             version: 1,*/
@@ -4020,8 +4020,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7919,
-          /*name: 'Generic rule - For trailer',
-            type: 'Pre-load',
+          name: 'Generic rule - For trailer',
+          /*  type: 'Pre-load',
             priority: 'Tier 3',
             description: 'Eu velit commodo ill',
             version: 1,*/
@@ -4046,8 +4046,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7963,
-          /*name: 'Predict_Movement_Name_qwerty',
-            type: 'Both',
+          name: 'Predict_Movement_Name_qwerty',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -4082,8 +4082,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8865,
-          /*name: 'Duration of Whole trip',
-            type: 'Both',
+          name: 'Duration of Whole trip',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Duration of Whole trip',
             version: 1,*/
@@ -4106,8 +4106,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8867,
-          /*name: 'Duration of Stay -days',
-            type: 'Both',
+          name: 'Duration of Stay -days',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -4364,8 +4364,8 @@ export const stubTasks: Task[] = [
       matchedRules: [
         {
           id: 7808,
-          /*name: 'PNR-Arrival Airport',
-            type: 'Both',
+          name: 'PNR-Arrival Airport',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -4387,8 +4387,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7844,
-          /*name: 'Return Leg- Return',
-            type: 'Both',
+          name: 'Return Leg- Return',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -4410,8 +4410,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7849,
-          /*name: 'PNR-Risk-Rule',
-            type: 'Both',
+          name: 'PNR-Risk-Rule',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'test pne',
             version: 1,*/
@@ -4433,8 +4433,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7919,
-          /*name: 'Generic rule - For trailer',
-            type: 'Pre-load',
+          name: 'Generic rule - For trailer',
+          /*  type: 'Pre-load',
             priority: 'Tier 3',
             description: 'Eu velit commodo ill',
             version: 1,*/
@@ -4459,8 +4459,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7963,
-          /*name: 'Predict_Movement_Name_qwerty',
-            type: 'Both',
+          name: 'Predict_Movement_Name_qwerty',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -4495,8 +4495,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8865,
-          /*name: 'Duration of Whole trip',
-            type: 'Both',
+          name: 'Duration of Whole trip',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Duration of Whole trip',
             version: 1,*/
@@ -4519,8 +4519,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8867,
-          /*name: 'Duration of Stay -days',
-            type: 'Both',
+          name: 'Duration of Stay -days',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -4738,8 +4738,8 @@ export const stubTasks: Task[] = [
       matchedRules: [
         {
           id: 7808,
-          /*name: 'PNR-Arrival Airport',
-            type: 'Both',
+          name: 'PNR-Arrival Airport',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -4761,8 +4761,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7844,
-          /*name: 'Return Leg- Return',
-            type: 'Both',
+          name: 'Return Leg- Return',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -4784,8 +4784,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7849,
-          /*name: 'PNR-Risk-Rule',
-            type: 'Both',
+          name: 'PNR-Risk-Rule',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'test pne',
             version: 1,*/
@@ -4807,8 +4807,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7919,
-          /*name: 'Generic rule - For trailer',
-            type: 'Pre-load',
+          name: 'Generic rule - For trailer',
+          /*  type: 'Pre-load',
             priority: 'Tier 3',
             description: 'Eu velit commodo ill',
             version: 1,*/
@@ -4833,8 +4833,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7963,
-          /*name: 'Predict_Movement_Name_qwerty',
-            type: 'Both',
+          name: 'Predict_Movement_Name_qwerty',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -4869,8 +4869,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8865,
-          /*name: 'Duration of Whole trip',
-            type: 'Both',
+          name: 'Duration of Whole trip',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Duration of Whole trip',
             version: 1,*/
@@ -4893,8 +4893,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8867,
-          /*name: 'Duration of Stay -days',
-            type: 'Both',
+          name: 'Duration of Stay -days',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -5121,8 +5121,8 @@ export const stubTasks: Task[] = [
       matchedRules: [
         {
           id: 7808,
-          /*name: 'PNR-Arrival Airport',
-            type: 'Both',
+          name: 'PNR-Arrival Airport',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -5144,8 +5144,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7844,
-          /*name: 'Return Leg- Return',
-            type: 'Both',
+          name: 'Return Leg- Return',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -5167,8 +5167,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7849,
-          /*name: 'PNR-Risk-Rule',
-            type: 'Both',
+          name: 'PNR-Risk-Rule',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'test pne',
             version: 1,*/
@@ -5190,8 +5190,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7919,
-          /*name: 'Generic rule - For trailer',
-            type: 'Pre-load',
+          name: 'Generic rule - For trailer',
+          /*  type: 'Pre-load',
             priority: 'Tier 3',
             description: 'Eu velit commodo ill',
             version: 1,*/
@@ -5216,8 +5216,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 7963,
-          /*name: 'Predict_Movement_Name_qwerty',
-            type: 'Both',
+          name: 'Predict_Movement_Name_qwerty',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/
@@ -5252,8 +5252,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8865,
-          /*name: 'Duration of Whole trip',
-            type: 'Both',
+          name: 'Duration of Whole trip',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Duration of Whole trip',
             version: 1,*/
@@ -5276,8 +5276,8 @@ export const stubTasks: Task[] = [
         },
         {
           id: 8867,
-          /*name: 'Duration of Stay -days',
-            type: 'Both',
+          name: 'Duration of Stay -days',
+          /*  type: 'Both',
             priority: 'Tier 1',
             description: 'Test',
             version: 1,*/

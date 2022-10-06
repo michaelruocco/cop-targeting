@@ -12,16 +12,24 @@ import {
   TaskStatusCounts,
   MovementDirectionCounts,
   MovementDirection,
+  Note,
 } from './task';
 import { TaskStatus } from './task-status';
 import { stubTasks } from './stub-tasks';
+import jwt_decode from 'jwt-decode';
+import { v4 as uuidv4 } from 'uuid';
+import { utcNow } from '../date/date';
 
-interface TargetingApiClient {
+export interface TargetingApiClient {
+  getFilterRules(): Promise<FilterRule[]>;
   getTaskCounts(request: TaskFilters): Promise<TaskCountsResponse>;
   getTaskPage(request: TaskPageRequest): Promise<TaskPageResponse>;
+  getTask(taskId: string): Promise<Task>;
+  claimTask(taskId: string): Promise<Task>;
+  unclaimTask(taskId: string): Promise<Task>;
 }
 
-export class StubTargetingApiClient implements TargetingApiClient {
+class StubTargetingApiClient implements TargetingApiClient {
   getToken: () => string;
 
   constructor(getToken: () => string) {
@@ -29,20 +37,39 @@ export class StubTargetingApiClient implements TargetingApiClient {
   }
 
   getFilterRules = (): Promise<FilterRule[]> => {
-    return Promise.resolve([
-      {
-        id: 7808,
-        name: 'PNR-Arrival Airport',
-      },
-      {
-        id: 7844,
-        name: 'Return Leg- Return',
-      },
-    ]);
+    const filterRules: FilterRule[] = [];
+    stubTasks.map((stubTask) => {
+      stubTask.risks.matchedRules.map((matchedRule) => {
+        if (filterRules.some((rule) => rule.id === matchedRule.id)) {
+          return;
+        }
+        filterRules.push({
+          id: matchedRule.id,
+          name: matchedRule.name,
+        });
+      });
+    });
+    console.log(`returning filter rules ${JSON.stringify(filterRules)}`);
+    return Promise.resolve(filterRules);
+  };
+
+  getTaskCounts = (filters: TaskFilters): Promise<TaskCountsResponse> => {
+    console.log(`get task counts ${JSON.stringify(filters)}`);
+
+    const counts = {
+      filters: filters,
+      movementModeCounts: getMovementModeCounts(filters),
+      taskStatusCounts: getTaskStatusCounts(filters),
+      taskSelectorCounts: getTaskSelectorCounts(filters),
+      movementDirectionCounts: getMovementDirectionCounts(filters),
+    };
+
+    console.log(`returning task counts ${JSON.stringify(counts)}`);
+    return Promise.resolve(counts);
   };
 
   getTaskPage = async (request: TaskPageRequest): Promise<TaskPageResponse> => {
-    console.log(`getTaskPage ${JSON.stringify(request)}`);
+    console.log(`get task page ${JSON.stringify(request)}`);
     const pagination = request.pagination;
     const filteredTasks = stubTasks.filter((task) =>
       taskMatches(task, request.filters),
@@ -55,23 +82,41 @@ export class StubTargetingApiClient implements TargetingApiClient {
         pagination.offset + pagination.limit,
       ),
     };
-    console.debug(`returningTaskPage ${JSON.stringify(taskPage)}`);
+    console.debug(`returning task page ${JSON.stringify(taskPage)}`);
     return Promise.resolve(taskPage);
   };
 
-  getTaskCounts = (filters: TaskFilters): Promise<TaskCountsResponse> => {
-    console.log(`getTaskCounts ${JSON.stringify(filters)}`);
+  getTask = (taskId: string): Promise<Task> => {
+    return Promise.resolve(stubTasks.find(({ id }) => id === taskId));
+  };
 
-    const counts = {
-      filters: filters,
-      movementModeCounts: getMovementModeCounts(filters),
-      taskStatusCounts: getTaskStatusCounts(filters),
-      taskSelectorCounts: getTaskSelectorCounts(filters),
-      movementDirectionCounts: getMovementDirectionCounts(filters),
+  claimTask = async (taskId: string): Promise<Task> => {
+    const task = await this.getTask(taskId);
+    task.status = TaskStatus.InProgress;
+    task.assignee = this.#getUserEmail();
+    task.notes.push(this.#toNote('task claimed'));
+    return task;
+  };
+
+  unclaimTask = async (taskId: string): Promise<Task> => {
+    const task = await this.getTask(taskId);
+    task.status = TaskStatus.New;
+    task.assignee = null;
+    task.notes.push(this.#toNote('task unclaimed'));
+    return task;
+  };
+
+  #toNote = (content: string): Note => {
+    return {
+      id: uuidv4(),
+      content: content,
+      timestamp: utcNow(),
+      userId: this.#getUserEmail(),
     };
+  };
 
-    console.log(`returningTaskCounts ${JSON.stringify(counts)}`);
-    return Promise.resolve(counts);
+  #getUserEmail = (): string => {
+    return extractEmail(this.getToken());
   };
 }
 
@@ -121,6 +166,11 @@ const getTaskSelectorCounts = (filters: TaskFilters): TaskSelectorCounts => {
       taskMatchesSelectorStatus(task, HasSelectors.Any, filters),
     ).length,
   };
+};
+
+const extractEmail = (jwt: string): string => {
+  const decoded: any = jwt_decode(jwt);
+  return decoded.email;
 };
 
 const getMovementDirectionCounts = (
@@ -212,4 +262,8 @@ const taskMatches = (task: Task, filters: TaskFilters): boolean => {
     return false;
   }
   return true;
+};
+
+export const getClient = (getToken: () => string): TargetingApiClient => {
+  return new StubTargetingApiClient(getToken);
 };

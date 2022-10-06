@@ -26,6 +26,7 @@ Once the application is started you can view the application [here](http://local
 
 ## TODO
 
+- Use pluralise instead of manually building strings
 - Add unit tests
 - Implement claim task
 - Implement task details

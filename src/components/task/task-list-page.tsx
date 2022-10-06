@@ -6,10 +6,9 @@ import {
   TaskPageRequest,
   TaskCountsResponse,
   TaskFilters,
-  TaskSelectorCounts,
   TaskStatusCounts,
 } from '../../adapters/task/task';
-import { StubTargetingApiClient } from '../../adapters/task/targeting-api-client';
+import { getClient } from '../../adapters/task/targeting-api-client';
 import { TaskStatus } from '../../adapters/task/task-status';
 import Layout from '../layout/layout';
 import TaskList from './task-list';
@@ -105,7 +104,7 @@ const TaskListPage: FC<Props> = ({
   const [totalNumberOfTasks, setTotalNumberOfTasks] = useState<number>();
   const [filterRuleOptions, setFilterRuleOptions] = useState<FilterRule[]>();
 
-  const taskClient = new StubTargetingApiClient(getToken);
+  const taskClient = getClient(getToken);
 
   const toTotalNumberOfTasks = (statusCounts: TaskStatusCounts): number => {
     switch (status) {

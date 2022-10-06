@@ -10,16 +10,20 @@
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.18.10",
     "@react-keycloak/web": "^3.4.0",
+    "@types/jwt-decode": "^3.1.0",
     "@types/lodash": "^4.14.184",
+    "@types/uuid": "^8.3.4",
     "@ukhomeoffice/cop-react-components": "^1.9.5",
     "@ukhomeoffice/cop-react-form-renderer": "^3.19.0",
     "core-js": "^3.23.4",
     "dayjs": "^1.11.5",
+    "jwt-decode": "^3.1.2",
     "keycloak-js": "^18.0.1",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "regenerator-runtime": "^0.13.9"
+    "regenerator-runtime": "^0.13.9",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",

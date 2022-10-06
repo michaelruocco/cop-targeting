@@ -45,3 +45,7 @@ export const toLongDateTimeFormat = (date: Date): string => {
   }
   return dayjs.utc(date).format('D MMM YYYY [at] HH:mm');
 };
+
+export const utcNow = (): Date => {
+  return dayjs.utc().toDate();
+};
