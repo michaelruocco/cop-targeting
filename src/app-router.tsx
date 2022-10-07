@@ -15,14 +15,11 @@ const AppRouter: FC = () => {
     <BrowserRouter>
       <PnrAccessProvider>
         <Routes>
-          <Route path="/" element={<Navigate to="/roro-tasks" />} />
-          <Route path="/roro-tasks" element={<RoRoTaskListPage />} />
-          <Route path="/air-pax-tasks" element={<AirPaxTaskListPage />} />
-          <Route
-            path="/pnr-access-request"
-            element={<RequestPnrAccessPage />}
-          />
-          <Route path="/task-detail/:taskId" element={<TaskDetailPage />} />
+          <Route path="/" element={<Navigate to="/roro/tasks" />} />
+          <Route path="/roro/tasks" element={<RoRoTaskListPage />} />
+          <Route path="/air-passenger/tasks" element={<AirPaxTaskListPage />} />
+          <Route path="/pnr-access" element={<RequestPnrAccessPage />} />
+          <Route path="/task/:taskId" element={<TaskDetailPage />} />
         </Routes>
       </PnrAccessProvider>
     </BrowserRouter>

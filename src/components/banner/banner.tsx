@@ -72,13 +72,13 @@ const Banner: FC = () => {
               className={calculateNavListClassName()}
               aria-label="Navigation menu"
             >
-              <NavigationItem href="/roro-tasks" text="RoRo" />
+              <NavigationItem href="/roro/tasks" text="RoRo" />
               <NavigationItem
-                href="/air-pax-tasks"
+                href="/air-passenger/tasks"
                 text="Air Passenger"
                 visible={config.copTargetingApiEnabled}
               />
-              <NavigationItem href="/pnr-access-request" text="PNR Access" />
+              <NavigationItem href="/pnr-access" text="PNR Access" />
               <li className="govuk-header__navigation-item">
                 <Link
                   to="/"

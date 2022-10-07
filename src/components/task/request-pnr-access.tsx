@@ -20,7 +20,7 @@ const RequestPnrAccess: FC = () => {
       sessionId: getSessionId(),
       isRequested: isRequested,
     });
-    navigate('/air-pax-tasks');
+    navigate('/air-passenger/tasks');
   };
 
   return (

@@ -11,7 +11,7 @@ const ViewTaskDetailLink: FC<Props> = ({ task }) => {
   return (
     <Link
       className="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold"
-      to={`/task-detail/${task.id}`}
+      to={`/task/${task.id}`}
     >
       View Details
     </Link>

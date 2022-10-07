@@ -3,15 +3,17 @@ import { FC } from 'react';
 import Banner from '../banner/banner';
 
 class Props {
-  children: React.ReactNode | React.ReactNode[];
+  children?: React.ReactNode | React.ReactNode[];
+  beforeMain?: React.ReactNode | React.ReactNode[];
 }
 
-const Layout: FC<Props> = ({ children }) => {
+const Layout: FC<Props> = ({ children, beforeMain = null }) => {
   return (
     <>
       <Banner />
 
       <div className="govuk-width-container">
+        {beforeMain}
         <main className="govuk-main-wrapper" id="main-content" role="main">
           {children}
         </main>

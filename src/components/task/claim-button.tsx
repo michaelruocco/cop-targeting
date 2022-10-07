@@ -19,7 +19,7 @@ const ClaimButton: FC<Props> = ({ task }) => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.currentTarget.blur();
     taskClient.claimTask(task.id);
-    navigate(`/task-detail/${task.id}`);
+    navigate(`/task/${task.id}`);
   };
 
   return (

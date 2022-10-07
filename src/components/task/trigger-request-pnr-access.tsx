@@ -7,7 +7,7 @@ const TriggerRequestPnrAccess: FC = () => {
   const navigate = useNavigate();
 
   const triggerPnrAccessRequest = () => {
-    navigate('/pnr-access-request');
+    navigate('/pnr-access');
   };
 
   return (
