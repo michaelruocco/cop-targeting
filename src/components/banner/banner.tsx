@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 import NavigationItem from './navigation-item';
 import AuthContext from '../../contexts/auth/auth-context';
 import config from '../../config';
+import {
+  PNR_ACCESS_URL,
+  AIR_PASSENGER_TASK_LIST_URL,
+  RORO_TASK_LIST_URL,
+} from '../../adapters/links/links';
 
 const Banner: FC = () => {
   const { logout } = useContext(AuthContext);
@@ -72,13 +77,13 @@ const Banner: FC = () => {
               className={calculateNavListClassName()}
               aria-label="Navigation menu"
             >
-              <NavigationItem href="/roro/tasks" text="RoRo" />
+              <NavigationItem href={RORO_TASK_LIST_URL} text="RoRo" />
               <NavigationItem
-                href="/air-passenger/tasks"
+                href={AIR_PASSENGER_TASK_LIST_URL}
                 text="Air Passenger"
                 visible={config.copTargetingApiEnabled}
               />
-              <NavigationItem href="/pnr-access" text="PNR Access" />
+              <NavigationItem href={PNR_ACCESS_URL} text="PNR Access" />
               <li className="govuk-header__navigation-item">
                 <Link
                   to="/"

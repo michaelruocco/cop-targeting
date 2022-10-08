@@ -4,6 +4,7 @@ import AuthContext from '../../contexts/auth/auth-context';
 import PnrAccessContext from '../../contexts/pnr/pnr-access-context';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@ukhomeoffice/cop-react-components';
+import { AIR_PASSENGER_TASK_LIST_URL } from '../../adapters/links/links';
 
 const RequestPnrAccess: FC = () => {
   const { getSessionId } = useContext(AuthContext);
@@ -20,7 +21,7 @@ const RequestPnrAccess: FC = () => {
       sessionId: getSessionId(),
       isRequested: isRequested,
     });
-    navigate('/air-passenger/tasks');
+    navigate(AIR_PASSENGER_TASK_LIST_URL);
   };
 
   return (

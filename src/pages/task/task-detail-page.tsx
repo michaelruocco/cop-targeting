@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 import { FC, useContext, useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import AuthContext from '../../contexts/auth/auth-context';
 import { getClient } from '../../adapters/task/targeting-api-client';
 import { Task } from '../../adapters/task/task';
@@ -12,6 +12,8 @@ import NewTag from '../../components/tags/new-tag';
 import ClaimButton from '../../components/task/claim-button';
 import TaskAssignee from '../../components/task/task-assignee';
 import UnclaimButton from '../../components/task/unclaim-button';
+import BackToTaskList from '../../components/task/back-to-task-list';
+import { toTaskListLink } from '../../adapters/links/links';
 
 import '../../styles/task-detail-page.scss';
 
@@ -32,7 +34,7 @@ const TaskDetailPage: FC = () => {
 
   const handleTaskUnclaimed = (task: Task) => {
     taskClient.unclaimTask(task.id);
-    navigate('/');
+    navigate(toTaskListLink(task));
   };
 
   useEffect(() => {
@@ -42,13 +44,8 @@ const TaskDetailPage: FC = () => {
   if (isLoading) {
     return <LoadingSpinner />;
   }
-  const backLink = (
-    <Link className="govuk-back-link" to="/">
-      Back to task list
-    </Link>
-  );
   return (
-    <Layout beforeMain={backLink}>
+    <Layout beforeMain={<BackToTaskList task={task} />}>
       <div className="govuk-grid-row govuk-task-detail-header govuk-!-padding-bottom-9">
         <div className="govuk-grid-column-one-half">
           <h3 className="govuk-heading-xl govuk-!-margin-bottom-0">

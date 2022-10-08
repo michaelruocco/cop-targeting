@@ -4,6 +4,7 @@ import { Task } from '../../adapters/task/task';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../contexts/auth/auth-context';
 import { getClient } from '../../adapters/task/targeting-api-client';
+import { toTaskDetailLink } from '../../adapters/links/links';
 
 import '../../styles/link-button.scss';
 
@@ -19,7 +20,7 @@ const ClaimButton: FC<Props> = ({ task }) => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.currentTarget.blur();
     taskClient.claimTask(task.id);
-    navigate(`/task/${task.id}`);
+    navigate(toTaskDetailLink(task.id));
   };
 
   return (
