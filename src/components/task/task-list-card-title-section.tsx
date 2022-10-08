@@ -59,11 +59,24 @@ const TaskListCardTitleSection: FC<Props> = ({
   risks,
   onTaskUnclaimed,
 }) => {
+  const toName = (email: string) => {
+    const name = extractName(email);
+    return formatName(name);
+  };
+
+  const extractName = (email: string) => {
+    return email.split('@')[0];
+  };
+
+  const formatName = (name: string) => {
+    return name.replace('.', ' ');
+  };
+
   return (
     <section>
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-two-thirds">
-          <div className="task-title-container govuk-!-padding-top-2 govuk-!-padding-left-2">
+          <div className="govuk-!-padding-top-2 govuk-!-padding-left-2">
             <h4 className="govuk-heading-s task-heading">{task.id}</h4>
           </div>
           <div className="govuk-grid-column govuk-!-padding-left-2">
@@ -77,20 +90,17 @@ const TaskListCardTitleSection: FC<Props> = ({
             </h4>
           </div>
         </div>
-        <div className="govuk-grid-column-one-third govuk-!-padding-top-2 govuk-!-padding-right-3">
+        <div className="govuk-grid-column-one-third govuk-!-padding-top-2">
           {isNew(task) && (
             <div className="claim-button-container">
               <ClaimButton task={task} />
             </div>
           )}
-          <div className="claim-button-container">
-            {isAssigned(task) && (
-              <>
-                <TaskListAssignee task={task} />
-                <UnclaimButton task={task} onTaskUnclaimed={onTaskUnclaimed} />
-              </>
-            )}
-          </div>
+          {isAssigned(task) && (
+            <div className="claim-button-container">
+              <UnclaimButton task={task} onTaskUnclaimed={onTaskUnclaimed} />
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -18,9 +18,7 @@ const TaskDetailAssignee: FC<Props> = ({ task, onTaskUnclaimed }) => {
     return null;
   };
 
-  return (
-    <span className="govuk-body task-list--assignee">{toComponent(task)}</span>
-  );
+  return <span className="govuk-body">{toComponent(task)}</span>;
 };
 
 export default TaskDetailAssignee;
