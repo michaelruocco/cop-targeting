@@ -7,15 +7,11 @@ import { getClient } from '../../adapters/task/targeting-api-client';
 import { Task } from '../../adapters/task/task';
 import LoadingSpinner from '../../components/spinner/loading-spinner';
 import Layout from '../../components/layout/layout';
-import { TaskStatus } from '../../adapters/task/task-status';
-import NewTag from '../../components/tags/new-tag';
-import ClaimButton from '../../components/task/claim-button';
-import TaskAssignee from '../../components/task/task-assignee';
-import UnclaimButton from '../../components/task/unclaim-button';
 import BackToTaskList from '../../components/task/back-to-task-list';
 import { toTaskListLink } from '../../adapters/links/links';
 
 import '../../styles/task-detail-page.scss';
+import TaskDetailHeader from '../../components/task/task-detail-header';
 
 const TaskDetailPage: FC = () => {
   const [isLoading, setLoading] = useState<boolean>(true);
@@ -46,31 +42,7 @@ const TaskDetailPage: FC = () => {
   }
   return (
     <Layout beforeMain={<BackToTaskList task={task} />}>
-      <div className="govuk-grid-row govuk-task-detail-header govuk-!-padding-bottom-9">
-        <div className="govuk-grid-column-one-half">
-          <h3 className="govuk-heading-xl govuk-!-margin-bottom-0">
-            {task.id}
-          </h3>
-          {task.status === TaskStatus.New && (
-            <div>
-              <NewTag />
-            </div>
-          )}
-          {task.status === TaskStatus.InProgress && (
-            <TaskAssignee task={task} />
-          )}
-        </div>
-        {task.status === TaskStatus.New && (
-          <div className="govuk-grid-column-one-half task-actions--buttons">
-            <ClaimButton task={task} />
-          </div>
-        )}
-        {task.status === TaskStatus.InProgress && (
-          <div className="govuk-grid-column-one-half task-actions--buttons">
-            <UnclaimButton task={task} onTaskUnclaimed={handleTaskUnclaimed} />
-          </div>
-        )}
-      </div>
+      <TaskDetailHeader task={task} onTaskUnclaimed={handleTaskUnclaimed} />
       <p>{JSON.stringify(task)}</p>
     </Layout>
   );

@@ -245,3 +245,11 @@ export type TargetingIndicators = {
   count: number;
   score: number;
 };
+
+export const isNew = (task: Task): boolean => {
+  return task.status === TaskStatus.New;
+};
+
+export const isInProgress = (task: Task): boolean => {
+  return task.status === TaskStatus.InProgress;
+};

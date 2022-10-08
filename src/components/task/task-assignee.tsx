@@ -9,11 +9,14 @@ class Props {
 }
 
 const TaskAssignee: FC<Props> = ({ task }) => {
-  return (
-    <span className="govuk-body task-list--assignee">
-      Assigned to {task.assignee}&nbsp;
-    </span>
-  );
+  const toText = (task: Task): string => {
+    if (task.assignee) {
+      return `Assigned to ${task.assignee}`;
+    }
+    return null;
+  };
+
+  return <span className="govuk-body task-list--assignee">{toText(task)}</span>;
 };
 
 export default TaskAssignee;
