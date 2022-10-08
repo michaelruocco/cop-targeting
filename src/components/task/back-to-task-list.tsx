@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FC } from 'react';
 import { Task } from '../../adapters/task/task';
-import { toTaskListLink } from '../../adapters/links/links';
+import { toTaskListLink } from '../../adapters/ui/links';
 import { Link } from 'react-router-dom';
 
 import '../../styles/link-button.scss';

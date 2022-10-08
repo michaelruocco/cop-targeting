@@ -8,7 +8,7 @@ import { Task } from '../../adapters/task/task';
 import LoadingSpinner from '../../components/spinner/loading-spinner';
 import Layout from '../../components/layout/layout';
 import BackToTaskList from '../../components/task/back-to-task-list';
-import { toTaskListLink } from '../../adapters/links/links';
+import { toTaskListLink } from '../../adapters/ui/links';
 
 import '../../styles/task-detail-page.scss';
 import TaskDetailHeader from '../../components/task/task-detail-header';

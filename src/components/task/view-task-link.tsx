@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { Task } from '../../adapters/task/task';
-import { toTaskDetailLink } from '../../adapters/links/links';
+import { toTaskDetailLink } from '../../adapters/ui/links';
 
 class Props {
   task: Task;

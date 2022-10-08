@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 import { FC } from 'react';
-import { isInProgress, Task } from '../../adapters/task/task';
+import { Task } from '../../adapters/task/task';
 import TaskAssignee from './task-assignee';
 import StatusTag from '../tags/status-tag';
 import TaskDetailButtons from './task-detail-buttons';
@@ -23,7 +23,7 @@ const TaskDetailHeader: FC<Props> = ({ task, onTaskUnclaimed }) => {
         </div>
         <TaskAssignee task={task} />
       </div>
-      <TaskDetailButtons task={task} onTaskUnclaimed={onTaskUnclaimed} />
+      <TaskDetailButtons task={task} />
     </div>
   );
 };

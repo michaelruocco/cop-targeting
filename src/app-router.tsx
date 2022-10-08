@@ -7,7 +7,7 @@ import {
   AIR_PASSENGER_TASK_LIST_URL,
   RORO_TASK_LIST_URL,
   DEFAULT_LIST_PAGE_URL,
-} from './adapters/links/links';
+} from './adapters/ui/links';
 import { PnrAccessProvider } from './contexts/pnr/pnr-access-provider';
 import AirPaxTaskListPage from './pages/task/air-pax-task-list-page';
 import RequestPnrAccessPage from './pages/task/request-pnr-access-page';

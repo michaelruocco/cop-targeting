@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { FC } from 'react';
 import { Task } from '../../adapters/task/task';
+import { Button } from '@ukhomeoffice/cop-react-components';
+import { CLAIM_BUTTON_CLASS_NAME } from '../../adapters/ui/styles';
 
 import '../../styles/link-button.scss';
 
@@ -16,13 +18,9 @@ const UnclaimButton: FC<Props> = ({ task, onTaskUnclaimed }) => {
   };
 
   return (
-    <button
-      className="link-button govuk-!-font-weight-bold govuk-button"
-      type="button"
-      onClick={handleClick}
-    >
+    <Button className={CLAIM_BUTTON_CLASS_NAME} onClick={handleClick}>
       Unclaim
-    </button>
+    </Button>
   );
 };
 
