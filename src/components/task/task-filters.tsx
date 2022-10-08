@@ -113,7 +113,7 @@ export const TaskFilterComponent: FC<Props> = ({
           type="button"
           onClick={(e) => handleResetFilters(e)}
         >
-          Clear all filters
+          Clear all
         </button>
       </div>
       <div>

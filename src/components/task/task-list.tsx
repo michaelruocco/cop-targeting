@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FC } from 'react';
-import TaskHeader from './task-header';
+import TaskListHeader from './task-list-header';
 
 import { Task, TaskCountsResponse } from '../../adapters/task/task';
 import { formatTaskStatus, TaskStatus } from '../../adapters/task/task-status';
@@ -80,7 +80,7 @@ const TaskList: FC<Props> = ({
 
   return (
     <>
-      <TaskHeader text={headerText} />
+      <TaskListHeader text={headerText} />
       <div className="govuk-grid-row">
         <section className="govuk-grid-column-one-quarter">
           {filterComponent}

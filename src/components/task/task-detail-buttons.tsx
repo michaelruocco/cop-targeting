@@ -1,8 +1,10 @@
 import * as React from 'react';
 import * as _ from 'lodash';
-import { FC } from 'react';
-import { isInProgress, Task } from '../../adapters/task/task';
+import { FC, useContext } from 'react';
+import { isAssignedTo, isNew, Task } from '../../adapters/task/task';
 import { Button } from '@ukhomeoffice/cop-react-components';
+import AuthContext from '../../contexts/auth/auth-context';
+import ClaimButton from './claim-button';
 
 import '../../styles/task-detail-page.scss';
 
@@ -11,18 +13,22 @@ class Props {
 }
 
 const TaskDetailButtons: FC<Props> = ({ task }) => {
+  const { getUserEmail } = useContext(AuthContext);
   const toButtons = (task: Task) => {
-    if (isInProgress(task)) {
-      return inProgressButtons();
+    if (isNew(task)) {
+      return <ClaimButton task={task} />;
+    }
+    if (isAssignedTo(task, getUserEmail())) {
+      return taskActionButtons();
     }
     return null;
   };
 
-  const inProgressButtons = () => {
+  const taskActionButtons = () => {
     return (
       <div>
         <Button className="govuk-button--primary govuk-!-margin-right-1">
-          Issue
+          Issue target
         </Button>
         <Button className="govuk-button--secondary govuk-!-margin-right-1">
           Complete

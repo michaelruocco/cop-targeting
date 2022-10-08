@@ -246,10 +246,18 @@ export type TargetingIndicators = {
   score: number;
 };
 
+export const isAssignedTo = (task: Task, email: string): boolean => {
+  return task.assignee === email && isInProgress(task);
+};
+
+export const isAssigned = (task: Task): boolean => {
+  return task.assignee && isInProgress(task);
+};
+
 export const isNew = (task: Task): boolean => {
   return task.status === TaskStatus.New;
 };
 
-export const isInProgress = (task: Task): boolean => {
+const isInProgress = (task: Task): boolean => {
   return task.status === TaskStatus.InProgress;
 };

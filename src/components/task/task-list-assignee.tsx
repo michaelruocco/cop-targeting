@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { Task } from '../../adapters/task/task';
+import { isAssigned, Task } from '../../adapters/task/task';
 
 import '../../styles/link-button.scss';
 
@@ -8,9 +8,9 @@ class Props {
   task: Task;
 }
 
-const TaskAssignee: FC<Props> = ({ task }) => {
+const TaskListAssignee: FC<Props> = ({ task }) => {
   const toText = (task: Task): string => {
-    if (task.assignee) {
+    if (isAssigned(task)) {
       return `Assigned to ${task.assignee}`;
     }
     return null;
@@ -19,4 +19,4 @@ const TaskAssignee: FC<Props> = ({ task }) => {
   return <span className="govuk-body task-list--assignee">{toText(task)}</span>;
 };
 
-export default TaskAssignee;
+export default TaskListAssignee;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as _ from 'lodash';
 import { FC } from 'react';
 import { Task } from '../../adapters/task/task';
-import TaskAssignee from './task-assignee';
+import TaskDetailAssignee from './task-detail-assignee';
 import StatusTag from '../tags/status-tag';
 import TaskDetailButtons from './task-detail-buttons';
 
@@ -21,7 +21,7 @@ const TaskDetailHeader: FC<Props> = ({ task, onTaskUnclaimed }) => {
         <div>
           <StatusTag status={task.status} />
         </div>
-        <TaskAssignee task={task} />
+        <TaskDetailAssignee task={task} onTaskUnclaimed={onTaskUnclaimed} />
       </div>
       <TaskDetailButtons task={task} />
     </div>

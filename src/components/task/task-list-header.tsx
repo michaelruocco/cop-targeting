@@ -5,7 +5,7 @@ class Props {
   text: string;
 }
 
-const TaskHeader: FC<Props> = ({ text }) => {
+const TaskListHeader: FC<Props> = ({ text }) => {
   return (
     <div className="heading-container govuk-!-margin-bottom-8">
       <h1 className="govuk-heading-xl govuk-!-margin-bottom-0 govuk-!-padding-right-1">
@@ -15,4 +15,4 @@ const TaskHeader: FC<Props> = ({ text }) => {
   );
 };
 
-export default TaskHeader;
+export default TaskListHeader;

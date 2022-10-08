@@ -11,6 +11,7 @@ class Props {
 const AuthProvider: FC<Props> = ({ children }) => {
   const [token, setToken] = useState(null);
   const [sessionId, setSessionId] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
   const [tokenRefreshInterval, setTokenRefreshInterval] = useState(3500000);
 
   const [keycloakClient, setKeycloakClient] = useState(
@@ -22,12 +23,16 @@ const AuthProvider: FC<Props> = ({ children }) => {
     keycloakClient.logout({ redirectUri: uri });
   };
 
-  const getToken = () => {
+  const getToken = (): string => {
     return token;
   };
 
-  const getSessionId = () => {
+  const getSessionId = (): string => {
     return sessionId;
+  };
+
+  const getUserEmail = (): string => {
+    return userEmail;
   };
 
   const calculateInterval = (expirySeconds: number) => {
@@ -55,6 +60,7 @@ const AuthProvider: FC<Props> = ({ children }) => {
         setKeycloakClient(keycloakClient);
         setToken(keycloakClient.token);
         setSessionId(keycloakClient.tokenParsed.sessionId);
+        setUserEmail(keycloakClient.tokenParsed.email);
         setTokenRefreshInterval(
           calculateInterval(keycloakClient.tokenParsed.exp),
         );
@@ -66,7 +72,12 @@ const AuthProvider: FC<Props> = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ logout: logout, getToken: getToken, getSessionId: getSessionId }}
+      value={{
+        logout: logout,
+        getToken: getToken,
+        getSessionId: getSessionId,
+        getUserEmail: getUserEmail,
+      }}
     >
       {children}
     </AuthContext.Provider>

@@ -7,9 +7,9 @@ import {
   Rule,
   Task,
 } from '../../adapters/task/task';
-import { TaskStatus } from '../../adapters/task/task-status';
+import { isNew, isAssigned } from '../../adapters/task/task';
 import ClaimButton from './claim-button';
-import TaskAssignee from './task-assignee';
+import TaskListAssignee from './task-list-assignee';
 import UnclaimButton from './unclaim-button';
 
 class Props {
@@ -54,24 +54,6 @@ function formatThreatTypes(threatTypes: string[]): string {
   return `${firstType} and ${threatTypes.length - 1} other ${suffix}`;
 }
 
-const shouldShowClaimButton = (task: Task): boolean => {
-  return task.status === TaskStatus.New;
-};
-
-const shouldShowAssignee = (task: Task): boolean => {
-  if (task.assignee) {
-    return true;
-  }
-  return false;
-};
-
-const shouldShowUnclaimButton = (task: Task): boolean => {
-  if (task.assignee) {
-    return task.status === TaskStatus.InProgress;
-  }
-  return false;
-};
-
 const TaskListCardTitleSection: FC<Props> = ({
   task,
   risks,
@@ -96,15 +78,17 @@ const TaskListCardTitleSection: FC<Props> = ({
           </div>
         </div>
         <div className="govuk-grid-column-one-third govuk-!-padding-top-2 govuk-!-padding-right-3">
-          {shouldShowClaimButton(task) && (
+          {isNew(task) && (
             <div className="claim-button-container">
               <ClaimButton task={task} />
             </div>
           )}
           <div className="claim-button-container">
-            {shouldShowAssignee(task) && <TaskAssignee task={task} />}
-            {shouldShowUnclaimButton(task) && (
-              <UnclaimButton task={task} onTaskUnclaimed={onTaskUnclaimed} />
+            {isAssigned(task) && (
+              <>
+                <TaskListAssignee task={task} />
+                <UnclaimButton task={task} onTaskUnclaimed={onTaskUnclaimed} />
+              </>
             )}
           </div>
         </div>
