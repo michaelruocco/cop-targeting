@@ -12,6 +12,7 @@ import { toTaskListLink } from '../../adapters/ui/links';
 
 import '../../styles/task-detail-page.scss';
 import TaskDetailHeader from '../../components/task/task-detail-header';
+import TaskDetailActivityList from './task-detail-activity-list';
 
 const TaskDetailPage: FC = () => {
   const [isLoading, setLoading] = useState<boolean>(true);
@@ -43,7 +44,14 @@ const TaskDetailPage: FC = () => {
   return (
     <Layout beforeMain={<BackToTaskList task={task} />}>
       <TaskDetailHeader task={task} onTaskUnclaimed={handleTaskUnclaimed} />
-      <p>{JSON.stringify(task)}</p>
+      <div className="govuk-grid-row">
+        <div className="govuk-grid-column-two-thirds">
+          <p>{JSON.stringify(task)}</p>
+        </div>
+        <div className="govuk-grid-column-one-third">
+          <TaskDetailActivityList notes={task.notes} />
+        </div>
+      </div>
     </Layout>
   );
 };

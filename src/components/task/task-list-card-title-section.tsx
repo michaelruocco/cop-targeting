@@ -9,7 +9,6 @@ import {
 } from '../../adapters/task/task';
 import { isNew, isAssigned } from '../../adapters/task/task';
 import ClaimButton from './claim-button';
-import TaskListAssignee from './task-list-assignee';
 import UnclaimButton from './unclaim-button';
 
 class Props {

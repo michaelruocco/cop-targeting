@@ -97,7 +97,7 @@ class StubTargetingApiClient implements TargetingApiClient {
     const task = await this.getTask(taskId);
     task.status = TaskStatus.InProgress;
     task.assignee = this.#getUserEmail();
-    task.notes.push(this.#toNote('task claimed'));
+    task.notes.unshift(this.#toNote('task claimed'));
     return task;
   };
 
@@ -105,7 +105,7 @@ class StubTargetingApiClient implements TargetingApiClient {
     const task = await this.getTask(taskId);
     task.status = TaskStatus.New;
     task.assignee = null;
-    task.notes.push(this.#toNote('task unclaimed'));
+    task.notes.unshift(this.#toNote('task unclaimed'));
     return task;
   };
 

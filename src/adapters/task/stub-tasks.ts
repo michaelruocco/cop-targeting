@@ -20,7 +20,7 @@ export const stubTasks: Task[] = [
         id: 'd78c172e-4f57-4c96-854c-7fa3a5c084c6',
         content: 'task created',
         timestamp: new Date('2022-08-25T15:12:14.379226886Z'),
-        userId: 'charles.okafor@digital.homeoffice.gov.uk',
+        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
       },
     ],
     movement: {
@@ -504,7 +504,7 @@ export const stubTasks: Task[] = [
         id: '0582b0e5-fc5a-4040-ae36-a5fa701f3154',
         content: 'task created',
         timestamp: new Date('2022-08-25T15:12:43.846544253Z'),
-        userId: 'charles.okafor@digital.homeoffice.gov.uk',
+        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
       },
     ],
     movement: {
@@ -903,7 +903,7 @@ export const stubTasks: Task[] = [
         id: '4aff96cd-882d-4db9-9e99-4d9d82bc65b0',
         content: 'task created',
         timestamp: new Date('2022-08-25T15:13:23.655805008Z'),
-        userId: 'acceptance-cerberus-user@system.local',
+        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
       },
     ],
     movement: {
@@ -1342,7 +1342,7 @@ export const stubTasks: Task[] = [
         id: '97e8cb26-1009-44cd-a702-ab986597495a',
         content: 'task created',
         timestamp: new Date('2022-08-26T14:19:52.642018452Z'),
-        userId: 'cypressuser-cerberus@lodev.xyz',
+        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
       },
     ],
     movement: {
@@ -1787,7 +1787,7 @@ export const stubTasks: Task[] = [
         id: 'bb79a431-29d7-4dd9-9260-c7a465a000bf',
         content: 'task created',
         timestamp: new Date('2022-08-25T17:15:37.782320462Z'),
-        userId: 'cypressuser-cerberus@lodev.xyz',
+        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
       },
     ],
     movement: {
@@ -2008,7 +2008,7 @@ export const stubTasks: Task[] = [
         id: '1b43e520-40cd-448e-94b9-8db8b8a35476',
         content: 'task created',
         timestamp: new Date('2022-08-25T17:18:28.225671844Z'),
-        userId: 'cypressuser-cerberus@lodev.xyz',
+        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
       },
       {
         id: '43c7b8bf-b96f-4963-91a6-c74c5b0f7c3f',
@@ -2393,7 +2393,7 @@ export const stubTasks: Task[] = [
         id: '62a0a965-80fb-43ff-875f-20ec14ca1cbc',
         content: 'task created',
         timestamp: new Date('2022-08-25T19:11:21.225671844Z'),
-        userId: 'cypressuser-cerberus@lodev.xyz',
+        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
       },
       {
         id: '25720f2e-b7c9-4a3b-8a07-b56cbed25529',
@@ -2784,7 +2784,7 @@ export const stubTasks: Task[] = [
         id: '62a0a965-80fb-43ff-875f-20ec14ca1cbc',
         content: 'task created',
         timestamp: new Date('2022-08-25T19:11:21.225671844Z'),
-        userId: 'cypressuser-cerberus@lodev.xyz',
+        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
       },
       {
         id: '25720f2e-b7c9-4a3b-8a07-b56cbed25529',
@@ -3363,7 +3363,7 @@ export const stubTasks: Task[] = [
         id: 'd78c172e-4f57-4c96-854c-7fa3a5c084c6',
         content: 'task created',
         timestamp: new Date('2022-08-25T15:12:14.379226886Z'),
-        userId: 'charles.okafor@digital.homeoffice.gov.uk',
+        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
       },
     ],
     movement: {
@@ -3788,7 +3788,7 @@ export const stubTasks: Task[] = [
         id: 'd78c172e-4f57-4c96-854c-7fa3a5c084c6',
         content: 'task created',
         timestamp: new Date('2022-08-25T15:12:14.379226886Z'),
-        userId: 'charles.okafor@digital.homeoffice.gov.uk',
+        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
       },
     ],
     movement: {
@@ -4205,7 +4205,7 @@ export const stubTasks: Task[] = [
         id: 'd78c172e-4f57-4c96-854c-7fa3a5c084c6',
         content: 'task created',
         timestamp: new Date('2022-08-25T15:12:14.379226886Z'),
-        userId: 'charles.okafor@digital.homeoffice.gov.uk',
+        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
       },
     ],
     movement: {
@@ -4618,7 +4618,7 @@ export const stubTasks: Task[] = [
         id: 'd78c172e-4f57-4c96-854c-7fa3a5c084c6',
         content: 'task created',
         timestamp: new Date('2022-08-25T15:12:14.379226886Z'),
-        userId: 'charles.okafor@digital.homeoffice.gov.uk',
+        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
       },
     ],
     movement: {
@@ -4992,7 +4992,7 @@ export const stubTasks: Task[] = [
         id: 'd78c172e-4f57-4c96-854c-7fa3a5c084c6',
         content: 'task created',
         timestamp: new Date('2022-08-25T15:12:14.379226886Z'),
-        userId: 'charles.okafor@digital.homeoffice.gov.uk',
+        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
       },
     ],
     movement: {
