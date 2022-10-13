@@ -2005,16 +2005,16 @@ export const stubTasks: Task[] = [
     latestVersionNumber: 1,
     notes: [
       {
-        id: '1b43e520-40cd-448e-94b9-8db8b8a35476',
-        content: 'task created',
-        timestamp: new Date('2022-08-25T17:18:28.225671844Z'),
-        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
-      },
-      {
         id: '43c7b8bf-b96f-4963-91a6-c74c5b0f7c3f',
         content: 'task claimed',
         timestamp: new Date('2022-08-25T18:19:29.225671844Z'),
         userId: 'michael.ruocco@digital.homeoffice.gov.uk',
+      },
+      {
+        id: '1b43e520-40cd-448e-94b9-8db8b8a35476',
+        content: 'task created',
+        timestamp: new Date('2022-08-25T17:18:28.225671844Z'),
+        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
       },
     ],
     movement: {
@@ -2390,10 +2390,10 @@ export const stubTasks: Task[] = [
     latestVersionNumber: 1,
     notes: [
       {
-        id: '62a0a965-80fb-43ff-875f-20ec14ca1cbc',
-        content: 'task created',
-        timestamp: new Date('2022-08-25T19:11:21.225671844Z'),
-        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
+        id: 'aa3138fa-647f-4357-af40-6d6768d70661',
+        content: 'task issued',
+        timestamp: new Date('2022-08-25T21:13:23.225671844Z'),
+        userId: 'michael.ruocco@digital.homeoffice.gov.uk',
       },
       {
         id: '25720f2e-b7c9-4a3b-8a07-b56cbed25529',
@@ -2402,10 +2402,10 @@ export const stubTasks: Task[] = [
         userId: 'michael.ruocco@digital.homeoffice.gov.uk',
       },
       {
-        id: 'aa3138fa-647f-4357-af40-6d6768d70661',
-        content: 'task issued',
-        timestamp: new Date('2022-08-25T21:13:23.225671844Z'),
-        userId: 'michael.ruocco@digital.homeoffice.gov.uk',
+        id: '62a0a965-80fb-43ff-875f-20ec14ca1cbc',
+        content: 'task created',
+        timestamp: new Date('2022-08-25T19:11:21.225671844Z'),
+        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
       },
     ],
     movement: {
@@ -2781,15 +2781,9 @@ export const stubTasks: Task[] = [
     latestVersionNumber: 1,
     notes: [
       {
-        id: '62a0a965-80fb-43ff-875f-20ec14ca1cbc',
-        content: 'task created',
-        timestamp: new Date('2022-08-25T19:11:21.225671844Z'),
-        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
-      },
-      {
-        id: '25720f2e-b7c9-4a3b-8a07-b56cbed25529',
-        content: 'task claimed',
-        timestamp: new Date('2022-08-25T20:12:22.225671844Z'),
+        id: 'aa3138fa-647f-4357-af40-6d6768d70661',
+        content: 'task dismissed',
+        timestamp: new Date('2022-08-25T21:14:24.225671844Z'),
         userId: 'michael.ruocco@digital.homeoffice.gov.uk',
       },
       {
@@ -2799,10 +2793,16 @@ export const stubTasks: Task[] = [
         userId: 'michael.ruocco@digital.homeoffice.gov.uk',
       },
       {
-        id: 'aa3138fa-647f-4357-af40-6d6768d70661',
-        content: 'task dismissed',
-        timestamp: new Date('2022-08-25T21:13:23.225671844Z'),
+        id: '25720f2e-b7c9-4a3b-8a07-b56cbed25529',
+        content: 'task claimed',
+        timestamp: new Date('2022-08-25T20:12:22.225671844Z'),
         userId: 'michael.ruocco@digital.homeoffice.gov.uk',
+      },
+      {
+        id: '62a0a965-80fb-43ff-875f-20ec14ca1cbc',
+        content: 'task created',
+        timestamp: new Date('2022-08-25T19:11:21.225671844Z'),
+        userId: 'rules.based.targeting@digital.homeoffice.gov.uk',
       },
     ],
     movement: {
