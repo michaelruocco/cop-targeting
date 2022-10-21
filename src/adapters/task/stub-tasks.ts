@@ -2781,13 +2781,13 @@ export const stubTasks: Task[] = [
     latestVersionNumber: 1,
     notes: [
       {
-        id: 'aa3138fa-647f-4357-af40-6d6768d70661',
+        id: 'aa3138fa-647f-4357-af40-6d6768d70662',
         content: 'task dismissed',
         timestamp: new Date('2022-08-25T21:14:24.225671844Z'),
         userId: 'michael.ruocco@digital.homeoffice.gov.uk',
       },
       {
-        id: 'aa3138fa-647f-4357-af40-6d6768d70661',
+        id: 'aa3138fa-647f-4357-af40-6d6768d70663',
         content: 'task issued',
         timestamp: new Date('2022-08-25T21:13:23.225671844Z'),
         userId: 'michael.ruocco@digital.homeoffice.gov.uk',
@@ -2957,9 +2957,39 @@ export const stubTasks: Task[] = [
             description: 'Paid by cash',
             score: 10,
           },
+          {
+            id: 48,
+            name: 'EMPTY-VEHICLE',
+            description: 'Empty Vehicle',
+            score: 15,
+          },
+          {
+            id: 49,
+            name: 'EMPTY-TRAILER-ROUND-TRIP',
+            description: 'Empty trailer for round trip',
+            score: 20,
+          },
+          {
+            id: 50,
+            name: 'LATE-BOOKING-TOURIST-1-HOUR',
+            description: 'Late booking tourist (under 1 hour)',
+            score: 10,
+          },
+          {
+            id: 51,
+            name: 'PORT-HOP-INBOUND',
+            description: 'UK port hop inbound',
+            score: 5,
+          },
+          {
+            id: 52,
+            name: 'PREVIOUS-TRAVEL-AS-TOURIST-VEHICLE',
+            description: 'Has previously travelled as tourist (vehicle)',
+            score: 5,
+          },
         ],
-        count: 2,
-        score: 15,
+        count: 7,
+        score: 70,
       },
       matchedRules: [
         {

@@ -471,8 +471,9 @@
 }
 
 .govuk-main-wrapper {
+  padding-top: 10px;
   .govuk-grid-row {
-    padding-bottom: 5px !important;
+    padding-bottom: 5px;
   }
   .govuk-task-detail-header {
     border-bottom: 4px solid #b1b4b6;

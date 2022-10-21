@@ -12,6 +12,7 @@ import { toTaskListLink } from '../../adapters/ui/links';
 
 import '../../styles/task-detail-page.scss';
 import TaskDetailHeader from '../../components/task/task-detail-header';
+import TaskDetailTargetingIndicators from '../../components/task/task-detail-targeting-indicators';
 import TaskDetailActivityList from './task-detail-activity-list';
 
 const TaskDetailPage: FC = () => {
@@ -44,9 +45,15 @@ const TaskDetailPage: FC = () => {
   return (
     <Layout beforeMain={<BackToTaskList task={task} />}>
       <TaskDetailHeader task={task} onTaskUnclaimed={handleTaskUnclaimed} />
+      <TaskDetailTargetingIndicators
+        targetingIndicators={task.risks.targetingIndicators}
+      />
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-two-thirds">
-          <p>{JSON.stringify(task)}</p>
+          <div className="govuk-grid-row"></div>
+          <div className="govuk-grid-row" style={{ marginTop: '10px' }}>
+            <p style={{ wordWrap: 'break-word' }}>{JSON.stringify(task)}</p>
+          </div>
         </div>
         <div className="govuk-grid-column-one-third">
           <TaskDetailActivityList notes={task.notes} />

@@ -15,7 +15,7 @@ class Props {
 
 const TaskDetailHeader: FC<Props> = ({ task, onTaskUnclaimed }) => {
   return (
-    <div className="govuk-grid-row govuk-task-detail-header govuk-!-padding-bottom-9">
+    <div className="govuk-grid-row govuk-task-detail-header govuk-!-padding-bottom-6">
       <div className="govuk-grid-column-one-half">
         <h3 className="govuk-heading-xl govuk-!-margin-bottom-0">{task.id}</h3>
         <div>
