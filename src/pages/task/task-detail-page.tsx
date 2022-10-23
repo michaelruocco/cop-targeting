@@ -9,11 +9,11 @@ import LoadingSpinner from '../../components/spinner/loading-spinner';
 import Layout from '../../components/layout/layout';
 import BackToTaskList from '../../components/task/back-to-task-list';
 import { toTaskListLink } from '../../adapters/ui/links';
+import TaskDetailHeader from '../../components/task/task-detail-header';
+import TaskDetailActivityList from './task-detail-activity-list';
+import TaskDetailRisks from '../../components/task/task-detail-risks';
 
 import '../../styles/task-detail-page.scss';
-import TaskDetailHeader from '../../components/task/task-detail-header';
-import TaskDetailTargetingIndicators from '../../components/task/task-detail-targeting-indicators';
-import TaskDetailActivityList from './task-detail-activity-list';
 
 const TaskDetailPage: FC = () => {
   const [isLoading, setLoading] = useState<boolean>(true);
@@ -45,9 +45,7 @@ const TaskDetailPage: FC = () => {
   return (
     <Layout beforeMain={<BackToTaskList task={task} />}>
       <TaskDetailHeader task={task} onTaskUnclaimed={handleTaskUnclaimed} />
-      <TaskDetailTargetingIndicators
-        targetingIndicators={task.risks.targetingIndicators}
-      />
+      <TaskDetailRisks risks={task.risks} />
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-two-thirds">
           <div className="govuk-grid-row"></div>

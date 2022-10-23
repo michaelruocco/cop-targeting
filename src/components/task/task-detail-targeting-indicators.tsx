@@ -61,7 +61,6 @@ const TaskDetailTargetingIndicators: FC<Props> = ({ targetingIndicators }) => {
     if (!chunks) {
       return null;
     }
-    console.log(`chunks ${JSON.stringify(chunks)}`);
     return chunks.map((chunk) => {
       if (!chunk) {
         return null;
