@@ -561,7 +561,8 @@
   }
 
   .govuk-accordion__section-heading {
-    display: none;
+    line-height: 0px;
+    font-size: 0;
   }
 
   .govuk-accordion__section-summary {

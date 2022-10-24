@@ -16,23 +16,26 @@ const TaskDetailSelectorGroups: FC<Props> = ({ selectorGroups }) => {
       return null;
     }
     return (
-      <div key="selector-groups-header" className="govuk-risks-grid">
-        <div className="govuk-grid-column-one-third">
-          <span className="govuk-!-font-weight-bold">Group Reference</span>
-        </div>
-        <div className="govuk-grid-column-one-third">
-          <span className="govuk-!-font-weight-bold">Threat Category</span>
-        </div>
-        <div className="govuk-grid-column-one-third">
-          <span className="govuk-!-font-weight-bold">Threat Type</span>
+      <div style={{ paddingRight: '40px' }}>
+        <div key="selector-groups-header" className="govuk-risks-grid">
+          <div className="govuk-grid-column-one-third">
+            <span className="govuk-!-font-weight-bold">Group Reference</span>
+          </div>
+          <div className="govuk-grid-column-one-third">
+            <span className="govuk-!-font-weight-bold">Threat Category</span>
+          </div>
+          <div className="govuk-grid-column-one-third">
+            <span className="govuk-!-font-weight-bold">Threat Type</span>
+          </div>
         </div>
       </div>
     );
   };
 
-  const toSelectorGroupRow = (group: SelectorGroup) => {
+  const toSelectorGroupRow = (group: SelectorGroup, index: number) => {
+    const key = `selector-group-row-${index}`;
     return (
-      <div className="govuk-risks-grid">
+      <div key={key} className="govuk-risks-grid">
         <div className="govuk-grid-column-one-third">
           {group.groupReference}
         </div>
@@ -49,30 +52,45 @@ const TaskDetailSelectorGroups: FC<Props> = ({ selectorGroups }) => {
     );
   };
 
-  const toSelectorGroupRowDetail = (group: SelectorGroup, index: number) => {
-    const key = `selector-group-row-${index}`;
-    return (
-      <AccordionItem
-        key={key}
-        heading={null}
-        summary={toSelectorGroupRow(group)}
-        expanded={false}
-      >
-        <p>detail will go here</p>
-      </AccordionItem>
-    );
-  };
-
   const toSelectorGroupRowAccordion = (group: SelectorGroup, index: number) => {
     const key = `selector-group-row-${index}`;
     return (
       <AccordionItem
         key={key}
         heading={null}
-        summary={toSelectorGroupRow(group)}
+        summary={toSelectorGroupRow(group, index)}
         expanded={false}
       >
-        {<p>detail will go here</p>}
+        <div className="govuk-risks-grid">
+          <div className="govuk-grid-column-one-third">
+            <span className="govuk-!-font-weight-bold">Description</span>
+          </div>
+          <div className="govuk-grid-column-one-third">
+            <span className="govuk-!-font-weight-bold">Agency</span>
+          </div>
+          <div className="govuk-grid-column-one-third">
+            <span className="govuk-!-font-weight-bold">Rule Version</span>
+          </div>
+        </div>
+        <div className="govuk-risks-grid" style={{ marginBottom: '10px' }}>
+          <div className="govuk-grid-column-one-third">
+            This text would provide more detail on the rule than can be given in
+            the name, along with some rationale
+          </div>
+          <div className="govuk-grid-column-one-third">NBTC</div>
+          <div className="govuk-grid-column-one-third">36</div>
+        </div>
+        <div className="govuk-risks-grid">
+          <div className="govuk-grid-column-one-third">
+            <span className="govuk-!-font-weight-bold">Risk Indicators</span>
+          </div>
+        </div>
+        <div className="govuk-risks-grid">
+          <ol>
+            <li>Flight number is AF1234</li>
+            <li>Mode is Air passenger</li>
+          </ol>
+        </div>
       </AccordionItem>
     );
   };
