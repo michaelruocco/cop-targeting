@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as _ from 'lodash';
 import { FC } from 'react';
 import { SelectorGroup, SelectorGroups } from '../../adapters/task/task';
+import { Accordion, AccordionItem } from '@ukhomeoffice/cop-react-components';
 
 import '../../styles/task-detail-page.scss';
 
@@ -15,10 +16,7 @@ const TaskDetailSelectorGroups: FC<Props> = ({ selectorGroups }) => {
       return null;
     }
     return (
-      <div
-        className="govuk-task-details-grid"
-        style={{ padding: '5px', marginBottom: '0px' }}
-      >
+      <div key="selector-groups-header" className="govuk-risks-grid">
         <div className="govuk-grid-column-one-third">
           <span className="govuk-!-font-weight-bold">Group Reference</span>
         </div>
@@ -34,10 +32,7 @@ const TaskDetailSelectorGroups: FC<Props> = ({ selectorGroups }) => {
 
   const toSelectorGroupRow = (group: SelectorGroup) => {
     return (
-      <div
-        className="govuk-task-details-grid"
-        style={{ padding: '5px', marginBottom: '0px' }}
-      >
+      <div className="govuk-risks-grid">
         <div className="govuk-grid-column-one-third">
           {group.groupReference}
         </div>
@@ -54,8 +49,38 @@ const TaskDetailSelectorGroups: FC<Props> = ({ selectorGroups }) => {
     );
   };
 
+  const toSelectorGroupRowDetail = (group: SelectorGroup, index: number) => {
+    const key = `selector-group-row-${index}`;
+    return (
+      <AccordionItem
+        key={key}
+        heading={null}
+        summary={toSelectorGroupRow(group)}
+        expanded={false}
+      >
+        <p>detail will go here</p>
+      </AccordionItem>
+    );
+  };
+
+  const toSelectorGroupRowAccordion = (group: SelectorGroup, index: number) => {
+    const key = `selector-group-row-${index}`;
+    return (
+      <AccordionItem
+        key={key}
+        heading={null}
+        summary={toSelectorGroupRow(group)}
+        expanded={false}
+      >
+        {<p>detail will go here</p>}
+      </AccordionItem>
+    );
+  };
+
   const toGroupRows = (groups: SelectorGroups) => {
-    return groups.groups.map((group) => toSelectorGroupRow(group));
+    return groups.groups.map((group, index) =>
+      toSelectorGroupRowAccordion(group, index),
+    );
   };
 
   return (
@@ -73,7 +98,9 @@ const TaskDetailSelectorGroups: FC<Props> = ({ selectorGroups }) => {
         </div>
       </div>
       {toHeader(selectorGroups)}
-      {toGroupRows(selectorGroups)}
+      <Accordion id="selector-group-accordion" classModifiers="risks">
+        {toGroupRows(selectorGroups)}
+      </Accordion>
     </div>
   );
 };

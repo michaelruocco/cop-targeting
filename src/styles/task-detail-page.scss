@@ -515,6 +515,64 @@
   }
 }
 
+.hods-accordion {
+  border: 0px;
+  background-color: #ffffff;
+}
+
+.govuk-risks-grid {
+  font-family: 'GDS Transport', arial, sans-serif;
+  display: grid;
+  padding: 5px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin-bottom: 0px;
+  .govuk-risks-grid-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 5px;
+    padding: 5px 5px 5px 0px;
+    &.bottom-border {
+      margin-bottom: 5px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #b1b4b6;
+    }
+  }
+  .govuk-grid-column-one-third {
+    padding: 0 10px 0 0;
+    width: 100%;
+  }
+}
+
+.govuk-accordion--risks {
+  margin-bottom: 0px;
+
+  .govuk-accordion__controls {
+    display: none;
+  }
+
+  .govuk-accordion__section {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: none;
+  }
+
+  .govuk-accordion__section-header {
+    padding: 0px;
+  }
+
+  .govuk-accordion__section-heading {
+    display: none;
+  }
+
+  .govuk-accordion__section-summary {
+    margin: 0px;
+  }
+
+  .govuk-accordion__section-content {
+    border: 0px;
+  }
+}
+
 .data-container {
   padding-left: 10px;
 }

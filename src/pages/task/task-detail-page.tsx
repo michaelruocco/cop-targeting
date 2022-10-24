@@ -42,6 +42,16 @@ const TaskDetailPage: FC = () => {
   if (isLoading) {
     return <LoadingSpinner />;
   }
+
+  const items = [
+    {
+      expanded: false,
+      heading: <div>heading</div>,
+      summary: <div>summary</div>,
+      child: <div>child</div>,
+    },
+  ];
+
   return (
     <Layout beforeMain={<BackToTaskList task={task} />}>
       <TaskDetailHeader task={task} onTaskUnclaimed={handleTaskUnclaimed} />

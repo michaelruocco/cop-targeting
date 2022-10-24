@@ -33,8 +33,10 @@ const TaskDetailRules: FC<Props> = ({ rules }) => {
   };
 
   const toRuleRow = (rule: Rule) => {
+    const key = `rule-${rule.id}`;
     return (
       <div
+        key={key}
         className="govuk-task-details-grid"
         style={{ padding: '5px', marginBottom: '0px' }}
       >
