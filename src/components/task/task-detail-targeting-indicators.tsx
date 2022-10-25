@@ -5,6 +5,7 @@ import {
   TargetingIndicators,
   TargetingIndicator,
 } from '../../adapters/task/task';
+import * as pluralise from 'pluralize';
 
 import '../../styles/task-detail-page.scss';
 
@@ -87,17 +88,10 @@ const TaskDetailTargetingIndicators: FC<Props> = ({ targetingIndicators }) => {
         style={{ marginBottom: '10px', paddingBottom: '10px' }}
       >
         <div className="govuk-grid-column-one-third">
-          <span className="govuk-!-font-weight-bold">Targeting Indicators</span>
-        </div>
-        <div className="govuk-grid-column-two-thirds">
           <span className="govuk-!-font-weight-bold">
-            {targetingIndicators.score}
-          </span>{' '}
-          scored from{' '}
-          <span className="govuk-!-font-weight-bold">
-            {targetingIndicators.count}
-          </span>{' '}
-          matches
+            {pluralise('targeting indicators', targetingIndicators.count, true)}{' '}
+            matched (total score {targetingIndicators.score})
+          </span>
         </div>
       </div>
       {toIndicatorRows(targetingIndicators.indicators)}

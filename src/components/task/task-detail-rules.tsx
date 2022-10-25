@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as _ from 'lodash';
 import { FC } from 'react';
 import { Rule } from '../../adapters/task/task';
+import * as pluralise from 'pluralize';
 
 import '../../styles/task-detail-page.scss';
 
@@ -67,7 +68,7 @@ const TaskDetailRules: FC<Props> = ({ rules }) => {
       >
         <div className="govuk-grid-column-one-third">
           <span className="govuk-!-font-weight-bold">
-            {rules.length} rules matched
+            {pluralise('rules', rules.length, true)} matched
           </span>
         </div>
       </div>

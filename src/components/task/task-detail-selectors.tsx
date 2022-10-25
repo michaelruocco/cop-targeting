@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { FC } from 'react';
 import { SelectorGroup, SelectorGroups } from '../../adapters/task/task';
 import { Accordion, AccordionItem } from '@ukhomeoffice/cop-react-components';
+import * as pluralise from 'pluralize';
 
 import '../../styles/task-detail-page.scss';
 
@@ -110,8 +111,12 @@ const TaskDetailSelectorGroups: FC<Props> = ({ selectorGroups }) => {
       >
         <div className="govuk-grid-column-one-third">
           <span className="govuk-!-font-weight-bold">
-            {selectorGroups.totalNumberOfSelectors} selectors matched (
-            {selectorGroups.groups.length} groups)
+            {pluralise(
+              'selectors',
+              selectorGroups.totalNumberOfSelectors,
+              true,
+            )}{' '}
+            matched ({pluralise('groups', selectorGroups.groups.length, true)})
           </span>
         </div>
       </div>
