@@ -9,10 +9,10 @@ import {
   DEFAULT_LIST_PAGE_URL,
 } from './adapters/ui/links';
 import { PnrAccessProvider } from './contexts/pnr/pnr-access-provider';
-import AirPaxTaskListPage from './pages/task/air-pax-task-list-page';
-import RequestPnrAccessPage from './pages/task/request-pnr-access-page';
-import RoRoTaskListPage from './pages/task/roro-task-list-page';
-import TaskDetailPage from './pages/task/task-detail-page';
+import AirPaxTaskListPage from './components/task/list/air-pax-task-list-page';
+import RequestPnrAccessPage from './components/pnr/request-pnr-access-page';
+import RoRoTaskListPage from './components/task/list/roro-task-list-page';
+import TaskDetailPage from './components/task/detail/task-detail-page';
 
 const AppRouter: FC = () => {
   document.body.className = document.body.className
