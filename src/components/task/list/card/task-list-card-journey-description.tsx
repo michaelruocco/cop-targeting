@@ -1,12 +1,16 @@
 import * as React from 'react';
 import { FC } from 'react';
 import * as _ from 'lodash';
-import { Juncture, Movement, MovementMode } from '../../../adapters/task/task';
+import {
+  Juncture,
+  Movement,
+  MovementMode,
+} from '../../../../adapters/task/task';
 import {
   calcuateTimeFromNow,
   isFuture,
   toLongDateTimeFormat,
-} from '../../../adapters/date/date';
+} from '../../../../adapters/date/date';
 
 class Props {
   movement: Movement;

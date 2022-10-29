@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FC, useState } from 'react';
 import FormRenderer, { Utils } from '@ukhomeoffice/cop-react-form-renderer';
 import { MultiSelectAutocomplete } from '@ukhomeoffice/cop-react-components';
-import { FilterRule } from '../../../adapters/task/task';
+import { FilterRule } from '../../../../adapters/task/task';
 import { FormFilters } from './form-filters';
 
 class Props {

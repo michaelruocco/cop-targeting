@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { Task } from '../../../../adapters/task/task';
+import { Task } from '../../adapters/task/task';
 import { Button } from '@ukhomeoffice/cop-react-components';
 
-import '../../../../styles/link-button.scss';
+import './link-button.scss';
 
 class Props {
   task: Task;

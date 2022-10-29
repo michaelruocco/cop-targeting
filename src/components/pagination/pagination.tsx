@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FC } from 'react';
 
-import '../../styles/pagination.scss';
+import './pagination.scss';
 import PaginationLink from './pagination-link';
 
 class Props {

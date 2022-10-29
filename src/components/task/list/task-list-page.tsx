@@ -15,10 +15,10 @@ import TaskList from './task-list';
 import TriggerRequestPnrAccess from '../../pnr/trigger-request-pnr-access';
 import AuthContext from '../../../contexts/auth/auth-context';
 import PnrAccessContext from '../../../contexts/pnr/pnr-access-context';
-import { FormFilters } from './form-filters';
-import { TaskFilterComponent } from './task-filters';
+import { FormFilters } from './filter/form-filters';
+import { TaskFilterComponent } from './filter/task-filters';
 
-import '../../../styles/task-list-page.scss';
+import './task-list-page.scss';
 
 class Props {
   headerText: string;

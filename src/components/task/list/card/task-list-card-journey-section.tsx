@@ -4,9 +4,9 @@ import * as _ from 'lodash';
 import { Movement } from '../../../../adapters/task/task';
 import JourneyIcon from '../../../icon/journey-icon';
 import MovementModeIcon from '../../../icon/movement-mode-icon';
-import GroupDescription from '../group-description';
-import JourneyDescription from '../journey-description';
-import JourneyTitle from '../journey-title';
+import GroupDescription from './task-list-card-group-description';
+import JourneyDescription from './task-list-card-journey-description';
+import JourneyTitle from './task-list-card-journey-title';
 
 class Props {
   movement: Movement;

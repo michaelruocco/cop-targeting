@@ -4,7 +4,7 @@ import {
   MovementModeCounts,
   TaskCountsResponse,
   TaskSelectorCounts,
-} from '../../../adapters/task/task';
+} from '../../../../adapters/task/task';
 
 const searchTextComponent = {
   id: 'search',

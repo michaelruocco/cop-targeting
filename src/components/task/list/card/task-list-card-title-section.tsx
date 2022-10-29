@@ -8,8 +8,8 @@ import {
   Task,
 } from '../../../../adapters/task/task';
 import { isNew, isAssigned } from '../../../../adapters/task/task';
-import ClaimButton from './claim-button';
-import UnclaimButton from './unclaim-button';
+import ClaimButton from '../../../button/claim-button';
+import UnclaimButton from '../../../button/unclaim-button';
 
 class Props {
   task: Task;
@@ -58,19 +58,6 @@ const TaskListCardTitleSection: FC<Props> = ({
   risks,
   onTaskUnclaimed,
 }) => {
-  const toName = (email: string) => {
-    const name = extractName(email);
-    return formatName(name);
-  };
-
-  const extractName = (email: string) => {
-    return email.split('@')[0];
-  };
-
-  const formatName = (name: string) => {
-    return name.replace('.', ' ');
-  };
-
   return (
     <section>
       <div className="govuk-grid-row">

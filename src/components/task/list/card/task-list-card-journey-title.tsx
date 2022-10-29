@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { FC } from 'react';
 import * as _ from 'lodash';
-import { Movement, MovementMode } from '../../../adapters/task/task';
-import { formatPersonRole } from '../../../adapters/task/person';
-import DepartureStatusTag from '../../tag/departure-status-tag';
+import { Movement, MovementMode } from '../../../../adapters/task/task';
+import { formatPersonRole } from '../../../../adapters/task/person';
+import DepartureStatusTag from '../../../tag/departure-status-tag';
 
 class Props {
   movement: Movement;

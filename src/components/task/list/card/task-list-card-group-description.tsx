@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import * as React from 'react';
 import { FC } from 'react';
-import { Movement, MovementMode } from '../../../adapters/task/task';
+import { Movement, MovementMode } from '../../../../adapters/task/task';
 
 class Props {
   movement: Movement;

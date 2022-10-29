@@ -3,7 +3,7 @@ import {
   MovementMode,
   HasSelectors,
   MovementDirection,
-} from '../../../adapters/task/task';
+} from '../../../../adapters/task/task';
 
 export class FormFilters {
   movementModes: MovementMode[];

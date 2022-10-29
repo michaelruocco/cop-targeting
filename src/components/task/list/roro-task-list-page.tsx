@@ -6,8 +6,11 @@ import {
   MovementMode,
   MovementDirection,
 } from '../../../adapters/task/task';
-import { FormFilters } from './form-filters';
-import { roroTaskFilterForm, populateFormTaskCounts } from './task-filter-form';
+import { FormFilters } from './filter/form-filters';
+import {
+  roroTaskFilterForm,
+  populateFormTaskCounts,
+} from './filter/task-filter-form';
 import TaskListPage from './task-list-page';
 import RoRoTaskListCard from './card/roro-task-list-card';
 

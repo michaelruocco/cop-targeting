@@ -6,12 +6,12 @@ import {
   MovementMode,
   MovementDirection,
 } from '../../../adapters/task/task';
-import { FormFilters } from './form-filters';
+import { FormFilters } from './filter/form-filters';
 import AirPaxTaskListCard from './card/air-pax-task-list-card';
 import {
   airPaxTaskFilterForm,
   populateFormTaskCounts,
-} from './task-filter-form';
+} from './filter/task-filter-form';
 import TaskListPage from './task-list-page';
 
 const AirPaxTaskListPage: FC = () => {

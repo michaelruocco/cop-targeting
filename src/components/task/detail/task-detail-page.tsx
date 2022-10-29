@@ -13,7 +13,7 @@ import TaskDetailHeader from './task-detail-header';
 import TaskDetailActivityList from './task-detail-activity-list';
 import TaskDetailRisks from './task-detail-risks';
 
-import '../../../styles/task-detail-page.scss';
+import './task-detail-page.scss';
 
 const TaskDetailPage: FC = () => {
   const [isLoading, setLoading] = useState<boolean>(true);
