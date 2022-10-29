@@ -40,7 +40,7 @@ const TaskDetailSelectorGroups: FC<Props> = ({ selectorGroups }) => {
         </div>
         <div className="govuk-grid-column-one-third">
           <span
-            className="govuk-tag govuk-tag--riskTier"
+            className="govuk-tag govuk-tag--risk"
             style={{ marginBottom: '0px' }}
           >
             Category {group.category}

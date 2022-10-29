@@ -14,25 +14,25 @@ type DepartureStatusConfig = {
 };
 
 const departureConfirmedConfig: DepartureStatusConfig = {
-  classname: 'green',
+  classname: 'govuk-tag govuk-tag--departureConfirmed',
   description: 'Departure confirmed',
   code: 'DC',
 };
 
 const bookedPassengerConfig: DepartureStatusConfig = {
-  classname: 'purple',
+  classname: 'govuk-tag govuk-tag--bookedPassenger',
   description: 'Booked Passenger',
   code: 'BP',
 };
 
 const checkedInConfig: DepartureStatusConfig = {
-  classname: 'blue',
+  classname: 'govuk-tag govuk-tag--checkedId',
   description: 'Checked-in',
   code: 'CI',
 };
 
 const departureExceptionConfig: DepartureStatusConfig = {
-  classname: 'red',
+  classname: 'govuk-tag govuk-tag--departureException',
   description: 'Departure exception',
   code: 'DX',
 };
@@ -65,10 +65,7 @@ const DepartureStatusTag: FC<Props> = ({ status }) => {
   }
   const forceBold: any = { fontWeight: 'bold' };
   return (
-    <Tag
-      className={`airpax-status airpax-status__${config.classname}`}
-      style={forceBold}
-    >
+    <Tag className={config.classname} style={forceBold}>
       {config.code}
     </Tag>
   );

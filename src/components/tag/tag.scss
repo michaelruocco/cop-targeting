@@ -1,0 +1,43 @@
+.govuk-tag {
+  @include govuk-font($size: 14, $weight: bold, $line-height: 1);
+  color: #fff;
+  text-transform: capitalize;
+  &.govuk-tag--positiveTarget {
+    background-color: #bc2410;
+  }
+  &.govuk-tag--updatedTarget {
+    background-color: #f47738;
+  }
+  &.govuk-tag--relistedTarget {
+    background-color: #00703c;
+  }
+  &.govuk-tag--risk {
+    background-color: #bc2410;
+  }
+  &.govuk-tag--positiveOutcome {
+    background-color: #00703c;
+  }
+  &.govuk-tag--genericOutcome {
+    background-color: #505a5f;
+  }
+  &.govuk-tag--departureConfirmed {
+    background-color: #00703c;
+  }
+  &.govuk-tag--bookedPassenger {
+    background-color: #800080;
+  }
+  &.govuk-tag--checkedIn {
+    background-color: #0000ff;
+  }
+  &.govuk-tag--departureException {
+    background-color: #bc2410;
+  }
+}
+
+.airpax-status {
+  height: 19px;
+  border-radius: 5px;
+  padding-bottom: 1px !important;
+  text-transform: uppercase !important;
+  font-weight: bold;
+}

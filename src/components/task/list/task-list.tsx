@@ -8,7 +8,7 @@ import {
   TaskStatus,
 } from '../../../adapters/task/task-status';
 import Pagination from '../../pagination/pagination';
-import StatusTabs from '../../tabs/status-tabs';
+import StatusTabs from '../../tab/status-tabs';
 import LoadingSpinner from '../../spinner/loading-spinner';
 
 class Props {

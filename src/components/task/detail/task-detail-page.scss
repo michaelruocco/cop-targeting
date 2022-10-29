@@ -4,6 +4,8 @@
 @import '~govuk-frontend/govuk/settings/all';
 @import '~govuk-frontend/govuk/helpers/all';
 @import '~govuk-frontend/govuk/tools/all';
+@import '../../tag/tag.scss';
+
 @include mq($from: tablet) {
   .task-versions .govuk-accordion__section-summary {
     display: flex;
@@ -45,7 +47,6 @@
 }
 
 .card {
-  //font-size: 1em;
   background-color: #f3f2f1;
   border-top: 1px solid #b1b4b6;
   border-bottom: 1px solid #b1b4b6;
@@ -53,7 +54,6 @@
     margin-left: 2em;
     margin-right: 2em;
   }
-  /* Remove govuk default padding for ul */
   ul {
     margin-block-start: 0px;
     padding-inline-start: 5px;
@@ -147,7 +147,6 @@
       border-bottom: 1px solid #b1b4b6;
     }
     .govuk-grid-key {
-      //font-size: 15px;
       font-size: 0.9em;
       float: left;
       &.font__light {
@@ -159,7 +158,6 @@
       }
     }
     .govuk-grid-value {
-      //font-size: 15px;
       font-size: 0.9em;
       float: right;
       &.font__light {
@@ -307,7 +305,6 @@
         font-size: 12px;
       }
     }
-    /* Remove govuk default padding for ul */
     ul {
       margin-block-start: 0px;
       padding-inline-start: 0px;
@@ -478,31 +475,6 @@
   .govuk-task-detail-header {
     border-bottom: 4px solid #b1b4b6;
     margin-bottom: 20px;
-  }
-}
-
-.govuk-tag {
-  @include govuk-font($size: 14, $weight: bold, $line-height: 1);
-  height: 19px;
-  color: #fff;
-  border-radius: 5px;
-  text-transform: capitalize;
-  padding: 3px 5px 0 5px;
-
-  &.govuk-tag--positiveTarget {
-    background-color: #bc2410;
-  }
-
-  &.govuk-tag--newTarget {
-    background-color: #00703c;
-    margin-bottom: 0.25em;
-    padding-bottom: 0.125em;
-    padding-top: 0.375em;
-  }
-
-  &.govuk-tag--updatedTarget {
-    background-color: #f47738;
-    margin-bottom: 0.25em;
   }
 }
 

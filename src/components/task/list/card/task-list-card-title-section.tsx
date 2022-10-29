@@ -67,7 +67,7 @@ const TaskListCardTitleSection: FC<Props> = ({
           </div>
           <div className="govuk-grid-column govuk-!-padding-left-2">
             <h4 className="govuk-heading-s task-highest-risk govuk-!-margin-bottom-0">
-              <span className="govuk-tag govuk-tag--riskTier">
+              <span className="govuk-tag govuk-tag--risk">
                 {toHighestThreatLevelValue(risks)}
               </span>
               <span className="govuk-body task-risk-statement">
