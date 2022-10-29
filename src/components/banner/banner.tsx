@@ -8,7 +8,7 @@ import {
   PNR_ACCESS_URL,
   AIR_PASSENGER_TASK_LIST_URL,
   RORO_TASK_LIST_URL,
-} from '../../adapters/ui/links';
+} from '../../app-router';
 
 const Banner: FC = () => {
   const { logout } = useContext(AuthContext);

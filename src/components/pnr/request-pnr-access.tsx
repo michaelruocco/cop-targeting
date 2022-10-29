@@ -4,7 +4,7 @@ import AuthContext from '../../contexts/auth/auth-context';
 import PnrAccessContext from '../../contexts/pnr/pnr-access-context';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@ukhomeoffice/cop-react-components';
-import { AIR_PASSENGER_TASK_LIST_URL } from '../../adapters/ui/links';
+import { AIR_PASSENGER_TASK_LIST_URL } from '../../app-router';
 
 const RequestPnrAccess: FC = () => {
   const { getSessionId } = useContext(AuthContext);

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { Person } from '../../../adapters/task/person';
-import { Movement } from '../../../adapters/task/task';
+import { Person } from '../../../../adapters/task/person';
+import { Movement } from '../../../../adapters/task/task';
 
 class Props {
   movement: Movement;

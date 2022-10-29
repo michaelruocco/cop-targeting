@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { Movement, MovementMode, Task } from '../../../adapters/task/task';
+import { Movement, MovementMode, Task } from '../../../../adapters/task/task';
 import TaskListCardRoRoTouristMovementInfoSection from './task-list-card-roro-tourist-movement-info-section';
 import TaskListCardRoRoAccompaniedFreightMovementInfoSection from './task-list-card-roro-accompanied-freight-movement-info-section';
 import TaskListCardRoRoUnaccompaniedFreightMovementInfoSection from './task-list-card-roro-unaccompanied-freight-movement-info-section';

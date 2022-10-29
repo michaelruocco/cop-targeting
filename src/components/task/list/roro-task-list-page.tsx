@@ -9,7 +9,7 @@ import {
 import { FormFilters } from './form-filters';
 import { roroTaskFilterForm, populateFormTaskCounts } from './task-filter-form';
 import TaskListPage from './task-list-page';
-import RoRoTaskListCard from './roro-task-list-card';
+import RoRoTaskListCard from './card/roro-task-list-card';
 
 const RoRoTaskListPage: FC = () => {
   const defaultFormFilters: FormFilters = {

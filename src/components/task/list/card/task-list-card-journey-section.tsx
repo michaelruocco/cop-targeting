@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { FC } from 'react';
 import * as _ from 'lodash';
-import { Movement } from '../../../adapters/task/task';
-import JourneyIcon from '../../icon/journey-icon';
-import MovementModeIcon from '../../icon/movement-mode-icon';
-import GroupDescription from './group-description';
-import JourneyDescription from './journey-description';
-import JourneyTitle from './journey-title';
+import { Movement } from '../../../../adapters/task/task';
+import JourneyIcon from '../../../icon/journey-icon';
+import MovementModeIcon from '../../../icon/movement-mode-icon';
+import GroupDescription from '../group-description';
+import JourneyDescription from '../journey-description';
+import JourneyTitle from '../journey-title';
 
 class Props {
   movement: Movement;

@@ -4,8 +4,8 @@ import {
   formatBookingReference,
   formatBookedAt,
   formatBookingLeadTime,
-} from '../../../adapters/task/booking';
-import { Movement } from '../../../adapters/task/task';
+} from '../../../../adapters/task/booking';
+import { Movement } from '../../../../adapters/task/task';
 
 class Props {
   movement: Movement;

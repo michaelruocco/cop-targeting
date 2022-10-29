@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FC } from 'react';
 import * as _ from 'lodash';
-import { TargetingIndicators, Task } from '../../../adapters/task/task';
+import { TargetingIndicators, Task } from '../../../../adapters/task/task';
 import ViewTaskDetailLink from './view-task-link';
 
 class Props {

@@ -4,7 +4,7 @@ import { FC, useContext } from 'react';
 import { isAssignedTo, isNew, Task } from '../../../adapters/task/task';
 import { Button } from '@ukhomeoffice/cop-react-components';
 import AuthContext from '../../../contexts/auth/auth-context';
-import ClaimButton from '../list/claim-button';
+import ClaimButton from '../list/card/claim-button';
 
 class Props {
   task: Task;

@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { FC, useContext } from 'react';
-import { Task } from '../../../adapters/task/task';
+import { Task } from '../../../../adapters/task/task';
 import { useNavigate } from 'react-router-dom';
-import AuthContext from '../../../contexts/auth/auth-context';
-import { getClient } from '../../../adapters/task/targeting-api-client';
-import { toTaskDetailLink } from '../../../adapters/ui/links';
-import { CLAIM_BUTTON_CLASS_NAME } from '../../../adapters/ui/styles';
+import AuthContext from '../../../../contexts/auth/auth-context';
+import { getClient } from '../../../../adapters/task/targeting-api-client';
+import { toTaskDetailLink } from '../../../../app-router';
 import { Button } from '@ukhomeoffice/cop-react-components';
 
-import '../../../styles/link-button.scss';
+import '../../../../styles/link-button.scss';
 
 class Props {
   task: Task;
@@ -26,7 +25,10 @@ const ClaimButton: FC<Props> = ({ task }) => {
   };
 
   return (
-    <Button className={CLAIM_BUTTON_CLASS_NAME} onClick={handleClick}>
+    <Button
+      className="govuk-button--primary link-button govuk-!-font-weight-bold"
+      onClick={handleClick}
+    >
       Claim
     </Button>
   );

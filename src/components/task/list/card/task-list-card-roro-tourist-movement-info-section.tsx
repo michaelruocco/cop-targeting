@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FC } from 'react';
 import TaskListCardPersonItem from './task-list-card-person-item';
-import { Movement } from '../../../adapters/task/task';
+import { Movement } from '../../../../adapters/task/task';
 import TaskListCardBookingItem from './task-list-card-booking-item';
 import TaskListCardCoTravellerItem from './task-list-card-co-traveller-item';
 import TaskListCardVehicleItem from './task-list-card-vehicle-item';

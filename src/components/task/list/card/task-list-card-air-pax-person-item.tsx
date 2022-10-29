@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { formatCheckIn } from '../../../adapters/task/booking';
-import { Movement, Baggage, Flight } from '../../../adapters/task/task';
+import { formatCheckIn } from '../../../../adapters/task/booking';
+import { Movement, Baggage, Flight } from '../../../../adapters/task/task';
 import TaskListCardPersonItem from './task-list-card-person-item';
 
 class Props {

@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { Task } from '../../../adapters/task/task';
+import { Task } from '../../../../adapters/task/task';
 import { Button } from '@ukhomeoffice/cop-react-components';
-import { CLAIM_BUTTON_CLASS_NAME } from '../../../adapters/ui/styles';
 
-import '../../../styles/link-button.scss';
+import '../../../../styles/link-button.scss';
 
 class Props {
   task: Task;
@@ -18,7 +17,10 @@ const UnclaimButton: FC<Props> = ({ task, onTaskUnclaimed }) => {
   };
 
   return (
-    <Button className={CLAIM_BUTTON_CLASS_NAME} onClick={handleClick}>
+    <Button
+      className="govuk-button--primary link-button govuk-!-font-weight-bold"
+      onClick={handleClick}
+    >
       Unclaim
     </Button>
   );

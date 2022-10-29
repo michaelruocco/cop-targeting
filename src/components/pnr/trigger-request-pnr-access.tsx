@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FC } from 'react';
 import { Button } from '@ukhomeoffice/cop-react-components';
 import { useNavigate } from 'react-router-dom';
-import { PNR_ACCESS_URL } from '../../adapters/ui/links';
+import { PNR_ACCESS_URL } from '../../app-router';
 
 const TriggerRequestPnrAccess: FC = () => {
   const navigate = useNavigate();

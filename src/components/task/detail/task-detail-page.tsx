@@ -7,8 +7,8 @@ import { getClient } from '../../../adapters/task/targeting-api-client';
 import { Task } from '../../../adapters/task/task';
 import LoadingSpinner from '../../spinner/loading-spinner';
 import Layout from '../../layout/layout';
+import { toTaskListLink } from '../../../app-router';
 import BackToTaskList from './back-to-task-list';
-import { toTaskListLink } from '../../../adapters/ui/links';
 import TaskDetailHeader from './task-detail-header';
 import TaskDetailActivityList from './task-detail-activity-list';
 import TaskDetailRisks from './task-detail-risks';
@@ -32,7 +32,7 @@ const TaskDetailPage: FC = () => {
 
   const handleTaskUnclaimed = (task: Task) => {
     taskClient.unclaimTask(task.id);
-    navigate(toTaskListLink(task));
+    navigate(toTaskListLink(task.movement.mode));
   };
 
   useEffect(() => {

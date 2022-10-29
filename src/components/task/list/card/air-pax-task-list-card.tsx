@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { Task } from '../../../adapters/task/task';
+import { Task } from '../../../../adapters/task/task';
 import TaskListCardAirPaxMovementInfoSection from './task-list-card-air-pax-movement-info-section';
 import TaskListCardTitleSection from './task-list-card-title-section';
 import TaskListCardJourneySection from './task-list-card-journey-section';

@@ -7,7 +7,7 @@ import {
   MovementDirection,
 } from '../../../adapters/task/task';
 import { FormFilters } from './form-filters';
-import AirPaxTaskListCard from './air-pax-task-list-card';
+import AirPaxTaskListCard from './card/air-pax-task-list-card';
 import {
   airPaxTaskFilterForm,
   populateFormTaskCounts,

@@ -6,8 +6,8 @@ import {
   SelectorGroup,
   Rule,
   Task,
-} from '../../../adapters/task/task';
-import { isNew, isAssigned } from '../../../adapters/task/task';
+} from '../../../../adapters/task/task';
+import { isNew, isAssigned } from '../../../../adapters/task/task';
 import ClaimButton from './claim-button';
 import UnclaimButton from './unclaim-button';
 

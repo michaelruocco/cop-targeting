@@ -5,8 +5,8 @@ import {
   formatDocumentNumber,
   formatDocumentValidFrom,
   formatDocumentExpiry,
-} from '../../../adapters/task/person';
-import { Movement } from '../../../adapters/task/task';
+} from '../../../../adapters/task/person';
+import { Movement } from '../../../../adapters/task/task';
 
 class Props {
   movement: Movement;

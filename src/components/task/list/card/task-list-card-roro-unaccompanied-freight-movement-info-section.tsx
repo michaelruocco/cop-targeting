@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { Movement } from '../../../adapters/task/task';
+import { Movement } from '../../../../adapters/task/task';
 import TaskListCardHaulierItem from './task-list-card-haulier-item';
 import TaskListCardTrailerItem from './task-list-card-trailer-item';
 import TaskListCardAccountItem from './task-list-card-account-item';
