@@ -100,6 +100,22 @@ const TaskDetailSelectorGroups: FC<Props> = ({ selectorGroups }) => {
     );
   };
 
+  const toHeaderText = (selectorGroups: SelectorGroups): string => {
+    const selectorsText = pluralise(
+      'selectors',
+      selectorGroups.totalNumberOfSelectors,
+      true,
+    );
+    if (selectorGroups.totalNumberOfSelectors < 1) {
+      return `${selectorsText} matched`;
+    }
+    return `${selectorsText} matched (${pluralise(
+      'groups',
+      selectorGroups.groups.length,
+      true,
+    )})`;
+  };
+
   return (
     <div style={{ marginBottom: '10px' }}>
       <div
@@ -109,12 +125,7 @@ const TaskDetailSelectorGroups: FC<Props> = ({ selectorGroups }) => {
       >
         <div className="govuk-grid-column-one-third">
           <span className="govuk-!-font-weight-bold">
-            {pluralise(
-              'selectors',
-              selectorGroups.totalNumberOfSelectors,
-              true,
-            )}{' '}
-            matched ({pluralise('groups', selectorGroups.groups.length, true)})
+            {toHeaderText(selectorGroups)}
           </span>
         </div>
       </div>

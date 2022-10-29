@@ -1,6 +1,7 @@
 import { TaskStatus } from './task-status';
 import { Person } from './person';
 import { Booking } from './booking';
+import * as pluralise from 'pluralize';
 
 export enum MovementMode {
   RoRoTourist = 'RORO_TOURIST',
@@ -247,6 +248,21 @@ export type TargetingIndicators = {
   indicators: TargetingIndicator[];
   count: number;
   score: number;
+};
+
+export const toIndicatorsCountAndScoreText = (
+  targetingIndicators: TargetingIndicators,
+): string => {
+  if (targetingIndicators.count === 0) {
+    return `${formatCount(targetingIndicators.count)} matched`;
+  }
+  return `${formatCount(targetingIndicators.count)} matched with total score ${
+    targetingIndicators.score
+  }`;
+};
+
+const formatCount = (count: number): string => {
+  return pluralise('indicators', count, true);
 };
 
 export const isAssignedTo = (task: Task, email: string): boolean => {

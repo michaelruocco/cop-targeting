@@ -10,6 +10,7 @@ import {
 import { isNew, isAssigned } from '../../../../adapters/task/task';
 import ClaimButton from '../../../button/claim-button';
 import UnclaimButton from '../../../button/unclaim-button';
+import * as pluralise from 'pluralize';
 
 class Props {
   task: Task;
@@ -48,9 +49,8 @@ function formatThreatTypes(threatTypes: string[]): string {
   if (threatTypes.length === 1) {
     return firstType;
   }
-  const isPlural = threatTypes.length > 2;
-  const suffix = isPlural ? 'rules' : 'rule';
-  return `${firstType} and ${threatTypes.length - 1} other ${suffix}`;
+  const suffix = pluralise('other threat types', threatTypes.length - 1, true);
+  return `${firstType} and ${suffix}`;
 }
 
 const TaskListCardTitleSection: FC<Props> = ({

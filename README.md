@@ -28,7 +28,6 @@ Once the application is started you can view the application [here](http://local
 
 - Use pluralise instead of manually building strings
 - Add unit tests
-- Implement claim task
 - Implement task details
 - Implement issuing target
 - Implement completing a task

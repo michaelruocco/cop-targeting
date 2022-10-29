@@ -2,6 +2,7 @@ import * as React from 'react';
 import { FC } from 'react';
 import { Person } from '../../../../adapters/task/person';
 import { Movement } from '../../../../adapters/task/task';
+import * as pluralise from 'pluralize';
 
 class Props {
   movement: Movement;
@@ -23,10 +24,7 @@ const buildPassengerCountText = (otherPersons: Person[]): string => {
   if (count < 1) {
     return 'None';
   }
-  if (count == 1) {
-    return '1 Passenger';
-  }
-  return `${count} Passengers`;
+  return pluralise('Passengers', count, true);
 };
 
 const TaskListCardPassengersItem: FC<Props> = ({ movement }) => {

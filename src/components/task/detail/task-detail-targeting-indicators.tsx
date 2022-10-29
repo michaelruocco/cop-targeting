@@ -4,6 +4,7 @@ import { FC } from 'react';
 import {
   TargetingIndicators,
   TargetingIndicator,
+  toIndicatorsCountAndScoreText,
 } from '../../../adapters/task/task';
 import * as pluralise from 'pluralize';
 
@@ -87,8 +88,7 @@ const TaskDetailTargetingIndicators: FC<Props> = ({ targetingIndicators }) => {
       >
         <div className="govuk-grid-column-one-third">
           <span className="govuk-!-font-weight-bold">
-            {pluralise('targeting indicators', targetingIndicators.count, true)}{' '}
-            matched (total score {targetingIndicators.score})
+            {toIndicatorsCountAndScoreText(targetingIndicators)}
           </span>
         </div>
       </div>

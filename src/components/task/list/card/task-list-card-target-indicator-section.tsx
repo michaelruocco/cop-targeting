@@ -1,19 +1,16 @@
 import * as React from 'react';
 import { FC } from 'react';
 import * as _ from 'lodash';
-import { TargetingIndicators, Task } from '../../../../adapters/task/task';
+import {
+  TargetingIndicators,
+  Task,
+  toIndicatorsCountAndScoreText,
+} from '../../../../adapters/task/task';
 import ViewTaskDetailLink from './view-task-link';
 
 class Props {
   task: Task;
 }
-
-const formatCount = (count: number): string => {
-  if (count == 1) {
-    return `${count} indicator`;
-  }
-  return `${count} indicators`;
-};
 
 const toIndicatorItems = (
   targetingIndicators: TargetingIndicators,
@@ -24,7 +21,7 @@ const toIndicatorItems = (
       key="target-indicator-count"
       className="govuk-!-font-weight-bold govuk-!-font-size-16"
     >
-      {formatCount(targetingIndicators.count)}
+      {toIndicatorsCountAndScoreText(targetingIndicators)}
     </li>,
   );
   targetingIndicators.indicators.map((indicator) => {
@@ -44,15 +41,6 @@ const TaskListTargetIndicatorSection: FC<Props> = ({ task }) => {
     <section className="task-list--target-indicator-section">
       <div className="govuk-grid-row">
         <div className="govuk-grid-item">
-          <div className="govuk-grid-column">
-            <ul className="govuk-list task-labels govuk-!-margin-top-2">
-              <li className="task-labels-item">
-                <strong className="govuk-!-font-weight-bold">
-                  Risk Score {targetingIndicators.score}
-                </strong>
-              </li>
-            </ul>
-          </div>
           <div className="govuk-grid-column">
             <ul className="govuk-list task-labels govuk-!-margin-top-0">
               <li className="task-labels-item">

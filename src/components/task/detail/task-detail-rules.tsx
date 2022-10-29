@@ -25,7 +25,7 @@ const TaskDetailRules: FC<Props> = ({ rules }) => {
           <span className="govuk-!-font-weight-bold">Priority</span>
         </div>
         <div className="govuk-grid-column-one-third">
-          <span className="govuk-!-font-weight-bold">Abuse Type</span>
+          <span className="govuk-!-font-weight-bold">Threat Type</span>
         </div>
       </div>
     );
