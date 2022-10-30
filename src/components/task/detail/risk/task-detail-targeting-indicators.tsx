@@ -5,8 +5,7 @@ import {
   TargetingIndicators,
   TargetingIndicator,
   toIndicatorsCountAndScoreText,
-} from '../../../adapters/task/task';
-import * as pluralise from 'pluralize';
+} from '../../../../adapters/task/task';
 
 class Props {
   targetingIndicators: TargetingIndicators;

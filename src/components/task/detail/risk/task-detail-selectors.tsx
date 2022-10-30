@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 import { FC } from 'react';
-import { SelectorGroup, SelectorGroups } from '../../../adapters/task/task';
+import { SelectorGroup, SelectorGroups } from '../../../../adapters/task/task';
 import { Accordion, AccordionItem } from '@ukhomeoffice/cop-react-components';
 import * as pluralise from 'pluralize';
 

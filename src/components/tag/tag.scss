@@ -1,5 +1,4 @@
 .govuk-tag {
-  @include govuk-font($size: 14, $weight: bold, $line-height: 1);
   color: #fff;
   text-transform: capitalize;
   &.govuk-tag--positiveTarget {
@@ -32,12 +31,4 @@
   &.govuk-tag--departureException {
     background-color: #bc2410;
   }
-}
-
-.airpax-status {
-  height: 19px;
-  border-radius: 5px;
-  padding-bottom: 1px !important;
-  text-transform: uppercase !important;
-  font-weight: bold;
 }

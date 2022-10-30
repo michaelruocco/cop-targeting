@@ -4,6 +4,8 @@ import { FC } from 'react';
 import { Tag } from '@ukhomeoffice/cop-react-components';
 import { TaskStatus, formatTaskStatus } from '../../adapters/task/task-status';
 
+import './tag.scss';
+
 class Props {
   status: TaskStatus;
 }

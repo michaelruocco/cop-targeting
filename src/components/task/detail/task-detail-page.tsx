@@ -10,8 +10,8 @@ import Layout from '../../layout/layout';
 import { toTaskListLink } from '../../../app-router';
 import BackToTaskList from './back-to-task-list';
 import TaskDetailHeader from './task-detail-header';
-import TaskDetailActivityList from './task-detail-activity-list';
-import TaskDetailRisks from './task-detail-risks';
+import TaskDetailActivityList from './activity/task-detail-activity-list';
+import TaskDetailRisks from './risk/task-detail-risks';
 
 import './task-detail-page.scss';
 

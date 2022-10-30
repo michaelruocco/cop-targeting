@@ -3,6 +3,8 @@ import { FC } from 'react';
 import { DepartureStatus } from '../../adapters/task/task';
 import { Tag } from '@ukhomeoffice/cop-react-components';
 
+import './tag.scss';
+
 class Props {
   status: DepartureStatus;
 }

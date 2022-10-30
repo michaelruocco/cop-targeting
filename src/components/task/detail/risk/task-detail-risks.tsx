@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 import { FC } from 'react';
-import { Risks } from '../../../adapters/task/task';
+import { Risks } from '../../../../adapters/task/task';
 import TaskDetailSelectorGroups from './task-detail-selectors';
 import TaskDetailRules from './task-detail-rules';
 import TaskDetailTargetingIndicators from './task-detail-targeting-indicators';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 import { FC } from 'react';
-import { Note } from '../../../adapters/task/task';
+import { Note } from '../../../../adapters/task/task';
 
 class Props {
   note: Note;
@@ -37,7 +37,7 @@ const TaskDetailActivityEntry: FC<Props> = ({ note }) => {
         {toUserIdLink(note.userId)}
         <p className="govuk-body">{note.content}</p>
       </div>
-      <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
+      <hr className="govuk-section-break govuk-section-break--m govuk-activity-section-break--visible" />
     </div>
   );
 };

@@ -4,7 +4,6 @@
 @import '~govuk-frontend/govuk/settings/all';
 @import '~govuk-frontend/govuk/helpers/all';
 @import '~govuk-frontend/govuk/tools/all';
-@import '../../tag/tag.scss';
 
 @include mq($from: tablet) {
   .task-versions .govuk-accordion__section-summary {
