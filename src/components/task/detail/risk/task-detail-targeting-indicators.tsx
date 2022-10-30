@@ -74,10 +74,10 @@ const TaskDetailTargetingIndicators: FC<Props> = ({ targetingIndicators }) => {
   };
 
   return (
-    <div style={{ marginBottom: '10px' }}>
+    <>
       <div
         key="targeting-indicators-header"
-        className="govuk-targeting-indicators-grid-row grid-background--greyed"
+        className="govuk-risks-header-grid-row grid-background--greyed"
       >
         <div className="govuk-grid-column-one-third">
           <span className="govuk-!-font-weight-bold">
@@ -86,7 +86,7 @@ const TaskDetailTargetingIndicators: FC<Props> = ({ targetingIndicators }) => {
         </div>
       </div>
       {toIndicatorRows(targetingIndicators.indicators)}
-    </div>
+    </>
   );
 };
 

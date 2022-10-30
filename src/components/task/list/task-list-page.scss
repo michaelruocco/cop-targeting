@@ -101,7 +101,7 @@ $govuk-assets-path: '~govuk-frontend/govuk/assets/';
     margin-right: 0.25em;
   }
   .vertical-dotted-line {
-    height: 100%;
+    height: inherit;
     border-left: 4px dotted #b1b4b6;
     padding-left: 15px;
   }

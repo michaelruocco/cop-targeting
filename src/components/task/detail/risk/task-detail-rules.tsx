@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as _ from 'lodash';
 import { FC } from 'react';
 import { Rule } from '../../../../adapters/task/task';
+import { Accordion, AccordionItem } from '@ukhomeoffice/cop-react-components';
 import * as pluralise from 'pluralize';
 
 class Props {
@@ -14,55 +15,82 @@ const TaskDetailRules: FC<Props> = ({ rules }) => {
       return null;
     }
     return (
-      <div
-        className="govuk-task-details-grid"
-        style={{ padding: '5px', marginBottom: '0px' }}
-      >
-        <div className="govuk-grid-column-one-third">
+      <div className="govuk-risks-grid govuk-risks-grid--header">
+        <div className="govuk-risks-grid-column">
           <span className="govuk-!-font-weight-bold">Rule Name</span>
         </div>
-        <div className="govuk-grid-column-one-third">
+        <div className="govuk-risks-grid-column">
           <span className="govuk-!-font-weight-bold">Priority</span>
         </div>
-        <div className="govuk-grid-column-one-third">
+        <div className="govuk-risks-grid-column">
           <span className="govuk-!-font-weight-bold">Threat Type</span>
         </div>
       </div>
     );
   };
 
-  const toRuleRow = (rule: Rule) => {
-    const key = `rule-${rule.id}`;
+  const toRuleRowAccordion = (rule: Rule) => {
+    const key = `rule-${rule.id}-detail`;
     return (
-      <div
+      <AccordionItem
         key={key}
-        className="govuk-task-details-grid"
-        style={{ padding: '5px', marginBottom: '0px' }}
+        heading={null}
+        summary={toRuleRow(rule)}
+        expanded={false}
       >
-        <div className="govuk-grid-column-one-third">{rule.name}</div>
-        <div className="govuk-grid-column-one-third">
-          <span
-            className="govuk-tag govuk-tag--risk"
-            style={{ marginBottom: '0px' }}
-          >
-            {rule.priority}
-          </span>
+        <div className="govuk-rule-grid-detail">
+          <div>
+            <span className="govuk-!-font-weight-bold">Description</span>
+          </div>
+          <div>
+            <span className="govuk-!-font-weight-bold">Agency</span>
+          </div>
+          <div>
+            <span className="govuk-!-font-weight-bold">Rule Version</span>
+          </div>
         </div>
-        <div className="govuk-grid-column-one-third">{rule.abuseTypes}</div>
+        <div className="govuk-rule-grid-detail">
+          <div>{rule.description}</div>
+          <div>NBTC</div>
+          <div>{rule.version}</div>
+        </div>
+        <div className="govuk-rule-grid-detail govuk-rule-grid-detail--risk-indicators">
+          <div>
+            <span className="govuk-!-font-weight-bold">Risk Indicators</span>
+          </div>
+        </div>
+        <div className="govuk-rule-grid-detail">
+          <ol className="risk-indicators">
+            <li>Flight number is AF1234</li>
+            <li>Mode is Air passenger</li>
+          </ol>
+        </div>
+      </AccordionItem>
+    );
+  };
+
+  const toRuleRow = (rule: Rule) => {
+    const key = `rule-${rule.id}-accordion`;
+    return (
+      <div key={key} className="govuk-risks-grid">
+        <div className="govuk-risks-grid-column">{rule.name}</div>
+        <div className="govuk-risks-grid-column">
+          <span className="govuk-tag govuk-tag--risk">{rule.priority}</span>
+        </div>
+        <div className="govuk-risks-grid-column">{rule.abuseTypes}</div>
       </div>
     );
   };
 
   const toRuleRows = (rules: Rule[]) => {
-    return rules.map((rule) => toRuleRow(rule));
+    return rules.map((rule) => toRuleRowAccordion(rule));
   };
 
   return (
-    <div style={{ marginBottom: '10px' }}>
+    <>
       <div
         key="targeting-indicators-header"
-        className="govuk-grid-row grid-background--greyed"
-        style={{ marginBottom: '10px', paddingBottom: '10px' }}
+        className="govuk-risks-header-grid-row grid-background--greyed"
       >
         <div className="govuk-grid-column-one-third">
           <span className="govuk-!-font-weight-bold">
@@ -71,8 +99,10 @@ const TaskDetailRules: FC<Props> = ({ rules }) => {
         </div>
       </div>
       {toRuleHeader(rules)}
-      {toRuleRows(rules)}
-    </div>
+      <Accordion id="selector-group-accordion" classModifiers="risks">
+        {toRuleRows(rules)}
+      </Accordion>
+    </>
   );
 };
 

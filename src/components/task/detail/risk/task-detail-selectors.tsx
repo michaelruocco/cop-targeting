@@ -15,15 +15,18 @@ const TaskDetailSelectorGroups: FC<Props> = ({ selectorGroups }) => {
       return null;
     }
     return (
-      <div style={{ paddingRight: '40px' }}>
-        <div key="selector-groups-header" className="govuk-risks-grid">
-          <div className="govuk-grid-column-one-third">
+      <div>
+        <div
+          key="selector-groups-header"
+          className="govuk-risks-grid govuk-risks-grid--header"
+        >
+          <div className="govuk-risks-grid-column">
             <span className="govuk-!-font-weight-bold">Group Reference</span>
           </div>
-          <div className="govuk-grid-column-one-third">
+          <div className="govuk-risks-grid-column">
             <span className="govuk-!-font-weight-bold">Threat Category</span>
           </div>
-          <div className="govuk-grid-column-one-third">
+          <div className="govuk-risks-grid-column">
             <span className="govuk-!-font-weight-bold">Threat Type</span>
           </div>
         </div>
@@ -35,24 +38,19 @@ const TaskDetailSelectorGroups: FC<Props> = ({ selectorGroups }) => {
     const key = `selector-group-row-${index}`;
     return (
       <div key={key} className="govuk-risks-grid">
-        <div className="govuk-grid-column-one-third">
-          {group.groupReference}
-        </div>
-        <div className="govuk-grid-column-one-third">
-          <span
-            className="govuk-tag govuk-tag--risk"
-            style={{ marginBottom: '0px' }}
-          >
+        <div className="govuk-risks-grid-column">{group.groupReference}</div>
+        <div className="govuk-risks-grid-column">
+          <span className="govuk-tag govuk-tag--risk">
             Category {group.category}
           </span>
         </div>
-        <div className="govuk-grid-column-one-third">{group.threatType}</div>
+        <div className="govuk-risks-grid-column">{group.threatType}</div>
       </div>
     );
   };
 
   const toSelectorGroupRowAccordion = (group: SelectorGroup, index: number) => {
-    const key = `selector-group-row-${index}`;
+    const key = `selector-group-row-${index}-accordion`;
     return (
       <AccordionItem
         key={key}
@@ -60,36 +58,7 @@ const TaskDetailSelectorGroups: FC<Props> = ({ selectorGroups }) => {
         summary={toSelectorGroupRow(group, index)}
         expanded={false}
       >
-        <div className="govuk-risks-grid">
-          <div className="govuk-grid-column-one-third">
-            <span className="govuk-!-font-weight-bold">Description</span>
-          </div>
-          <div className="govuk-grid-column-one-third">
-            <span className="govuk-!-font-weight-bold">Agency</span>
-          </div>
-          <div className="govuk-grid-column-one-third">
-            <span className="govuk-!-font-weight-bold">Rule Version</span>
-          </div>
-        </div>
-        <div className="govuk-risks-grid" style={{ marginBottom: '10px' }}>
-          <div className="govuk-grid-column-one-third">
-            This text would provide more detail on the rule than can be given in
-            the name, along with some rationale
-          </div>
-          <div className="govuk-grid-column-one-third">NBTC</div>
-          <div className="govuk-grid-column-one-third">36</div>
-        </div>
-        <div className="govuk-risks-grid">
-          <div className="govuk-grid-column-one-third">
-            <span className="govuk-!-font-weight-bold">Risk Indicators</span>
-          </div>
-        </div>
-        <div className="govuk-risks-grid">
-          <ol>
-            <li>Flight number is AF1234</li>
-            <li>Mode is Air passenger</li>
-          </ol>
-        </div>
+        Selector details will go here
       </AccordionItem>
     );
   };
@@ -109,19 +78,18 @@ const TaskDetailSelectorGroups: FC<Props> = ({ selectorGroups }) => {
     if (selectorGroups.totalNumberOfSelectors < 1) {
       return `${selectorsText} matched`;
     }
-    return `${selectorsText} matched (${pluralise(
+    return `${selectorsText} matched from ${pluralise(
       'groups',
       selectorGroups.groups.length,
       true,
-    )})`;
+    )}`;
   };
 
   return (
-    <div style={{ marginBottom: '10px' }}>
+    <>
       <div
         key="targeting-indicators-header"
-        className="govuk-grid-row grid-background--greyed"
-        style={{ marginBottom: '10px', paddingBottom: '10px' }}
+        className="govuk-risks-header-grid-row grid-background--greyed"
       >
         <div className="govuk-grid-column-one-third">
           <span className="govuk-!-font-weight-bold">
@@ -133,7 +101,7 @@ const TaskDetailSelectorGroups: FC<Props> = ({ selectorGroups }) => {
       <Accordion id="selector-group-accordion" classModifiers="risks">
         {toGroupRows(selectorGroups)}
       </Accordion>
-    </div>
+    </>
   );
 };
 

@@ -10,12 +10,13 @@
     width: 100%;
   }
 }
-.govuk-targeting-indicators-grid-row {
-  margin-bottom: 10px;
-  padding-bottom: 10px;
+
+.vertical-dotted-line-one {
+  height: inherit;
+  border-left: 4px dotted #b1b4b6;
 }
-.govuk-targeting-indicators-grid-row:after {
-  content: '';
-  display: block;
-  clear: both;
+
+.vertical-dotted-line-two {
+  height: inherit;
+  border-left: 4px dotted #b1b4b6;
 }

@@ -6,6 +6,8 @@ import TaskDetailSelectorGroups from './task-detail-selectors';
 import TaskDetailRules from './task-detail-rules';
 import TaskDetailTargetingIndicators from './task-detail-targeting-indicators';
 
+import './task-detail-risks.scss';
+
 class Props {
   risks: Risks;
 }

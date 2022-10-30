@@ -5,7 +5,18 @@
     padding-right: 0.25em;
     padding-left: 0.25em;
     margin-top: 0.8em;
+  }
+}
+
+.govuk-grid-column-one-third {
+  .govuk-section-break--m {
     margin-bottom: 5px;
+  }
+  .govuk-heading-m {
+    margin-bottom: 5px;
+  }
+  .govuk-section-break--visible {
+    border-bottom: 2px solid #b1b4b6;
   }
 }
 

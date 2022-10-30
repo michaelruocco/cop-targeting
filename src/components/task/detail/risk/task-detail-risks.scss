@@ -1,0 +1,71 @@
+.govuk-risks-grid {
+  font-family: 'GDS Transport', arial, sans-serif;
+  display: grid;
+  padding: 5px;
+  grid-template-columns: 25% 25% 50%;
+  margin-bottom: 0px;
+  &.govuk-risks-grid--header {
+    padding-right: 45px;
+  }
+}
+
+.govuk-risks-grid-column {
+  padding: 0 10px 0 0;
+  width: 100%;
+}
+
+.govuk-risks-header-grid-row {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.govuk-risks-header-grid-row:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.govuk-accordion--risks {
+  margin-bottom: 0px;
+  .govuk-accordion__controls {
+    display: none;
+  }
+  .govuk-accordion__section {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: none;
+  }
+  .govuk-accordion__section-header {
+    padding: 0px;
+  }
+  .govuk-accordion__section-heading {
+    line-height: 0px;
+    font-size: 0;
+  }
+  .govuk-accordion__section-summary {
+    margin: 0px;
+  }
+  .govuk-accordion__section-content {
+    border: 0px;
+  }
+  .govuk-body {
+    font-size: 1rem;
+  }
+}
+
+.govuk-rule-grid-detail {
+  font-family: 'GDS Transport', arial, sans-serif;
+  display: grid;
+  padding: 5px;
+  grid-template-columns: 50% 25% 25%;
+  margin-bottom: 0px;
+  padding-right: 45px;
+  &.govuk-rule-grid-detail--risk-indicators {
+    margin-top: 10px;
+  }
+  ol {
+    padding-inline-start: 20px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+}

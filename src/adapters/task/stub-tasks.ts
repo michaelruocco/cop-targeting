@@ -253,8 +253,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Arrival Airport',
           //type: 'Both',
           priority: 'Tier 1',
-          //description: 'Test',
-          //version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -276,8 +276,8 @@ export const stubTasks: Task[] = [
           name: 'Return Leg- Return',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -576,8 +576,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Arrival Airport',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -599,8 +599,8 @@ export const stubTasks: Task[] = [
           name: 'Return Leg- Return',
           //  type: 'Both',
           priority: 'Tier 1',
-          //description: 'Test',
-          //version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -622,8 +622,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Risk-Rule',
           //  type: 'Both',
           priority: 'Tier 1',
-          //description: 'test pne',
-          //version: 1,
+          description: 'test pne',
+          version: 1,
           abuseTypes: ['Class B&C Drugs inc. Cannabis'],
           /*indicatorMatches: [
               {
@@ -645,8 +645,8 @@ export const stubTasks: Task[] = [
           name: 'Generic rule - For trailer',
           //  type: 'Pre-load',
           priority: 'Tier 3',
-          //description: 'Eu velit commodo ill',
-          //version: 1,
+          description: 'Eu velit commodo ill',
+          version: 1,
           abuseTypes: [
             'International Trade inc. Missing Trader Intra-Community Fraud (MTIC)',
           ],
@@ -671,8 +671,8 @@ export const stubTasks: Task[] = [
           name: 'Predict Movement Name',
           //  type: 'Both',
           priority: 'Tier 1',
-          // description: 'Test',
-          // version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -707,8 +707,8 @@ export const stubTasks: Task[] = [
           name: 'Duration of Whole trip',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Duration of Whole trip',
-          //  version: 1,
+          description: 'Duration of Whole trip',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -731,8 +731,8 @@ export const stubTasks: Task[] = [
           name: 'Duration of Stay -days',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -958,8 +958,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Arrival Airport',
           //  type: 'Both',
           priority: 'Tier 1',
-          //description: 'Test',
-          //version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -981,8 +981,8 @@ export const stubTasks: Task[] = [
           name: 'Return Leg- Return',
           //type: 'Both',
           priority: 'Tier 1',
-          //description: 'Test',
-          //version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -1004,8 +1004,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Risk-Rule',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'test pne',
-          //  version: 1,
+          description: 'test pne',
+          version: 1,
           abuseTypes: ['Class B&C Drugs inc. Cannabis'],
           /*indicatorMatches: [
               {
@@ -1027,8 +1027,8 @@ export const stubTasks: Task[] = [
           name: 'Generic rule - For trailer',
           //  type: 'Pre-load',
           priority: 'Tier 3',
-          //  description: 'Eu velit commodo ill',
-          //  version: 1,
+          description: 'Eu velit commodo ill',
+          version: 1,
           abuseTypes: [
             'International Trade inc. Missing Trader Intra-Community Fraud (MTIC)',
           ],
@@ -1053,8 +1053,8 @@ export const stubTasks: Task[] = [
           name: 'Predict Movement Name',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -1089,8 +1089,8 @@ export const stubTasks: Task[] = [
           name: 'Duration of Whole trip',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Duration of Whole trip',
-          //  version: 1,
+          description: 'Duration of Whole trip',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -1113,8 +1113,8 @@ export const stubTasks: Task[] = [
           name: 'Duration of Stay -days',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -2864,8 +2864,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Arrival Airport',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -2887,8 +2887,8 @@ export const stubTasks: Task[] = [
           name: 'Return Leg- Return',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,*/
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -2910,8 +2910,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Risk-Rule',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'test pne',
-          //  version: 1,
+          description: 'test pne',
+          version: 1,
           abuseTypes: ['Class B&C Drugs inc. Cannabis'],
           /*indicatorMatches: [
               {
@@ -2933,8 +2933,8 @@ export const stubTasks: Task[] = [
           name: 'Generic rule - For trailer',
           //type: 'Pre-load',
           priority: 'Tier 3',
-          //  description: 'Eu velit commodo ill',
-          //  version: 1,
+          description: 'Eu velit commodo ill',
+          version: 1,
           abuseTypes: [
             'International Trade inc. Missing Trader Intra-Community Fraud (MTIC)',
           ],
@@ -2959,8 +2959,8 @@ export const stubTasks: Task[] = [
           name: 'Predict Movement Name',
           //  type: 'Both',
           priority: 'Tier 1',
-          // description: 'Test',
-          // version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -2995,8 +2995,8 @@ export const stubTasks: Task[] = [
           name: 'Duration of Whole trip',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Duration of Whole trip',
-          //  version: 1,
+          description: 'Duration of Whole trip',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -3019,8 +3019,8 @@ export const stubTasks: Task[] = [
           name: 'Duration of Stay -days',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -3434,8 +3434,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Arrival Airport',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -3457,8 +3457,8 @@ export const stubTasks: Task[] = [
           name: 'Return Leg- Return',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -3480,8 +3480,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Risk-Rule',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'test pne',
-          //  version: 1,
+          description: 'test pne',
+          version: 1,
           abuseTypes: ['Class B&C Drugs inc. Cannabis'],
           /*indicatorMatches: [
               {
@@ -3503,8 +3503,8 @@ export const stubTasks: Task[] = [
           name: 'Generic rule - For trailer',
           //  type: 'Pre-load',
           priority: 'Tier 3',
-          //  description: 'Eu velit commodo ill',
-          //  version: 1,
+          description: 'Eu velit commodo ill',
+          version: 1,
           abuseTypes: [
             'International Trade inc. Missing Trader Intra-Community Fraud (MTIC)',
           ],
@@ -3529,8 +3529,8 @@ export const stubTasks: Task[] = [
           name: 'Predict Movement Name',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -3565,8 +3565,8 @@ export const stubTasks: Task[] = [
           name: 'Duration of Whole trip',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Duration of Whole trip',
-          //  version: 1,
+          description: 'Duration of Whole trip',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -3589,8 +3589,8 @@ export const stubTasks: Task[] = [
           name: 'Duration of Stay -days',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -3851,8 +3851,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Arrival Airport',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -3874,8 +3874,8 @@ export const stubTasks: Task[] = [
           name: 'Return Leg- Return',
           //  type: 'Both',
           priority: 'Tier 1',
-          //description: 'Test',
-          //version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -3897,8 +3897,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Risk-Rule',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'test pne',
-          //  version: 1,
+          description: 'test pne',
+          version: 1,
           abuseTypes: ['Class B&C Drugs inc. Cannabis'],
           /*indicatorMatches: [
               {
@@ -3920,8 +3920,8 @@ export const stubTasks: Task[] = [
           name: 'Generic rule - For trailer',
           //  type: 'Pre-load',
           priority: 'Tier 3',
-          //  description: 'Eu velit commodo ill',
-          //  version: 1,
+          description: 'Eu velit commodo ill',
+          version: 1,
           abuseTypes: [
             'International Trade inc. Missing Trader Intra-Community Fraud (MTIC)',
           ],
@@ -3946,8 +3946,8 @@ export const stubTasks: Task[] = [
           name: 'Predict Movement Name',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -3982,8 +3982,8 @@ export const stubTasks: Task[] = [
           name: 'Duration of Whole trip',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Duration of Whole trip',
-          //  version: 1,
+          description: 'Duration of Whole trip',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -4006,8 +4006,8 @@ export const stubTasks: Task[] = [
           name: 'Duration of Stay -days',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -4264,8 +4264,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Arrival Airport',
           //  type: 'Both',
           priority: 'Tier 1',
-          // description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -4287,8 +4287,8 @@ export const stubTasks: Task[] = [
           name: 'Return Leg- Return',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -4310,8 +4310,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Risk-Rule',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'test pne',
-          //  version: 1,
+          description: 'test pne',
+          version: 1,
           abuseTypes: ['Class B&C Drugs inc. Cannabis'],
           /*indicatorMatches: [
               {
@@ -4333,8 +4333,8 @@ export const stubTasks: Task[] = [
           name: 'Generic rule - For trailer',
           //  type: 'Pre-load',
           priority: 'Tier 3',
-          //  description: 'Eu velit commodo ill',
-          //  version: 1,
+          description: 'Eu velit commodo ill',
+          version: 1,
           abuseTypes: [
             'International Trade inc. Missing Trader Intra-Community Fraud (MTIC)',
           ],
@@ -4359,8 +4359,8 @@ export const stubTasks: Task[] = [
           name: 'Predict Movement Name',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -4395,8 +4395,8 @@ export const stubTasks: Task[] = [
           name: 'Duration of Whole trip',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Duration of Whole trip',
-          //  version: 1,
+          description: 'Duration of Whole trip',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -4419,8 +4419,8 @@ export const stubTasks: Task[] = [
           name: 'Duration of Stay -days',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -4638,8 +4638,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Arrival Airport',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -4661,8 +4661,8 @@ export const stubTasks: Task[] = [
           name: 'Return Leg- Return',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -4684,8 +4684,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Risk-Rule',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'test pne',
-          //  version: 1,
+          description: 'test pne',
+          version: 1,
           abuseTypes: ['Class B&C Drugs inc. Cannabis'],
           /*indicatorMatches: [
               {
@@ -4707,8 +4707,8 @@ export const stubTasks: Task[] = [
           name: 'Generic rule - For trailer',
           //  type: 'Pre-load',
           priority: 'Tier 3',
-          //  description: 'Eu velit commodo ill',
-          //  version: 1,
+          description: 'Eu velit commodo ill',
+          version: 1,
           abuseTypes: [
             'International Trade inc. Missing Trader Intra-Community Fraud (MTIC)',
           ],
@@ -4733,8 +4733,8 @@ export const stubTasks: Task[] = [
           name: 'Predict Movement Name',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -4769,8 +4769,8 @@ export const stubTasks: Task[] = [
           name: 'Duration of Whole trip',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Duration of Whole trip',
-          //  version: 1,
+          description: 'Duration of Whole trip',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -4793,8 +4793,8 @@ export const stubTasks: Task[] = [
           name: 'Duration of Stay -days',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -5021,8 +5021,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Arrival Airport',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -5044,8 +5044,8 @@ export const stubTasks: Task[] = [
           name: 'Return Leg- Return',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -5067,8 +5067,8 @@ export const stubTasks: Task[] = [
           name: 'PNR-Risk-Rule',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'test pne',
-          //  version: 1,
+          description: 'test pne',
+          version: 1,
           abuseTypes: ['Class B&C Drugs inc. Cannabis'],
           /*indicatorMatches: [
               {
@@ -5090,8 +5090,8 @@ export const stubTasks: Task[] = [
           name: 'Generic rule - For trailer',
           //  type: 'Pre-load',
           priority: 'Tier 3',
-          //  description: 'Eu velit commodo ill',
-          //  version: 1,
+          description: 'Eu velit commodo ill',
+          version: 1,
           abuseTypes: [
             'International Trade inc. Missing Trader Intra-Community Fraud (MTIC)',
           ],
@@ -5116,8 +5116,8 @@ export const stubTasks: Task[] = [
           name: 'Predict Movement Name',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -5152,8 +5152,8 @@ export const stubTasks: Task[] = [
           name: 'Duration of Whole trip',
           // type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Duration of Whole trip',
-          //  version: 1,
+          description: 'Duration of Whole trip',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
@@ -5176,8 +5176,8 @@ export const stubTasks: Task[] = [
           name: 'Duration of Stay -days',
           //  type: 'Both',
           priority: 'Tier 1',
-          //  description: 'Test',
-          //  version: 1,
+          description: 'Test',
+          version: 1,
           abuseTypes: ['Alcohol'],
           /*indicatorMatches: [
               {
