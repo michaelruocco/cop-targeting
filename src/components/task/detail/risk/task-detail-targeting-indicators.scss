@@ -1,0 +1,21 @@
+.govuk-targeting-indicators-grid {
+  font-family: 'GDS Transport', arial, sans-serif;
+  display: grid;
+  padding: 2px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  border: none;
+  margin-bottom: 10px;
+  .govuk-grid-column-one-third {
+    padding: 0 10px 0 0;
+    width: 100%;
+  }
+}
+.govuk-targeting-indicators-grid-row {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+.govuk-targeting-indicators-grid-row:after {
+  content: '';
+  display: block;
+  clear: both;
+}

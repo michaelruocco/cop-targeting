@@ -7,6 +7,8 @@ import {
   toIndicatorsCountAndScoreText,
 } from '../../../../adapters/task/task';
 
+import './task-detail-targeting-indicators.scss';
+
 class Props {
   targetingIndicators: TargetingIndicators;
 }
@@ -45,10 +47,7 @@ const TaskDetailTargetingIndicators: FC<Props> = ({ targetingIndicators }) => {
         <div className="govuk-grid-column-three-quarters">
           <span>{detail.description}</span>
         </div>
-        <div
-          className="govuk-grid-column-one-quarter"
-          style={{ textAlign: 'right' }}
-        >
+        <div className="govuk-grid-column-one-quarter">
           <span className="font__bold">{detail.score}</span>
         </div>
       </div>
@@ -65,11 +64,7 @@ const TaskDetailTargetingIndicators: FC<Props> = ({ targetingIndicators }) => {
         return null;
       }
       return (
-        <div
-          key={chunk[0].id}
-          className="govuk-task-details-grid"
-          style={{ border: 'none', padding: '2px' }}
-        >
+        <div key={chunk[0].id} className="govuk-targeting-indicators-grid">
           {toIndicatorColumn(chunk, 0, '')}
           {toIndicatorColumn(chunk, 1, 'vertical-dotted-line-one')}
           {toIndicatorColumn(chunk, 2, 'vertical-dotted-line-two')}
@@ -82,8 +77,7 @@ const TaskDetailTargetingIndicators: FC<Props> = ({ targetingIndicators }) => {
     <div style={{ marginBottom: '10px' }}>
       <div
         key="targeting-indicators-header"
-        className="govuk-grid-row grid-background--greyed"
-        style={{ marginBottom: '10px', paddingBottom: '10px' }}
+        className="govuk-targeting-indicators-grid-row grid-background--greyed"
       >
         <div className="govuk-grid-column-one-third">
           <span className="govuk-!-font-weight-bold">
