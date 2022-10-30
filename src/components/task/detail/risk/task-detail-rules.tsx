@@ -83,7 +83,14 @@ const TaskDetailRules: FC<Props> = ({ rules }) => {
   };
 
   const toRuleRows = (rules: Rule[]) => {
-    return rules.map((rule) => toRuleRowAccordion(rule));
+    if (rules.length < 1) {
+      return null;
+    }
+    return (
+      <div className="govuk-!-margin-top-10">
+        {rules.map((rule) => toRuleRowAccordion(rule))}
+      </div>
+    );
   };
 
   return (
@@ -98,10 +105,14 @@ const TaskDetailRules: FC<Props> = ({ rules }) => {
           </span>
         </div>
       </div>
-      {toRuleHeader(rules)}
-      <Accordion id="selector-group-accordion" classModifiers="risks">
-        {toRuleRows(rules)}
-      </Accordion>
+      {rules.length > 0 && (
+        <>
+          {toRuleHeader(rules)}
+          <Accordion id="selector-group-accordion" classModifiers="risks">
+            {toRuleRows(rules)}
+          </Accordion>
+        </>
+      )}
     </>
   );
 };

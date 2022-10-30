@@ -97,10 +97,14 @@ const TaskDetailSelectorGroups: FC<Props> = ({ selectorGroups }) => {
           </span>
         </div>
       </div>
-      {toHeader(selectorGroups)}
-      <Accordion id="selector-group-accordion" classModifiers="risks">
-        {toGroupRows(selectorGroups)}
-      </Accordion>
+      {selectorGroups.totalNumberOfSelectors > 0 && (
+        <>
+          {toHeader(selectorGroups)}
+          <Accordion id="selector-group-accordion" classModifiers="risks">
+            {toGroupRows(selectorGroups)}
+          </Accordion>
+        </>
+      )}
     </>
   );
 };

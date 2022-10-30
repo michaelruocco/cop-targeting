@@ -16,6 +16,15 @@
   font-size: 15px;
 }
 
+@include mq($from: tablet) {
+  .task-actions--buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 20pt;
+  }
+}
+
 .govuk-main-wrapper {
   padding-top: 10px;
   .govuk-grid-row {

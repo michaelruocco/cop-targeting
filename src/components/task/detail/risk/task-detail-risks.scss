@@ -5,6 +5,7 @@
   grid-template-columns: 25% 25% 50%;
   margin-bottom: 0px;
   &.govuk-risks-grid--header {
+    margin-top: 5px;
     padding-right: 45px;
   }
 }
@@ -15,7 +16,7 @@
 }
 
 .govuk-risks-header-grid-row {
-  margin-bottom: 10px;
+  margin-top: 10px;
   padding-bottom: 10px;
 }
 
@@ -26,7 +27,7 @@
 }
 
 .govuk-accordion--risks {
-  margin-bottom: 0px;
+  margin-bottom: 0px !important;
   .govuk-accordion__controls {
     display: none;
   }

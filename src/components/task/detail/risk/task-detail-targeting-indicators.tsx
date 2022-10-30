@@ -85,7 +85,8 @@ const TaskDetailTargetingIndicators: FC<Props> = ({ targetingIndicators }) => {
           </span>
         </div>
       </div>
-      {toIndicatorRows(targetingIndicators.indicators)}
+      {targetingIndicators.count > 0 &&
+        toIndicatorRows(targetingIndicators.indicators)}
     </>
   );
 };
