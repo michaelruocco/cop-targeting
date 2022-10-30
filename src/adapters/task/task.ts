@@ -262,7 +262,7 @@ export const toIndicatorsCountAndScoreText = (
 };
 
 const formatCount = (count: number): string => {
-  return pluralise('indicators', count, true);
+  return pluralise('targeting indicators', count, true);
 };
 
 export const isAssignedTo = (task: Task, email: string): boolean => {
