@@ -3,6 +3,7 @@ import { FC } from 'react';
 
 import './pagination.scss';
 import PaginationLink from './pagination-link';
+import * as pluralise from 'pluralize';
 
 class Props {
   currentPage: number;
@@ -19,7 +20,7 @@ const calculateNumberOfPages = (
 };
 
 const calculateAriaLabel = (numberOfPages: number): string => {
-  const suffix = numberOfPages > 1 ? 'pages' : 'page';
+  const suffix = pluralise('pages', numberOfPages, true);
   return `pagination: total ${numberOfPages} ${suffix}`;
 };
 

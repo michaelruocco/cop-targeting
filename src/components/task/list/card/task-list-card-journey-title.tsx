@@ -4,6 +4,7 @@ import * as _ from 'lodash';
 import { Movement, MovementMode } from '../../../../adapters/task/task';
 import { formatPersonRole } from '../../../../adapters/task/person';
 import DepartureStatusTag from '../../../tag/departure-status-tag';
+import * as pluralise from 'pluralize';
 
 class Props {
   movement: Movement;
@@ -18,13 +19,7 @@ const toRoRoTitle = (movement: Movement): string => {
 };
 
 const toFootPassengerTitle = (groupSize: number): string => {
-  if (groupSize > 1) {
-    return `${groupSize} foot passengers`;
-  }
-  if (groupSize > 0) {
-    return `1 foot passenger`;
-  }
-  return 'Unknown';
+  return pluralise('foot passengers', groupSize, true);
 };
 
 const toAirPaxTitle = (movement: Movement): string => {
