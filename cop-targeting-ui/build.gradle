@@ -1,0 +1,23 @@
+plugins {
+    id "base"
+    id "com.github.node-gradle.node" version "3.1.1"
+}
+
+clean {
+    delete "dist"
+    delete "node_modules"
+}
+
+task npmInstallForce(type: NpmTask) {
+    args = ["install", "--force"]
+}
+
+task buildUi(type: NpmTask) {
+    dependsOn npmInstallForce
+    args = ["run", "build"]
+}
+
+task startUi(type: NpmTask) {
+    dependsOn npmInstallForce
+    args = ["run", "start:dev"]
+}

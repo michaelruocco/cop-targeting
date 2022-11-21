@@ -9,13 +9,13 @@ When running for the very first time after cloning the repo you will need to sta
 installing the required dependencies, you can do this by running the following command:
 
 ```bash
-yarn install
+npm install --force
 ```
 
 Once the dependencies are install you can start the UI locally by running:
 
 ```bash
-yarn start:dev
+npm run start:dev
 ```
 
 Note for this command to work you need to set up a .env file at `./environments/env.development` it needs to contain the following variables each with `<configure-me>` replaced with an appropriate value:

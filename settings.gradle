@@ -1,0 +1,4 @@
+rootProject.name = 'cop-targeting'
+
+include ':cop-targeting-ui'
+project(':cop-targeting-ui').projectDir = file('cop-targeting-ui')
