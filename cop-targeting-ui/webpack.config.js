@@ -47,7 +47,7 @@ module.exports = (_, argv) => {
       }),
       new Dotenv({
         path: `.environments/env.${argv.mode}`,
-      }),
+      })
     ],
   };
 };

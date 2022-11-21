@@ -81,7 +81,6 @@ const Banner: FC = () => {
               <NavigationItem
                 href={AIR_PASSENGER_TASK_LIST_URL}
                 text="Air Passenger"
-                visible={config.copTargetingApiEnabled}
               />
               <NavigationItem href={PNR_ACCESS_URL} text="PNR Access" />
               <li className="govuk-header__navigation-item">

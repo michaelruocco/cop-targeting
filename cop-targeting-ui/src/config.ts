@@ -2,8 +2,6 @@ import { KeycloakConfig, KeycloakInitOptions } from 'keycloak-js';
 
 export type CopTargetingApiConfig = {
   copTargetingApiUrl: string;
-  copTargetingApiEnabled: boolean;
-  camundaApiUrl: string;
   keycloak: CopTargetingApiKeycloakConfig;
 };
 
@@ -14,8 +12,6 @@ export interface CopTargetingApiKeycloakConfig {
 
 const config: CopTargetingApiConfig = {
   copTargetingApiUrl: process.env.COP_TARGETING_API_URL,
-  copTargetingApiEnabled: process.env.COP_TARGETING_API_ENABLED === 'true',
-  camundaApiUrl: process.env.CAMUNDA_API_URL,
   keycloak: {
     clientConfig: {
       clientId: process.env.KEYCLOAK_CLIENT_ID,
