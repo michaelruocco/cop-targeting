@@ -1,7 +1,6 @@
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = (_, argv) => {
@@ -9,8 +8,7 @@ module.exports = (_, argv) => {
   return {
     mode: argv.mode,
     output: {
-      path: __dirname,
-      filename: 'bundle.js',
+      filename: '[name].js',
       publicPath: '/',
     },
     resolve: {
@@ -31,20 +29,21 @@ module.exports = (_, argv) => {
         { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
       ],
     },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+      },
+    },
     devServer: {
       hot: true,
       port: 3000,
-      allowedHosts: 'all',
+      allowedHosts: 'localhost',
       historyApiFallback: true,
     },
     plugins: [
       new HtmlWebpackPlugin({
+        title: `cop-targeting-ui-${argv.mode}`,
         template: './src/index.html',
-      }),
-      new CopyPlugin({
-        patterns: [
-          { from: 'node_modules/govuk-frontend/govuk/assets', to: 'assets' },
-        ],
       }),
       new Dotenv({
         path: `.environments/env.${argv.mode}`,
