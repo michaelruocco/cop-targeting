@@ -5,6 +5,15 @@
 To run the commands below please ensure that you have switched your current directory
 to the `cop-targeting-ui` folder from the main top level folder of the repo.
 
+When running for the very first time after cloning the repo you will need to start by
+installing the required dependencies, you can do this by running the following command:
+
+```bash
+yarn install
+```
+
+Once the dependencies are install you can start the UI locally by running:
+
 ```bash
 yarn start:dev
 ```
