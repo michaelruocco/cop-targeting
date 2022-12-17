@@ -13,9 +13,9 @@ import {
   MovementDirectionCounts,
   MovementDirection,
   Note,
-} from './task';
-import { TaskStatus } from './task-status';
-import { stubTasks } from './stub-tasks';
+} from '../task/task';
+import { TaskStatus } from '../task/task-status';
+import { stubTasks } from '../task/stub-tasks';
 import jwt_decode from 'jwt-decode';
 import { v4 as uuidv4 } from 'uuid';
 import { utcNow } from '../date/date';
@@ -122,6 +122,10 @@ class StubTargetingApiClient implements TargetingApiClient {
     return extractEmail(this.getToken());
   };
 }
+
+export const getTargetingApiClient = (getToken: () => string): TargetingApiClient => {
+  return new StubTargetingApiClient(getToken);
+};
 
 const getMovementModeCounts = (filters: TaskFilters): MovementModeCounts => {
   return {
@@ -265,8 +269,4 @@ const taskMatches = (task: Task, filters: TaskFilters): boolean => {
     return false;
   }
   return true;
-};
-
-export const getClient = (getToken: () => string): TargetingApiClient => {
-  return new StubTargetingApiClient(getToken);
 };

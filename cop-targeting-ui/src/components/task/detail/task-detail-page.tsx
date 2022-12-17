@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import { FC, useContext, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import AuthContext from '../../../contexts/auth/auth-context';
-import { getClient } from '../../../adapters/task/targeting-api-client';
+import { getTargetingApiClient } from '../../../adapters/api/targeting-api-client';
 import { Task } from '../../../adapters/task/task';
 import LoadingSpinner from '../../spinner/loading-spinner';
 import Layout from '../../layout/layout';
@@ -19,7 +19,7 @@ const TaskDetailPage: FC = () => {
   const [isLoading, setLoading] = useState<boolean>(true);
   const [task, setTask] = useState<Task>();
   const { getToken } = useContext(AuthContext);
-  const taskClient = getClient(getToken);
+  const taskClient = getTargetingApiClient(getToken);
   const { taskId } = useParams();
   const navigate = useNavigate();
 

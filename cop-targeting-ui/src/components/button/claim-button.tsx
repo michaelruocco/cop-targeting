@@ -3,7 +3,7 @@ import { FC, useContext } from 'react';
 import { Task } from '../../adapters/task/task';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../contexts/auth/auth-context';
-import { getClient } from '../../adapters/task/targeting-api-client';
+import { getTargetingApiClient } from '../../adapters/api/targeting-api-client';
 import { toTaskDetailLink } from '../../app-router';
 import { Button } from '@ukhomeoffice/cop-react-components';
 
@@ -16,7 +16,7 @@ class Props {
 const ClaimButton: FC<Props> = ({ task }) => {
   const navigate = useNavigate();
   const { getToken } = useContext(AuthContext);
-  const taskClient = getClient(getToken);
+  const taskClient = getTargetingApiClient(getToken);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.currentTarget.blur();

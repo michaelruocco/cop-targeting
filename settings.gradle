@@ -2,3 +2,6 @@ rootProject.name = 'cop-targeting'
 
 include ':cop-targeting-ui'
 project(':cop-targeting-ui').projectDir = file('cop-targeting-ui')
+
+include ':cop-targeting-api'
+project(':cop-targeting-api').projectDir = file('cop-targeting-api')

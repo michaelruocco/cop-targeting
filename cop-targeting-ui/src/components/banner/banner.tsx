@@ -3,7 +3,7 @@ import { useState, useContext, FC } from 'react';
 import { Link } from 'react-router-dom';
 import NavigationItem from './navigation-item';
 import AuthContext from '../../contexts/auth/auth-context';
-import config from '../../config';
+
 import {
   PNR_ACCESS_URL,
   AIR_PASSENGER_TASK_LIST_URL,

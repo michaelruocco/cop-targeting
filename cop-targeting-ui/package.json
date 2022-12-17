@@ -6,9 +6,12 @@
   "scripts": {
     "build:dev": "webpack --mode=development",
     "start:dev": "webpack serve --mode=development",
-    "build": "webpack --mode=production"
+    "check": "echo TODO run ui tests",
+    "build": "webpack --mode=production",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
+    "@auth0/auth0-spa-js": "^2.0.1",
     "@babel/plugin-transform-runtime": "^7.18.10",
     "@react-keycloak/web": "^3.4.0",
     "@types/jwt-decode": "^3.1.0",
@@ -17,6 +20,7 @@
     "@types/uuid": "^8.3.4",
     "@ukhomeoffice/cop-react-components": "^1.9.5",
     "@ukhomeoffice/cop-react-form-renderer": "^3.19.0",
+    "axios": "^1.2.0",
     "core-js": "^3.23.4",
     "dayjs": "^1.11.5",
     "jwt-decode": "^3.1.2",

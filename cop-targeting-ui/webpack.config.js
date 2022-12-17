@@ -10,6 +10,7 @@ module.exports = (_, argv) => {
     output: {
       filename: '[name].js',
       publicPath: '/',
+      clean: true
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json'],

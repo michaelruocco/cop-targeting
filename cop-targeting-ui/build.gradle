@@ -1,23 +1,11 @@
 plugins {
-    id "base"
-    id "com.github.node-gradle.node" version "3.1.1"
+    id "org.siouan.frontend-jdk11" version "6.0.0"
 }
 
-clean {
-    delete "dist"
-    delete "node_modules"
-}
-
-task npmInstallForce(type: NpmTask) {
-    args = ["install", "--force"]
-}
-
-task buildUi(type: NpmTask) {
-    dependsOn npmInstallForce
-    args = ["run", "build"]
-}
-
-task startUi(type: NpmTask) {
-    dependsOn npmInstallForce
-    args = ["run", "start:dev"]
+frontend {
+    nodeVersion = "18.5.0"
+    installScript = "install --legacy-peer-deps"
+    assembleScript = "run build"
+    cleanScript = "run clean"
+    checkScript = "run check"
 }

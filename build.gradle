@@ -1,0 +1,26 @@
+plugins {
+    id "pl.allegro.tech.build.axion-release" version "1.14.2"
+    id "nebula.lint" version "17.7.1"
+}
+
+scmVersion {
+    versionCreator "versionWithBranch"
+    tag {
+        prefix = "${name}-"
+    }
+}
+project.version = scmVersion.version
+
+allprojects {
+    group "uk.gov.homeoffice.cop.targeting"
+    version = rootProject.version
+
+    repositories {
+        mavenCentral()
+    }
+
+    gradleLint {
+        rules = ['all-dependency']
+        alwaysRun = false
+    }
+}
