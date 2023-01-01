@@ -8,11 +8,11 @@ top level directory of the repo.
 
 ```bash
 ./gradlew bootRun \
+  -Dui.auth.auth0.domain=<configure-me> \
+  -Dui.auth.auth0.clientId=<configure-me> \
   -Dui.auth.keycloak.authUrl=<configure-me> \
   -Dui.auth.keycloak.realm=<configure-me> \
-  -Dui.auth.keycloak.clientId=<configure-me> \
-  -Dui.auth.auth0.domain=<configure-me> \
-  -Dui.auth.auth0.clientId=<configure-me>
+  -Dui.auth.keycloak.clientId=<configure-me>
 ```
 
 Once the application is running you can view the application UI [here](http://localhost:8080).

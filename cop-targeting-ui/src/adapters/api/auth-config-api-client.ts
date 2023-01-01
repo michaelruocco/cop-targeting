@@ -64,9 +64,6 @@ export const getAuthConfigApiClient = (): AuthConfigApiClient => {
 };
 
 const getStubKeycloakConfig = (): UiKeycloakConfig => {
-  if (!process.env.KEYCLOAK_CLIENT_ID) {
-    return null;
-  }
   const onLoad: KeycloakOnLoad = 'login-required';
   return {
     authUrl: process.env.KEYCLOAK_AUTH_URL,
@@ -80,9 +77,6 @@ const getStubKeycloakConfig = (): UiKeycloakConfig => {
 };
 
 const getStubAuth0Config = (): UiAuth0Config => {
-  if (!process.env.AUTH0_CLIENT_ID) {
-    return null;
-  }
   return {
     domain: process.env.AUTH0_DOMAIN,
     clientId: process.env.AUTH0_CLIENT_ID,

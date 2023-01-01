@@ -1,6 +1,7 @@
 plugins {
     id "pl.allegro.tech.build.axion-release" version "1.14.2"
     id "nebula.lint" version "17.7.1"
+    id "com.diffplug.spotless" version "6.0.3"
 }
 
 scmVersion {
@@ -22,5 +23,34 @@ allprojects {
     gradleLint {
         rules = ['all-dependency']
         alwaysRun = false
+    }
+}
+
+subprojects {
+    apply plugin: "java-library"
+    apply plugin: "com.diffplug.spotless"
+
+    ext {
+        lombokVersion = "1.18.22"
+        slf4jVersion = "1.7.32"
+
+        junitVersion = "5.8.2"
+        assertjVersion = "3.21.0"
+        mockitoVersion = "4.1.0"
+    }
+
+    dependencies {
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+        testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+        implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+
+        testRuntimeOnly "org.slf4j:slf4j-simple:${slf4jVersion}"
+        testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
+        testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+        testImplementation "org.assertj:assertj-core:${assertjVersion}"
+        testImplementation "org.mockito:mockito-core:${mockitoVersion}"
     }
 }

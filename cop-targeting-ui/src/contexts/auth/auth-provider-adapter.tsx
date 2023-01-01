@@ -14,9 +14,9 @@ const AuthProviderAdapter: FC<Props> = ({ children }) => {
   const init = async () => {
     const configClient = getAuthConfigApiClient();
     const authConfig = await configClient.getUiAuthConfig();
-    if (authConfig.auth0Config) {
+    if (authConfig.auth0Config.clientId) {
       setConfiguredProvider('auth0');
-    } else if (authConfig.keycloakConfig) {
+    } else if (authConfig.keycloakConfig.clientId) {
       setConfiguredProvider('keycloak');
     }
   };
