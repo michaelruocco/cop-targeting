@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Auth0Client, createAuth0Client } from '@auth0/auth0-spa-js';
 import { FC, useState, useEffect } from 'react';
-import Keycloak from 'keycloak-js';
 import AuthContext from './auth-context';
 import { getAuthConfigApiClient } from '../../adapters/api/auth-config-api-client';
 
@@ -21,7 +20,7 @@ const Auth0AuthProvider: FC<Props> = ({ children }) => {
     const authConfig = await configClient.getUiAuthConfig();
     const auth0Client = await createAuth0Client({
       domain: authConfig.auth0Config.domain,
-      clientId: authConfig.auth0Config.clientId
+      clientId: authConfig.auth0Config.clientId,
     });
     setAuth0Client(auth0Client);
 
@@ -34,17 +33,15 @@ const Auth0AuthProvider: FC<Props> = ({ children }) => {
       setToken(claims['__raw']);
       setSessionId(claims.sid);
       setUserEmail(claims.email);
-      setTokenRefreshInterval(
-        calculateInterval(claims['exp']),
-      );
+      setTokenRefreshInterval(calculateInterval(claims['exp']));
     }
-  }
+  };
 
   const handleRedirectCallbackIfRequired = async (client: Auth0Client) => {
     if (handleRedirectCallbackIsRequired()) {
       await client.handleRedirectCallback();
     }
-  }
+  };
 
   const authenticateIfRequired = async (client: Auth0Client) => {
     const isAuthenticated = await client.isAuthenticated();
@@ -54,22 +51,22 @@ const Auth0AuthProvider: FC<Props> = ({ children }) => {
     }
     await client.loginWithRedirect({
       authorizationParams: {
-        redirect_uri: window.location.href
-      }
+        redirect_uri: window.location.href,
+      },
     });
-  }
+  };
 
   const handleRedirectCallbackIsRequired = () => {
     const query = window.location.search;
-    return query.includes("code=") && query.includes("state=");
-  }
+    return query.includes('code=') && query.includes('state=');
+  };
 
   const logout = (uri: string) => {
     console.info(`logging out using redirect uri ${uri}`);
     auth0Client.logout({
       logoutParams: {
-        returnTo: uri
-      }
+        returnTo: uri,
+      },
     });
   };
 
@@ -93,7 +90,8 @@ const Auth0AuthProvider: FC<Props> = ({ children }) => {
   };
 
   setInterval(() => {
-    auth0Client.getTokenSilently()
+    auth0Client
+      .getTokenSilently()
       .then((updated: any) => {
         console.info(`token updated ${updated}`);
       })
@@ -102,7 +100,7 @@ const Auth0AuthProvider: FC<Props> = ({ children }) => {
       });
   }, tokenRefreshInterval);
 
-  useEffect(() => { 
+  useEffect(() => {
     initAuth0Client();
   }, []);
 

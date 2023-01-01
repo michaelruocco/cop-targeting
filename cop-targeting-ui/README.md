@@ -24,12 +24,12 @@ Note for this command to work you need to set up a .env file at `./environments/
 COP_TARGETING_API_STUBBED=true
 COP_TARGETING_API_URL=<configure-me>
 
+AUTH0_DOMAIN=<configure-me>
+AUTH0_CLIENT_ID=<configure-me>
+
 KEYCLOAK_CLIENT_ID=<configure-me>
 KEYCLOAK_REALM=<configure-me>
 KEYCLOAK_AUTH_URL=<configure-me>
-
-AUTH0_DOMAIN=<configure-me>
-AUTH0_CLIENT_ID=<configure-me>
 ```
 
 Any of the other values only need to be configured if `COP_TARGETING_API_STUBBED` is false.

@@ -21,7 +21,7 @@ export type UiAuth0Config = {
 };
 
 export type UiAuthConfig = {
-  auth0Config: UiAuth0Config,
+  auth0Config: UiAuth0Config;
   keycloakConfig: UiKeycloakConfig;
 };
 
@@ -31,24 +31,10 @@ export interface AuthConfigApiClient {
 
 class StubAuthConfigApiClient implements AuthConfigApiClient {
   getUiAuthConfig = (): Promise<UiAuthConfig> => {
-    const onLoad: KeycloakOnLoad = 'login-required';
-    const keycloakConfig = {
-      authUrl: process.env.KEYCLOAK_AUTH_URL,
-      realm: process.env.KEYCLOAK_REALM,
-      clientId: process.env.KEYCLOAK_CLIENT_ID,
-      initOptions: {
-        onLoad: onLoad,
-        checkLoginIframe: false,
-      }
-    };
-    const auth0Config = {
-      domain: process.env.AUTH0_DOMAIN,
-      clientId: process.env.AUTH0_CLIENT_ID
-    }
     const authConfig = {
-      auth0Config: auth0Config,
-      keycloakConfig: keycloakConfig
-    }
+      auth0Config: getStubAuth0Config(),
+      keycloakConfig: getStubKeycloakConfig(),
+    };
     console.info(`returning ui auth config ${JSON.stringify(authConfig)}`);
     return Promise.resolve(authConfig);
   };
@@ -61,7 +47,10 @@ class RestAuthConfigApiClient implements AuthConfigApiClient {
         Accept: 'application/json',
       },
     };
-    const { data } = await axios.get<UiAuthConfig>(`${getCopTargetingApiUrl()}/v1/ui-auth-config`, request);
+    const { data } = await axios.get<UiAuthConfig>(
+      `${getCopTargetingApiUrl()}/v1/ui-auth-config`,
+      request,
+    );
     console.info(`returning ui keycloak config ${JSON.stringify(data)}`);
     return data;
   };
@@ -72,4 +61,30 @@ export const getAuthConfigApiClient = (): AuthConfigApiClient => {
     return new StubAuthConfigApiClient();
   }
   return new RestAuthConfigApiClient();
+};
+
+const getStubKeycloakConfig = (): UiKeycloakConfig => {
+  if (!process.env.KEYCLOAK_CLIENT_ID) {
+    return null;
+  }
+  const onLoad: KeycloakOnLoad = 'login-required';
+  return {
+    authUrl: process.env.KEYCLOAK_AUTH_URL,
+    realm: process.env.KEYCLOAK_REALM,
+    clientId: process.env.KEYCLOAK_CLIENT_ID,
+    initOptions: {
+      onLoad: onLoad,
+      checkLoginIframe: false,
+    },
+  };
+};
+
+const getStubAuth0Config = (): UiAuth0Config => {
+  if (!process.env.AUTH0_CLIENT_ID) {
+    return null;
+  }
+  return {
+    domain: process.env.AUTH0_DOMAIN,
+    clientId: process.env.AUTH0_CLIENT_ID,
+  };
 };
